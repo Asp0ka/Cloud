@@ -1,0 +1,5364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asp0ka | 班长竞选</title>
+    <meta name = "description" content = "Minimalist, sophisticated, modern, Asp0ka's personal website (under construction).">
+    <meta name="keywords" content="Asp0ka, personal website, portfolio, minimalist design, modern web design">
+    <meta name="author" content="Asp0ka">
+    <meta name="robots" content="index, follow">
+
+    <style>
+        /* ============================================================
+   修复：隐藏系统光标
+   框架里有，成品漏了。不补上会同时出现系统箭头 + 白点
+   ============================================================ */
+body,
+body * {
+    cursor: none !important;
+}
+
+/* ============================================================
+   原成品样式
+   ============================================================ */
+:root {
+    --bg: #07090d;
+    --bg-deep: #040507;
+    --surface: rgba(18, 21, 28, 0.72);
+    --surface-strong: rgba(13, 16, 22, 0.9);
+    --surface-soft: rgba(255, 255, 255, 0.035);
+    --line: rgba(255, 255, 255, 0.12);
+    --line-soft: rgba(255, 255, 255, 0.07);
+    --text: #f4f6f8;
+    --text-soft: #bac1ca;
+    --text-muted: #727b87;
+    --accent: #9cf0d0;
+    --accent-soft: rgba(156, 240, 208, 0.12);
+    --accent-strong: rgba(156, 240, 208, 0.3);
+    --shadow: rgba(0, 0, 0, 0.42);
+    --max-width: 1220px;
+    --page-padding: clamp(20px, 4vw, 64px);
+    --header-height: 76px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color-scheme: dark;
+    scroll-behavior: auto;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, "SF Pro Display", "Segoe UI", "Microsoft YaHei", sans-serif;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+}
+
+body::before {
+    position: fixed;
+    z-index: -4;
+    inset: 0;
+    background:
+        radial-gradient(circle at 14% 17%, rgba(156, 240, 208, 0.07), transparent 28%),
+        radial-gradient(circle at 82% 68%, rgba(130, 145, 255, 0.06), transparent 33%),
+        linear-gradient(180deg, #080a0f 0%, #06080c 48%, #07090e 100%);
+    content: "";
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100svh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+main::-webkit-scrollbar {
+    display: none;
+}
+
+.page-section {
+    position: relative;
+    min-height: 100svh;
+    isolation: isolate;
+    scroll-margin-top: 8px;
+}
+
+.page-section::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 28%, rgba(0, 0, 0, 0.08) 100%);
+    content: "";
+    pointer-events: none;
+}
+
+.section-tone-one::after,
+.section-tone-two::after,
+.section-tone-three::after,
+.section-tone-four::after,
+.section-tone-five::after,
+.section-tone-six::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+}
+
+.section-tone-one::after {
+    background: radial-gradient(circle at 78% 26%, rgba(156, 240, 208, 0.045), transparent 24%);
+}
+
+.section-tone-two::after {
+    background: radial-gradient(circle at 18% 74%, rgba(131, 145, 255, 0.045), transparent 27%);
+}
+
+.section-tone-three::after {
+    background: radial-gradient(circle at 72% 55%, rgba(156, 240, 208, 0.06), transparent 25%);
+}
+
+.section-tone-four::after {
+    background: radial-gradient(circle at 23% 35%, rgba(153, 163, 255, 0.05), transparent 25%);
+}
+
+.section-tone-five::after {
+    background: radial-gradient(circle at 80% 20%, rgba(156, 240, 208, 0.05), transparent 30%);
+}
+
+.section-tone-six::after {
+    background: radial-gradient(circle at 50% 100%, rgba(156, 240, 208, 0.055), transparent 32%);
+}
+
+.section-wrap {
+    position: relative;
+    display: flex;
+    width: min(calc(100% - (var(--page-padding) * 2)), var(--max-width));
+    min-height: 100svh;
+    margin: 0 auto;
+    padding: 110px 0 78px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ============================================================
+   背景场景 —— 基础变量
+   ============================================================ */
+:root {
+    --bg: #07090d;
+    --accent: #9cf0d0;
+}
+
+body {
+    background: var(--bg);
+}
+
+/* 基础渐变底色：两个径向光晕 + 垂直渐变 */
+body::before {
+    position: fixed;
+    z-index: -4;
+    inset: 0;
+    background:
+        radial-gradient(circle at 14% 17%, rgba(156, 240, 208, 0.07), transparent 28%),
+        radial-gradient(circle at 82% 68%, rgba(130, 145, 255, 0.06), transparent 33%),
+        linear-gradient(180deg, #080a0f 0%, #06080c 48%, #07090e 100%);
+    content: "";
+}
+
+/* ============================================================
+   Scene Container
+   ============================================================ */
+.scene {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    perspective: 1400px;
+    perspective-origin: 50% 46%;
+    pointer-events: none;
+    isolation: isolate;
+}
+
+.scene-grid,
+.scene-glow,
+.scene-ring,
+.scene-cube,
+.scene-lines {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+/* ============================================================
+   Background Atmosphere
+   ============================================================ */
+.scene::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(156, 240, 208, 0.025),
+            transparent 36%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(118, 131, 255, 0.025),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 18% 82%,
+            rgba(156, 240, 208, 0.018),
+            transparent 28%
+        ),
+        #050708;
+}
+
+/* ============================================================
+   Back Grid
+   ============================================================ */
+.scene-grid-back {
+    top: -18%;
+    left: -12%;
+    width: 124%;
+    height: 76%;
+    opacity: 0.18;
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+        );
+    background-size: 74px 74px;
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * -0.28),
+            calc(
+                var(--scene-y, 0px) * -0.22 +
+                var(--scene-scroll, 0px) * 0.16
+            ),
+            -280px
+        )
+        rotateY(-2deg)
+        scale(1.08);
+    transform-origin: center center;
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 18%,
+            black 72%,
+            transparent 100%
+        );
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 18%,
+            black 72%,
+            transparent 100%
+        );
+}
+
+/* ============================================================
+   Glow
+   ============================================================ */
+.scene-glow {
+    border-radius: 50%;
+    filter: blur(10px);
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+.scene-glow-one {
+    top: 6%;
+    left: 50%;
+    width: min(36vw, 520px);
+    height: min(36vw, 520px);
+    opacity: 0.42;
+    background:
+        radial-gradient(
+            circle,
+            rgba(156, 240, 208, 0.055) 0%,
+            rgba(156, 240, 208, 0.018) 34%,
+            transparent 70%
+        );
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * 0.9),
+            calc(
+                var(--scene-y, 0px) * 0.68 +
+                var(--scene-scroll, 0px) * 0.12
+            ),
+            -180px
+        );
+}
+
+.scene-glow-two {
+    right: -4%;
+    bottom: 0;
+    width: min(38vw, 540px);
+    height: min(38vw, 540px);
+    opacity: 0.75;
+    background:
+        radial-gradient(
+            circle,
+            rgba(118, 131, 255, 0.09) 0%,
+            rgba(118, 131, 255, 0.025) 38%,
+            transparent 72%
+        );
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * -0.62),
+            calc(
+                var(--scene-y, 0px) * -0.48 +
+                var(--scene-scroll, 0px) * 0.1
+            ),
+            -260px
+        );
+}
+
+/* ============================================================
+   Rings
+   ============================================================ */
+.scene-ring {
+    border: 1px solid rgba(156, 240, 208, 0.14);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 0 34px rgba(156, 240, 208, 0.025),
+        0 0 42px rgba(156, 240, 208, 0.018);
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.scene-ring-one {
+    top: 8%;
+    right: 7%;
+    width: clamp(190px, 20vw, 300px);
+    height: clamp(190px, 20vw, 300px);
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * 0.65),
+            calc(
+                var(--scene-y, 0px) * 0.38 +
+                var(--scene-scroll, 0px) * 0.22
+            ),
+            -80px
+        )
+        rotateX(68deg)
+        rotateY(18deg)
+        rotateZ(14deg);
+}
+
+.scene-ring-two {
+    right: 13%;
+    bottom: 7%;
+    width: clamp(300px, 31vw, 480px);
+    height: clamp(300px, 31vw, 480px);
+    border-color: rgba(118, 131, 255, 0.095);
+    box-shadow:
+        inset 0 0 52px rgba(118, 131, 255, 0.018),
+        0 0 54px rgba(118, 131, 255, 0.018);
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * -0.72),
+            calc(
+                var(--scene-y, 0px) * -0.5 +
+                var(--scene-scroll, 0px) * 0.18
+            ),
+            -170px
+        )
+        rotateX(76deg)
+        rotateY(-20deg)
+        rotateZ(-17deg);
+}
+
+.scene-ring-three {
+    top: 42%;
+    left: 4%;
+    width: clamp(90px, 10vw, 150px);
+    height: clamp(90px, 10vw, 150px);
+    border-color: rgba(255, 255, 255, 0.085);
+    box-shadow:
+        inset 0 0 26px rgba(255, 255, 255, 0.018),
+        0 0 30px rgba(255, 255, 255, 0.012);
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * 0.78),
+            calc(
+                var(--scene-y, 0px) * 0.62 +
+                var(--scene-scroll, 0px) * 0.28
+            ),
+            -100px
+        )
+        rotateY(74deg)
+        rotateX(26deg);
+}
+
+/* ============================================================
+   立方体
+   ============================================================ */
+.scene-cube {
+    width: 108px;
+    height: 108px;
+    transform-style: preserve-3d;
+}
+
+.scene-cube-one {
+    top: 17%;
+    left: 17%;
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * 0.52),
+            calc(
+                var(--scene-y, 0px) * 0.58 +
+                var(--scene-scroll, 0px) * 0.32
+            ),
+            -10px
+        )
+        rotateX(calc(58deg + var(--scene-rot-x, 0deg)))
+        rotateY(calc(-34deg + var(--scene-rot-y, 0deg)))
+        rotateZ(12deg);
+}
+
+.scene-cube-two {
+    right: 24%;
+    bottom: 14%;
+    width: 76px;
+    height: 76px;
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * -0.48),
+            calc(
+                var(--scene-y, 0px) * -0.42 +
+                var(--scene-scroll, 0px) * 0.24
+            ),
+            -90px
+        )
+        rotateX(calc(18deg - var(--scene-rot-x, 0deg)))
+        rotateY(calc(62deg + var(--scene-rot-y, 0deg)))
+        rotateZ(-18deg);
+}
+
+.cube-face {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(156, 240, 208, 0.18);
+    background: rgba(156, 240, 208, 0.005);
+    box-shadow:
+        inset 0 0 14px rgba(156, 240, 208, 0.01);
+    backface-visibility: hidden;
+}
+
+/* 108 / 2 = 54 */
+.cube-front {
+    transform: translateZ(54px);
+}
+
+.cube-back {
+    transform: rotateY(180deg) translateZ(54px);
+}
+
+.cube-left {
+    transform: rotateY(-90deg) translateZ(54px);
+}
+
+.cube-right {
+    transform: rotateY(90deg) translateZ(54px);
+}
+
+.cube-top {
+    transform: rotateX(90deg) translateZ(54px);
+}
+
+.cube-bottom {
+    transform: rotateX(-90deg) translateZ(54px);
+}
+
+/* 76 / 2 = 38 */
+.scene-cube-two .cube-front {
+    transform: translateZ(38px);
+}
+
+.scene-cube-two .cube-back {
+    transform: rotateY(180deg) translateZ(38px);
+}
+
+.scene-cube-two .cube-left {
+    transform: rotateY(-90deg) translateZ(38px);
+}
+
+.scene-cube-two .cube-right {
+    transform: rotateY(90deg) translateZ(38px);
+}
+
+.scene-cube-two .cube-top {
+    transform: rotateX(90deg) translateZ(38px);
+}
+
+.scene-cube-two .cube-bottom {
+    transform: rotateX(-90deg) translateZ(38px);
+}
+
+/* ============================================================
+   Light Lines
+   ============================================================ */
+.scene-lines {
+    width: 280px;
+    height: 1px;
+    opacity: 0.22;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(156, 240, 208, 0.04) 15%,
+            rgba(156, 240, 208, 0.38) 50%,
+            rgba(156, 240, 208, 0.04) 85%,
+            transparent 100%
+        );
+    box-shadow:
+        0 0 14px rgba(156, 240, 208, 0.06);
+}
+
+.scene-lines-one {
+    top: 27%;
+    left: 2%;
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * 0.34),
+            calc(var(--scene-y, 0px) * 0.46),
+            -70px
+        )
+        rotateZ(-18deg);
+}
+
+.scene-lines-two {
+    right: 2%;
+    bottom: 26%;
+    transform:
+        translate3d(
+            calc(var(--scene-x, 0px) * -0.34),
+            calc(var(--scene-y, 0px) * -0.44),
+            -90px
+        )
+        rotateZ(24deg);
+}
+
+/* ============================================================
+   Vignette
+   ============================================================ */
+.scene::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 34%,
+            rgba(0, 0, 0, 0.12) 68%,
+            rgba(0, 0, 0, 0.42) 100%
+        );
+}
+
+/* ============================================================
+   Noise Layer
+   ============================================================ */
+.page-noise {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    opacity: 0.035;
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+/* Header */
+#site-header {
+    position: fixed;
+    z-index: 1000;
+    top: 18px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    width: min(calc(100% - 32px), 1280px);
+    margin: 0 auto;
+    height: 60px;
+    padding: 8px 10px 8px 12px;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    background: rgba(7, 9, 13, 0.6);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.15), inset 0 1px rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(22px) saturate(140%);
+    color: #fff;
+    text-align: center;
+    transition: all 0.4s ease;
+    transform: translate(0, 0);
+    will-change: transform;
+}
+
+#site-header.normal {
+    top: 0px;
+    border-top-color: rgba(156, 240, 208, 0.2);
+    border-radius: 0 0 18px 18px;
+    background: rgba(7, 9, 13, 0.78);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+#site-header.scrolled {
+    border-color: rgba(156, 240, 208, 0.18);
+    background: rgba(7, 9, 13, 0.8);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28), inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.header-left,
+.header-nav,
+.header-github {
+    min-width: 0;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon-wrap {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.header-logo-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.brand-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.05;
+    text-align: left;
+}
+
+.header-title {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 650;
+    text-align: left;
+}
+
+.header-subtitle {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    overflow: hidden;
+    color: var(--text-muted);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 28px);
+}
+
+.header-nav a {
+    position: relative;
+    color: var(--text-soft);
+    font-size: 12px;
+    transition: color 0.25s ease;
+}
+
+.nav-selector {
+    position: absolute;
+    left: 0;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    transition:
+        width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        top 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.header-nav a::after {
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+    content: "";
+}
+
+.header-nav a:hover,
+.header-nav a.active {
+    color: var(--text);
+}
+
+.header-nav a:hover::after,
+.header-nav a.active::after {
+    transform: scaleX(1);
+}
+
+.header-github {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1px solid rgba(156, 240, 208, 0.18);
+    border-radius: 10px;
+    background: rgba(156, 240, 208, 0.045);
+    color: var(--accent);
+    font-size: 10px;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.header-github:hover {
+    border-color: rgba(156, 240, 208, 0.42);
+    background: rgba(156, 240, 208, 0.09);
+    transform: translateY(-1px);
+}
+
+.header-github .arrow {
+    font-size: 13px;
+}
+
+/* Page indicator */
+
+#page-indicator {
+    position: fixed;
+    z-index: 1001;
+    top: 50%;
+    right: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(-50%);
+}
+
+.page-indicator-count {
+    display: flex;
+    min-width: 34px;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 9px;
+    line-height: 1.2;
+}
+
+#page-current {
+    color: var(--text);
+    font-size: 15px;
+}
+
+.page-indicator-dots {
+    display: grid;
+    gap: 9px;
+}
+
+.page-indicator-dots button {
+    width: 5px;
+    height: 22px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition: height 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.page-indicator-dots button:hover,
+.page-indicator-dots button.active {
+    height: 30px;
+    background: var(--accent);
+    box-shadow: 0 0 15px rgba(156, 240, 208, 0.22);
+}
+
+/* Custom scrollbar */
+
+#custom-scrollbar {
+    position: fixed;
+    z-index: 1002;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    background: rgba(255, 255, 255, 0.025);
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+}
+
+#scrollbar-thumb {
+    touch-action: none;
+    position: absolute;
+    top: 0;
+    left: 2px;
+    width: 6px;
+    min-height: 70px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(156, 240, 208, 0.72));
+    box-shadow: 0 0 16px rgba(156, 240, 208, 0.14);
+}
+
+/* Cursor */
+
+#cursor-dot {
+    position: fixed;
+    z-index: 2000;
+    display: none;
+    width: 9px;
+    height: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.22);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+/* Common */
+
+.hero-section .section-wrap {
+    padding-top: 96px;
+}
+
+.hero-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
+    gap: clamp(38px, 7vw, 100px);
+    align-items: center;
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 22px;
+    padding: 7px 12px;
+    border: 1px solid rgba(156, 240, 208, 0.16);
+    border-radius: 999px;
+    background: rgba(156, 240, 208, 0.04);
+    color: var(--accent);
+    font-size: 11px;
+}
+
+.eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(156, 240, 208, 0.65);
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+.hero-copy h1 {
+    max-width: 760px;
+    overflow: visible;
+    font-size: clamp(60px, 10vw, 118px);
+    font-weight: 740;
+    letter-spacing: -0.08em;
+    line-height: 0.98;
+}
+
+.hero-line {
+    display: block;
+    color: #f1f3f6;
+    font-size: 0.42em;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.hero-name {
+    display: block;
+    margin-top: 8px;
+    padding-bottom: 0.05em;
+    line-height: 1.06;
+    background: linear-gradient(120deg, #ffffff 0%, #d6fbed 45%, #93aeff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: 0.08em;
+}
+
+.hero-punctuation {
+    color: var(--accent);
+}
+
+.hero-lead {
+    max-width: 690px;
+    margin-top: 28px;
+    color: var(--text-soft);
+    font-size: clamp(18px, 2.3vw, 25px);
+    line-height: 1.55;
+}
+
+.hero-desc {
+    max-width: 690px;
+    margin-top: 15px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin-top: 30px;
+}
+
+.button {
+    display: inline-flex;
+    min-height: 46px;
+    padding: 0 17px;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    font-size: 13px;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(156, 240, 208, 0.3);
+    background: rgba(156, 240, 208, 0.065);
+}
+
+.button-primary {
+    border-color: rgba(156, 240, 208, 0.27);
+    background: rgba(156, 240, 208, 0.1);
+    color: var(--accent);
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 25px;
+}
+
+.hero-meta span {
+    padding: 5px 9px;
+    border: 1px solid var(--line-soft);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.018);
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.hero-stage {
+    position: relative;
+    min-height: min(68vh, 620px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate3d(var(--hero-x, 0px), var(--hero-y, 0px), 0);
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.hero-stage-card {
+    position: absolute;
+    width: min(80%, 520px);
+    aspect-ratio: 0.84;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.22), inset 0 1px rgba(255, 255, 255, 0.035);
+    transform-style: preserve-3d;
+}
+
+.stage-card-back {
+    transform: translate3d(40px, 10px, -80px) rotateZ(7deg) rotateY(-8deg);
+    opacity: 0.32;
+}
+
+.stage-card-mid {
+    transform: translate3d(-30px, -8px, -40px) rotateZ(-4deg) rotateY(7deg);
+    opacity: 0.5;
+}
+
+.stage-card-main {
+    display: flex;
+    padding: 34px;
+    flex-direction: column;
+    justify-content: space-between;
+    border-color: rgba(156, 240, 208, 0.18);
+    background:
+        linear-gradient(160deg, rgba(22, 27, 34, 0.92), rgba(9, 13, 18, 0.84)),
+        radial-gradient(circle at 82% 18%, rgba(156, 240, 208, 0.08), transparent 38%);
+    transform: translateZ(20px) rotateY(-6deg) rotateX(4deg);
+}
+
+.stage-topline,
+.stage-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-muted);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 10px;
+}
+
+.stage-title {
+    margin-top: 50px;
+    font-size: clamp(44px, 6vw, 74px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.stage-rule {
+    width: 100%;
+    height: 1px;
+    margin: 24px 0;
+    background: linear-gradient(90deg, rgba(156, 240, 208, 0.38), transparent);
+}
+
+.stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 26px;
+}
+
+.stage-grid div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stage-grid span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.stage-grid strong {
+    color: var(--text-soft);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.stage-footer {
+    color: var(--text-soft);
+}
+
+.stage-signal {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(156, 240, 208, 0.5);
+}
+
+.hero-stage-caption {
+    position: absolute;
+    right: 2%;
+    bottom: 2%;
+    max-width: 210px;
+    color: var(--text-muted);
+    font-size: 11px;
+    text-align: right;
+}
+
+.scroll-hint {
+    position: absolute;
+    right: 5vw;
+    bottom: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    transition: color 0.25s ease;
+}
+
+.scroll-hint:hover {
+    color: var(--text);
+}
+
+.scroll-line {
+    width: 42px;
+    height: 1px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.scroll-line::after {
+    display: block;
+    width: 50%;
+    height: 100%;
+    background: var(--accent);
+    animation: scrollLine 2s ease-in-out infinite;
+    content: "";
+}
+
+@keyframes scrollLine {
+    0%,
+    100% {
+        transform: translateX(-110%);
+    }
+
+    50% {
+        transform: translateX(210%);
+    }
+}
+
+/* Sections */
+
+.section-intro {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    margin-bottom: 48px;
+}
+
+.section-index {
+    color: var(--accent);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+}
+
+.section-kicker,
+.card-eyebrow,
+.skill-kicker {
+    display: block;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+}
+
+.section-intro h2,
+.contact-header h2 {
+    margin-top: 8px;
+    font-size: clamp(40px, 6vw, 76px);
+    font-weight: 670;
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+}
+
+.section-intro h2 em,
+.contact-header h2 em {
+    color: var(--text-soft);
+    font-style: normal;
+    font-weight: 450;
+}
+
+.glass-card {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--surface);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.16), inset 0 1px rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(18px) saturate(130%);
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card.tilt-active {
+    border-color: rgba(156, 240, 208, 0.18);
+    background: rgba(18, 22, 28, 0.82);
+    box-shadow: 0 38px 90px rgba(0, 0, 0, 0.2), inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 18px;
+}
+
+.about-main-card {
+    min-height: 390px;
+    padding: 34px;
+}
+
+.about-main-card h3 {
+    max-width: 720px;
+    margin-top: 18px;
+    font-size: clamp(27px, 3vw, 42px);
+    letter-spacing: -0.05em;
+    line-height: 1.12;
+}
+
+.about-main-card p {
+    max-width: 800px;
+    margin-top: 19px;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.about-keywords,
+.experience-tags,
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.about-keywords {
+    margin-top: 27px;
+}
+
+.about-keywords span,
+.experience-tags span,
+.skill-tags span {
+    padding: 6px 10px;
+    border: 1px solid var(--line-soft);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.about-side {
+    display: grid;
+    gap: 14px;
+}
+
+.mini-card {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    min-height: 118px;
+    padding: 22px;
+    gap: 14px;
+    align-items: start;
+}
+
+.mini-number {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    place-items: center;
+    border: 1px solid rgba(156, 240, 208, 0.13);
+    border-radius: 9px;
+    background: rgba(156, 240, 208, 0.045);
+    color: var(--accent);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 11px;
+}
+
+.mini-card h3 {
+    font-size: 17px;
+}
+
+.mini-card p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Experience */
+
+.experience-layout {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 18px;
+}
+
+.experience-main {
+    display: flex;
+    min-height: 450px;
+    padding: 36px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.experience-number {
+    color: rgba(156, 240, 208, 0.35);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 11px;
+}
+
+.experience-date {
+    margin-top: 32px;
+    color: var(--accent);
+    font-size: 11px;
+}
+
+.experience-main h3 {
+    margin-top: 8px;
+    font-size: clamp(31px, 4vw, 52px);
+    letter-spacing: -0.055em;
+    line-height: 1;
+}
+
+.experience-main p {
+    max-width: 720px;
+    margin-top: 18px;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.experience-tags {
+    margin-top: 26px;
+}
+
+.experience-stack {
+    display: grid;
+    gap: 14px;
+}
+
+.experience-side-card {
+    display: flex;
+    min-height: 142px;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.experience-side-card span {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.experience-side-card strong {
+    margin-top: 6px;
+    font-size: 23px;
+    font-weight: 620;
+    letter-spacing: -0.04em;
+}
+
+.experience-side-card p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Project */
+
+.project-feature-card {
+    position: relative;
+    display: grid;
+    min-height: 490px;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 40px;
+    overflow: hidden;
+    padding: 45px;
+    align-items: end;
+    border: 1px solid rgba(156, 240, 208, 0.16);
+    border-radius: 30px;
+    background:
+        linear-gradient(145deg, rgba(17, 23, 28, 0.9), rgba(7, 10, 15, 0.86)),
+        radial-gradient(circle at 78% 28%, rgba(156, 240, 208, 0.1), transparent 30%);
+    box-shadow: 0 35px 110px rgba(0, 0, 0, 0.18), inset 0 1px rgba(255, 255, 255, 0.04);
+    transform-style: preserve-3d;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.project-feature-card.tilt-active {
+    border-color: rgba(156, 240, 208, 0.3);
+    box-shadow: 0 45px 120px rgba(0, 0, 0, 0.24), 0 0 70px rgba(156, 240, 208, 0.03), inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.project-feature-grid {
+    position: absolute;
+    inset: -30% -10% auto auto;
+    width: 70%;
+    height: 140%;
+    opacity: 0.48;
+    background-image:
+        linear-gradient(rgba(156, 240, 208, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(156, 240, 208, 0.08) 1px, transparent 1px);
+    background-size: 34px 34px;
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 72%);
+    transform: perspective(700px) rotateX(58deg) rotateZ(-9deg) translateZ(-20px);
+}
+
+.project-feature-orbit {
+    position: absolute;
+    right: 11%;
+    top: 16%;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(156, 240, 208, 0.2);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(156, 240, 208, 0.025);
+}
+
+.orbit-one {
+    transform: rotateX(72deg) rotateZ(18deg) translateZ(20px);
+}
+
+.orbit-two {
+    width: 330px;
+    height: 330px;
+    right: 4%;
+    top: 3%;
+    opacity: 0.45;
+    transform: rotateY(70deg) rotateX(8deg) rotateZ(-15deg) translateZ(-10px);
+}
+
+.project-feature-content {
+    position: relative;
+    z-index: 2;
+}
+
+.project-feature-content h3 {
+    margin-top: 10px;
+    font-size: clamp(72px, 10vw, 132px);
+    font-weight: 730;
+    letter-spacing: -0.09em;
+    line-height: 1.5;
+}
+
+.project-feature-content h3 span {
+    color: var(--accent);
+}
+
+.project-feature-content p {
+    max-width: 700px;
+    margin-top: 25px;
+    color: var(--text-soft);
+    font-size: 15px;
+}
+
+.project-link-row {
+    display: flex;
+    max-width: 280px;
+    margin-top: 32px;
+    padding-bottom: 8px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(156, 240, 208, 0.18);
+    color: var(--accent);
+    font-size: 12px;
+}
+
+.project-link-arrow {
+    font-size: 18px;
+}
+
+.project-feature-data {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 12px;
+}
+
+.project-feature-data > div {
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.028);
+}
+
+.project-feature-data span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.project-feature-data strong {
+    display: block;
+    margin-top: 3px;
+    color: var(--text-soft);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.project-detail-grid {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 18px;
+}
+
+.project-detail-main {
+    padding: 34px;
+}
+
+.project-detail-main h3 {
+    max-width: 800px;
+    margin-top: 18px;
+    font-size: clamp(28px, 3vw, 42px);
+    letter-spacing: -0.05em;
+    line-height: 1.06;
+}
+
+.project-detail-main p {
+    max-width: 850px;
+    margin-top: 18px;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.project-code-panel {
+    margin-top: 30px;
+    overflow: hidden;
+    border: 1px solid var(--line-soft);
+    border-radius: 17px;
+    background: rgba(0, 0, 0, 0.16);
+}
+
+.code-panel-top {
+    display: flex;
+    padding: 12px 14px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.code-line {
+    display: grid;
+    grid-template-columns: 30px 70px 1fr;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-size: 11px;
+}
+
+.code-line:last-child {
+    border-bottom: 0;
+}
+
+.code-line span {
+    color: #4f5761;
+}
+
+.code-line strong {
+    color: var(--accent);
+    font-weight: 550;
+}
+
+.code-line em {
+    color: var(--text-muted);
+    font-style: normal;
+}
+
+.project-detail-side {
+    display: grid;
+    gap: 14px;
+}
+
+.project-stack {
+    padding: 26px;
+}
+
+.stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.stack-list span {
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.025);
+    color: var(--text-soft);
+    font-size: 11px;
+}
+
+.project-github,
+.back-project {
+    display: flex;
+    min-height: 150px;
+    padding: 26px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-github h3 {
+    margin-top: 6px;
+    font-size: 21px;
+}
+
+.project-github p {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.project-github > span,
+.back-project > span:last-child {
+    color: var(--accent);
+    font-size: 20px;
+}
+
+.back-project {
+    min-height: 80px;
+    color: var(--text-soft);
+    font-size: 12px;
+}
+
+/* Skills */
+
+.skills-bento {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 18px;
+}
+
+.skill-card {
+    position: relative;
+    min-height: 290px;
+    padding: 31px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--surface);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12), inset 0 1px rgba(255, 255, 255, 0.03);
+    transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+
+.skill-card.tilt-active {
+    border-color: rgba(156, 240, 208, 0.18);
+    background: rgba(18, 22, 28, 0.8);
+}
+
+.skill-card-accent {
+    border-color: rgba(156, 240, 208, 0.16);
+    background: linear-gradient(145deg, rgba(18, 30, 28, 0.86), rgba(10, 16, 18, 0.84));
+}
+
+.skill-index {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: rgba(156, 240, 208, 0.35);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 11px;
+}
+
+.skill-card h3 {
+    max-width: 720px;
+    margin-top: 13px;
+    font-size: clamp(28px, 3vw, 42px);
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+}
+
+.skill-card p {
+    max-width: 700px;
+    margin-top: 15px;
+    color: var(--text-soft);
+    font-size: 13px;
+}
+
+.skill-tags {
+    position: absolute;
+    right: 31px;
+    bottom: 30px;
+    left: 31px;
+}
+
+.skill-tags span {
+    color: var(--text-muted);
+}
+
+/* Contact */
+
+.contact-header {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) minmax(260px, 360px);
+    gap: 20px;
+    align-items: start;
+}
+
+.contact-header p {
+    padding-top: 26px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+    margin-top: 54px;
+}
+
+.contact-card {
+    position: relative;
+    display: flex;
+    min-height: 118px;
+    padding: 22px 23px;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+    background: rgba(255, 255, 255, 0.025);
+    transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+}
+
+.contact-card.tilt-active {
+    transform: translateY(-3px);
+    border-color: rgba(156, 240, 208, 0.2);
+    background: rgba(156, 240, 208, 0.055);
+}
+
+.contact-type {
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.contact-card strong {
+    margin-top: 9px;
+    color: var(--text-soft);
+    font-size: 17px;
+    font-weight: 520;
+    overflow-wrap: anywhere;
+}
+
+.contact-arrow {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: var(--accent);
+    font-size: 12px;
+}
+
+.contact-card-github {
+    grid-column: span 2;
+}
+
+.contact-bottom {
+    display: flex;
+    margin-top: 48px;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.contact-quote {
+    color: var(--text);
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 630;
+    letter-spacing: -0.055em;
+    line-height: 1;
+}
+
+.contact-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: var(--text-soft);
+    font-size: 14px;
+}
+
+.contact-signature span:last-child {
+    margin-top: 3px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+/* Motion */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay {
+    transition-delay: 0.12s;
+}
+
+.reveal-delay-small {
+    transition-delay: 0.08s;
+}
+
+.tilt-card {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.tilt-card::before {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+}
+
+.tilt-card::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--tilt-x, 50%) var(--tilt-y, 30%), rgba(255, 255, 255, 0.07), transparent 28%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+    content: "";
+}
+
+.tilt-card.tilt-active::after {
+    opacity: 1;
+}
+
+.copy-toast {
+    position: fixed;
+    z-index: 2200;
+    left: 50%;
+    bottom: 28px;
+    padding: 9px 13px;
+    border: 1px solid rgba(156, 240, 208, 0.2);
+    border-radius: 10px;
+    background: rgba(8, 11, 15, 0.88);
+    color: var(--accent);
+    font-size: 11px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    backdrop-filter: blur(15px);
+}
+
+.copy-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+* {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -ms-user-drag: none;
+}
+
+a, img {
+    -webkit-user-drag: none;
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html,
+body,
+body * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+/* 例外：如果你有输入框，需要单独放开 */
+input,
+textarea,
+[contenteditable="true"] {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+/* 1200px 以下：压缩桌面布局 */
+@media (max-width: 1200px) {
+    :root {
+        --page-padding: 34px;
+        --header-height: 68px;
+    }
+
+    #site-header {
+        left: 12px;
+        right: 12px;
+        width: calc(100% - 24px);
+    }
+
+    .header-nav {
+        gap: 18px;
+    }
+
+    .hero-wrap {
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+        gap: 40px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(56px, 8vw, 96px);
+    }
+
+    .hero-stage {
+        min-height: min(62vh, 560px);
+    }
+
+    .stage-card-main {
+        padding: 30px;
+    }
+
+    .about-layout,
+    .experience-layout,
+    .project-detail-grid,
+    .skills-bento {
+        gap: 16px;
+    }
+
+    .project-feature-card {
+        gap: 30px;
+        padding: 38px;
+    }
+}
+
+
+/* 1000px 以下：进一步压缩双栏 */
+@media (max-width: 1000px) {
+    :root {
+        --page-padding: 28px;
+    }
+
+    #site-header {
+        height: 56px;
+        padding: 7px 8px 7px 10px;
+        border-radius: 15px;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-icon-wrap {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+    }
+
+    .header-logo-img {
+        width: 21px;
+        height: 21px;
+    }
+
+    .header-title {
+        font-size: 13px;
+    }
+
+    .header-subtitle {
+        margin-top: 3px;
+        font-size: 8px;
+    }
+
+    .header-nav {
+        gap: 14px;
+    }
+
+    .header-nav a {
+        font-size: 11px;
+    }
+
+    .header-github {
+        padding: 8px 10px;
+        font-size: 9px;
+    }
+
+    #page-indicator {
+        right: 14px;
+    }
+
+    .section-wrap {
+        padding-top: 92px;
+        padding-bottom: 58px;
+    }
+
+    /* 第一屏继续保持双栏 */
+    .hero-section .section-wrap {
+        padding-top: 78px;
+    }
+
+    .hero-wrap {
+        grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+        gap: 28px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(52px, 8vw, 82px);
+    }
+
+    .hero-lead {
+        margin-top: 20px;
+        font-size: clamp(16px, 2vw, 21px);
+    }
+
+    .hero-desc {
+        margin-top: 10px;
+        font-size: 13px;
+    }
+
+    .hero-actions {
+        gap: 9px;
+        margin-top: 22px;
+    }
+
+    .hero-meta {
+        gap: 7px;
+        margin-top: 19px;
+    }
+
+    .hero-stage {
+        min-height: min(58vh, 500px);
+    }
+
+    .hero-stage-card {
+        width: min(88%, 430px);
+    }
+
+    .stage-card-main {
+        padding: 26px;
+    }
+
+    .stage-title {
+        margin-top: 38px;
+        font-size: clamp(38px, 5vw, 60px);
+    }
+
+    .stage-rule {
+        margin: 18px 0;
+    }
+
+    .stage-grid {
+        gap: 14px 18px;
+    }
+
+    .section-intro {
+        margin-bottom: 34px;
+    }
+
+    .section-intro h2,
+    .contact-header h2 {
+        font-size: clamp(36px, 6vw, 64px);
+    }
+
+    .about-main-card,
+    .experience-main {
+        padding: 28px;
+    }
+
+    .about-main-card {
+        min-height: 350px;
+    }
+
+    .experience-main {
+        min-height: 400px;
+    }
+
+    .project-feature-card {
+        min-height: 430px;
+        gap: 24px;
+        padding: 32px;
+    }
+
+    .project-feature-content h3 {
+        font-size: clamp(60px, 9vw, 100px);
+    }
+
+    .project-feature-content p {
+        margin-top: 18px;
+        font-size: 14px;
+    }
+
+    .project-link-row {
+        margin-top: 24px;
+    }
+
+    .skill-card {
+        min-height: 260px;
+        padding: 27px;
+    }
+
+    .contact-grid {
+        margin-top: 40px;
+    }
+
+    .contact-bottom {
+        margin-top: 36px;
+    }
+}
+
+
+/* 900px 以下：保持双栏，但减少视觉组件尺寸 */
+@media (max-width: 900px) {
+    :root {
+        --page-padding: 24px;
+    }
+
+    .header-nav {
+        gap: 11px;
+    }
+
+    .header-nav a {
+        font-size: 10px;
+    }
+
+    .header-github {
+        padding: 7px 9px;
+    }
+
+    .hero-section .section-wrap {
+        padding-top: 70px;
+    }
+
+    .hero-wrap {
+        grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+        gap: 22px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(48px, 8vw, 74px);
+    }
+
+    .hero-lead {
+        font-size: clamp(15px, 2vw, 19px);
+        line-height: 1.45;
+    }
+
+    .hero-desc {
+        font-size: 12px;
+    }
+
+    .hero-actions {
+        margin-top: 18px;
+    }
+
+    .button {
+        min-height: 42px;
+        padding: 0 14px;
+        font-size: 12px;
+    }
+
+    .hero-meta {
+        margin-top: 16px;
+    }
+
+    .hero-meta span {
+        padding: 4px 8px;
+        font-size: 9px;
+    }
+
+    .hero-stage {
+        min-height: min(54vh, 450px);
+    }
+
+    .hero-stage-card {
+        width: min(92%, 360px);
+        border-radius: 20px;
+    }
+
+    .stage-card-main {
+        padding: 22px;
+    }
+
+    .stage-title {
+        margin-top: 30px;
+        font-size: clamp(34px, 5vw, 52px);
+    }
+
+    .stage-rule {
+        margin: 15px 0;
+    }
+
+    .stage-grid {
+        gap: 12px 14px;
+    }
+
+    .stage-grid strong {
+        font-size: 12px;
+    }
+
+    .stage-footer,
+    .stage-topline {
+        font-size: 9px;
+    }
+
+    .hero-stage-caption {
+        right: 0;
+        max-width: 170px;
+        font-size: 9px;
+    }
+
+    .scroll-hint {
+        right: 4vw;
+        bottom: 24px;
+    }
+
+    .about-main-card h3 {
+        font-size: clamp(25px, 3vw, 34px);
+    }
+
+    .experience-main h3 {
+        font-size: clamp(28px, 4vw, 44px);
+    }
+
+    .project-feature-card {
+        min-height: 400px;
+        padding: 28px;
+    }
+
+    .project-feature-content h3 {
+        font-size: clamp(52px, 8vw, 82px);
+    }
+
+    .project-feature-data > div {
+        padding: 13px 15px;
+    }
+
+    .project-feature-data strong {
+        font-size: 12px;
+    }
+
+    .skill-card {
+        min-height: 240px;
+        padding: 24px;
+    }
+
+    .skill-card h3 {
+        font-size: clamp(25px, 3vw, 36px);
+    }
+
+    .contact-header {
+        grid-template-columns: 55px minmax(0, 1fr) minmax(190px, 280px);
+        gap: 15px;
+    }
+
+    .contact-header p {
+        padding-top: 20px;
+        font-size: 11px;
+    }
+
+    .contact-quote {
+        font-size: clamp(27px, 4vw, 42px);
+    }
+}
+
+
+/* 768px 以下：进入平板/窄屏布局 */
+@media (max-width: 768px) {
+    :root {
+        --page-padding: 20px;
+    }
+
+    #site-header {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        width: calc(100% - 20px);
+        height: 54px;
+    }
+
+    #site-header.normal {
+        top: 0;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .brand-copy {
+        max-width: 120px;
+    }
+
+    .header-nav {
+        gap: 9px;
+    }
+
+    .header-nav a {
+        font-size: 9px;
+    }
+
+    .header-github {
+        padding: 7px 8px;
+        gap: 5px;
+        font-size: 8px;
+    }
+
+    .header-github .arrow {
+        font-size: 11px;
+    }
+
+    #page-indicator {
+        right: 9px;
+    }
+
+    #custom-scrollbar {
+        width: 7px;
+    }
+
+    #scrollbar-thumb {
+        left: 1px;
+        width: 5px;
+    }
+
+    .section-wrap {
+        padding-top: 78px;
+        padding-bottom: 48px;
+    }
+
+    /*
+       第一屏在 768px 以下改成单栏。
+       此时开始优先保证文字宽度，而不是维持双栏。
+    */
+    .hero-wrap {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(48px, 11vw, 72px);
+    }
+
+    .hero-lead {
+        max-width: 620px;
+    }
+
+    .hero-stage {
+        min-height: 300px;
+    }
+
+    .hero-stage-card {
+        width: min(70%, 330px);
+    }
+
+    .stage-card-main {
+        padding: 22px;
+    }
+
+    .hero-stage-caption {
+        display: none;
+    }
+
+    .scroll-hint {
+        display: none;
+    }
+
+    .section-intro {
+        grid-template-columns: 50px minmax(0, 1fr);
+        gap: 14px;
+        margin-bottom: 28px;
+    }
+
+    .section-intro h2,
+    .contact-header h2 {
+        font-size: clamp(34px, 8vw, 56px);
+    }
+
+    .about-layout,
+    .experience-layout,
+    .skills-bento,
+    .project-detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-main-card {
+        min-height: 320px;
+    }
+
+    .experience-main {
+        min-height: 350px;
+    }
+
+    .project-feature-card {
+        min-height: 420px;
+        grid-template-columns: 1fr;
+        gap: 22px;
+        align-items: start;
+    }
+
+    .project-feature-data {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skill-card {
+        min-height: 230px;
+    }
+
+    .contact-header {
+        grid-template-columns: 50px minmax(0, 1fr);
+    }
+
+    .contact-header p {
+        grid-column: 2;
+        padding-top: 0;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card-github {
+        grid-column: span 1;
+    }
+
+    .contact-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .contact-signature {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 700px) {
+    :root {
+        --page-padding: 20px;
+    }
+
+    .section-wrap {
+        padding-top: 82px;
+        padding-bottom: 52px;
+    }
+
+    .hero-section .section-wrap {
+        padding-top: 64px;
+    }
+
+    .hero-wrap {
+        gap: 40px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(44px, 11vw, 68px);
+        line-height: 0.94;
+    }
+
+    .hero-lead {
+        margin-top: 16px;
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .hero-desc {
+        margin-top: 8px;
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    .hero-actions {
+        gap: 8px;
+        margin-top: 18px;
+    }
+
+    .hero-meta {
+        gap: 6px;
+        margin-top: 15px;
+    }
+
+    .hero-meta span {
+        padding: 4px 7px;
+        font-size: 9px;
+    }
+
+    .hero-stage {
+        min-height: 320px;
+        max-height: none;
+    }
+
+    .about-layout,
+    .experience-layout,
+    .skills-bento,
+    .project-detail-grid {
+        gap: 12px;
+    }
+
+    .project-feature-card {
+        min-height: 380px;
+        padding: 28px;
+        gap: 24px;
+    }
+
+    .contact-header {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .contact-grid {
+        gap: 10px;
+        margin-top: 32px;
+    }
+}
+
+/* 600px 以下：手机布局 */
+@media (max-width: 600px) {
+    :root {
+        --page-padding: 16px;
+    }
+
+    #site-header {
+        padding: 6px 7px 6px 8px;
+    }
+
+    .brand {
+        gap: 6px;
+    }
+
+    .brand-icon-wrap {
+        width: 30px;
+        height: 30px;
+    }
+
+    .header-title {
+        font-size: 12px;
+    }
+
+    .header-subtitle {
+        display: none;
+    }
+
+    .header-nav {
+        gap: 7px;
+    }
+
+    .header-nav a {
+        font-size: 8px;
+    }
+
+    .header-github {
+        display: none;
+    }
+
+    .nav-selector {
+        height: 60%;
+    }
+
+    .section-wrap {
+        padding-top: 70px;
+        padding-bottom: 40px;
+    }
+
+    .hero-section .section-wrap {
+        padding-top: 68px;
+    }
+
+    .hero-wrap {
+        gap: 18px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(44px, 14vw, 64px);
+        letter-spacing: -0.07em;
+    }
+
+    .hero-line {
+        font-size: 0.4em;
+    }
+
+    .hero-name {
+        letter-spacing: 0.04em;
+    }
+
+    .eyebrow {
+        margin-bottom: 16px;
+        padding: 6px 10px;
+        font-size: 9px;
+    }
+
+    .eyebrow-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .hero-lead {
+        margin-top: 18px;
+        font-size: 16px;
+    }
+
+    .hero-desc {
+        font-size: 11px;
+    }
+
+    .hero-actions {
+        gap: 8px;
+        margin-top: 18px;
+    }
+
+    .button {
+        min-height: 40px;
+        padding: 0 12px;
+        font-size: 11px;
+    }
+
+    .hero-meta {
+        gap: 6px;
+        margin-top: 14px;
+    }
+
+    .hero-meta span {
+        padding: 4px 7px;
+        font-size: 8px;
+    }
+
+    .hero-stage {
+        min-height: 250px;
+    }
+
+    .hero-stage-card {
+        width: min(76%, 290px);
+        border-radius: 18px;
+    }
+
+    .stage-card-main {
+        padding: 18px;
+    }
+
+    .stage-title {
+        margin-top: 22px;
+        font-size: clamp(30px, 10vw, 44px);
+    }
+
+    .stage-rule {
+        margin: 12px 0;
+    }
+
+    .stage-grid {
+        gap: 10px;
+    }
+
+    .stage-grid span {
+        font-size: 8px;
+    }
+
+    .stage-grid strong {
+        font-size: 10px;
+    }
+
+    .stage-footer,
+    .stage-topline {
+        font-size: 8px;
+    }
+
+    .section-intro {
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+
+    .section-index {
+        font-size: 10px;
+    }
+
+    .section-kicker,
+    .card-eyebrow,
+    .skill-kicker {
+        font-size: 8px;
+    }
+
+    .section-intro h2,
+    .contact-header h2 {
+        font-size: clamp(31px, 9vw, 46px);
+    }
+
+    .about-main-card,
+    .experience-main,
+    .project-detail-main {
+        padding: 22px;
+    }
+
+    .about-main-card {
+        min-height: 280px;
+    }
+
+    .about-main-card h3 {
+        font-size: 25px;
+    }
+
+    .about-main-card p,
+    .experience-main p,
+    .project-detail-main p {
+        font-size: 12px;
+    }
+
+    .mini-card {
+        min-height: 100px;
+        padding: 18px;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .mini-number {
+        width: 28px;
+        height: 28px;
+        font-size: 9px;
+    }
+
+    .mini-card h3 {
+        font-size: 15px;
+    }
+
+    .mini-card p {
+        font-size: 10px;
+    }
+
+    .experience-main {
+        min-height: 320px;
+    }
+
+    .experience-date {
+        margin-top: 24px;
+    }
+
+    .experience-main h3 {
+        font-size: 30px;
+    }
+
+    .experience-main p {
+        margin-top: 14px;
+    }
+
+    .experience-tags {
+        margin-top: 20px;
+    }
+
+    .experience-side-card {
+        min-height: 120px;
+        padding: 20px;
+    }
+
+    .experience-side-card strong {
+        font-size: 20px;
+    }
+
+    .project-feature-card {
+        min-height: 390px;
+        padding: 22px;
+        border-radius: 22px;
+    }
+
+    .project-feature-content h3 {
+        font-size: clamp(50px, 14vw, 72px);
+    }
+
+    .project-feature-content p {
+        font-size: 12px;
+    }
+
+    .project-feature-data {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .project-feature-data > div {
+        padding: 11px 12px;
+    }
+
+    .project-feature-data span {
+        font-size: 8px;
+    }
+
+    .project-feature-data strong {
+        font-size: 10px;
+    }
+
+    .project-detail-main h3 {
+        font-size: 27px;
+    }
+
+    .code-line {
+        grid-template-columns: 24px 55px 1fr;
+        gap: 7px;
+        padding: 9px 10px;
+        font-size: 9px;
+    }
+
+    .skill-card {
+        min-height: 210px;
+        padding: 21px;
+    }
+
+    .skill-card h3 {
+        font-size: 25px;
+    }
+
+    .skill-card p {
+        font-size: 11px;
+    }
+
+    .skill-tags {
+        right: 21px;
+        bottom: 20px;
+        left: 21px;
+    }
+
+    .skill-tags span,
+    .about-keywords span,
+    .experience-tags span {
+        padding: 5px 8px;
+        font-size: 8px;
+    }
+
+    .contact-header {
+        grid-template-columns: 40px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .contact-header p {
+        font-size: 10px;
+    }
+
+    .contact-grid {
+        gap: 9px;
+        margin-top: 30px;
+    }
+
+    .contact-card {
+        min-height: 100px;
+        padding: 18px;
+    }
+
+    .contact-card strong {
+        font-size: 14px;
+    }
+
+    .contact-quote {
+        font-size: 29px;
+    }
+
+    .contact-bottom {
+        margin-top: 30px;
+        gap: 20px;
+    }
+}
+
+
+/* 480px 以下：极窄屏 */
+@media (max-width: 480px) {
+    .header-nav {
+        gap: 5px;
+    }
+
+    .header-nav a {
+        font-size: 7px;
+    }
+
+    .nav-selector {
+        height: 56%;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(40px, 15vw, 58px);
+    }
+
+    .hero-stage {
+        min-height: 350px;
+    }
+
+    .hero-stage-card {
+        width: min(76%, 290px);
+    }
+
+    .stage-card-main {
+        padding: 16px;
+    }
+
+    .stage-grid {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .project-feature-data {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-quote {
+        font-size: 27px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- 伪 3D 背景场景 -->
+    <div class="scene" id="scene" aria-hidden="true">
+        <div class="scene-grid scene-grid-back"></div>
+        <div class="scene-glow scene-glow-one"></div>
+        <div class="scene-glow scene-glow-two"></div>
+        <div class="scene-ring scene-ring-one"></div>
+        <div class="scene-ring scene-ring-two"></div>
+        <div class="scene-ring scene-ring-three"></div>
+
+        <div class="scene-cube scene-cube-one">
+            <span class="cube-face cube-front"></span>
+            <span class="cube-face cube-back"></span>
+            <span class="cube-face cube-left"></span>
+            <span class="cube-face cube-right"></span>
+            <span class="cube-face cube-top"></span>
+            <span class="cube-face cube-bottom"></span>
+        </div>
+        <div class="scene-cube scene-cube-two">
+            <span class="cube-face cube-front"></span>
+            <span class="cube-face cube-back"></span>
+            <span class="cube-face cube-left"></span>
+            <span class="cube-face cube-right"></span>
+            <span class="cube-face cube-top"></span>
+            <span class="cube-face cube-bottom"></span>
+        </div>
+
+        <div class="scene-lines scene-lines-one"></div>
+        <div class="scene-lines scene-lines-two"></div>
+    </div>
+
+    <!-- 全局噪点（可选，用于消除渐变色带） -->
+    <div class="page-noise" aria-hidden="true"></div>
+    <div id="custom-scrollbar">
+        <div id="scrollbar-thumb"></div>
+    </div>
+    <header id="site-header" class="normal">
+        <div class="header-left">
+            <a class="brand" href="#home" aria-label="返回首页">
+                <span class="brand-icon-wrap">
+                    <img src="data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjU3My4xMjIwNyIKICAgaGVpZ2h0PSI1NTYuMzQ4NTciCiAgIHZlcnNpb249IjEuMSIKICAgY2xpcC1ydWxlPSJldmVub2RkIgogICBpZD0ic3ZnMSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibmlnaHQtaWNvbi5zdmciCiAgIGlua3NjYXBlOnZlcnNpb249IjEuNC4yIChmNDMyN2Y0LCAyMDI1LTA1LTEzKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMSIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iMC43NjU2MjUiCiAgICAgaW5rc2NhcGU6Y3g9IjI1NS4zNDY5NCIKICAgICBpbmtzY2FwZTpjeT0iNDA2Ljg1NzE0IgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTY4MCIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSI5NzkiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy15PSItOCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzEiPgogICAgPHNvZGlwb2RpOmd1aWRlCiAgICAgICBwb3NpdGlvbj0iLTE3Ny41Mjk5MywxMTU2LjkzOTciCiAgICAgICBvcmllbnRhdGlvbj0iMCw5NjAiCiAgICAgICBpZD0iZ3VpZGU2IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICAgIDxzb2RpcG9kaTpndWlkZQogICAgICAgcG9zaXRpb249Ijc4Mi40NzAwNywxMTU2LjkzOTciCiAgICAgICBvcmllbnRhdGlvbj0iOTYwLDAiCiAgICAgICBpZD0iZ3VpZGU3IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICAgIDxzb2RpcG9kaTpndWlkZQogICAgICAgcG9zaXRpb249Ijc4Mi40NzAwNywxOTYuOTM5NzMiCiAgICAgICBvcmllbnRhdGlvbj0iMCwtOTYwIgogICAgICAgaWQ9Imd1aWRlOCIKICAgICAgIGlua3NjYXBlOmxvY2tlZD0iZmFsc2UiIC8+CiAgICA8c29kaXBvZGk6Z3VpZGUKICAgICAgIHBvc2l0aW9uPSItMTc3LjUyOTkzLDE5Ni45Mzk3MyIKICAgICAgIG9yaWVudGF0aW9uPSItOTYwLDAiCiAgICAgICBpZD0iZ3VpZGU5IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTc3LjUyOTkzLC0xOTYuOTM5NzMpIj4KICAgIDx0aXRsZQogICAgICAgaWQ9InRpdGxlMSI+TGF5ZXIgMTwvdGl0bGU+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImRpc3BsYXk6aW5saW5lO2ZpbGw6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gNTAwLjI0NDksNTUwLjkyNzQ4IC0yNi4xMjI0NSwtMC40NTU1MyAtMTkuNzU2NjQsLTM4LjE3NDc0IEMgNDQzLjQ5OTY2LDQ5MS4zMDEwOSA0MDMuMzI0MjgsNDEzLjI4OTggMzY1LjA4NzE5LDMzOC45Mzg3OCAzMjYuODUwMSwyNjQuNTg3NzYgMjkzLjQ5MTE2LDE5OS45OTM1OSAyOTAuOTU2MjEsMTk1LjM5NjE5IGwgLTQuNjA5LC04LjM1ODkxIC0yLjM4NjM5LDMuMTM0NDIgYyAtMS4zMTI1MSwxLjcyMzkzIC0xNS42MzczNywyOS4zNjcxNiAtMzEuODMzLDYxLjQyOTQxIC0yOC4wMDQxNiw1NS40MzkzNyAtMjkuMzAyMzUsNTguMzMzNjUgLTI2LjUwMTUsNTkuMDg0MiAxLjYxOTgxLDAuNDM0MDggMjIuNzc0NDUsMC43OTcyNiA0Ny4wMTAzMiwwLjgwNzA3IGwgNDQuMDY1MjIsMC4wMTc4IDQuNjcxNjcsOS4yNzY3MSBjIDIuNTY5NDMsNS4xMDIyIDQuNDg3MDIsOS40Mjk0IDQuMjYxMzIsOS42MTU5OSAtMC4yMjU3LDAuMTg2NTkgLTU3LjU0NzAxLDAuNjkyMjggLTEyNy4zODA2OSwxLjEyMzc1IEwgNzEuMjgzODM4LDMzMi4zMTExMyA3MC40MzM3LDMyNy43Nzk1IGMgLTAuNDY3NTc3LC0yLjQ5MjM5IC0wLjQ2ODE3MiwtNy4wNzg3NyAtMC4wMDEzLC0xMC4xOTE5MiBsIDAuODQ4ODE0LC01LjY2MDMgNjIuMjIxNDI2LC0wLjc5NDEzIDYyLjIyMTQzLC0wLjc5NDEyIDIuOTQ4NzIsLTMuMDA2MjUgYyAzLjQ3NzQsLTMuNTQ1MjYgMTYuNDk3MzcsLTI3Ljg4MDg4IDU3LjMyNzIxLC0xMDcuMTUwMzcgMTYuNTIyNDUsLTMyLjA3NzY2IDMwLjQ0OTY2LC01Ny45MTQ4NSAzMC45NDkzNCwtNTcuNDE1OTggMS4xNDQ3LDEuMTQyODIgMjEuNjk5NSw0MS4wNDgxNSA5Ny42ODI0MSwxODkuNjQxNzMgODMuNzM5NzUsMTYzLjc2MzAxIDk5LjIxNTQxLDE5My42NzIwNiAxMDEuMzQ3OTgsMTk1Ljg3MDIzIDEuNDc5MzQsMS41MjQ4NCA2LjMxODUxLDEuOTIwNzcgMjMuOTQ2MDgsMS45NTkxOCAxMi4xNTA2NSwwLjAyNjUgMjIuNDcxNjcsLTAuMzI5MzUgMjIuOTM1NjIsLTAuNzkwNzMgMS4wMTA1MiwtMS4wMDQ5NCAtOS4yNzg0NCwtMjEuNjU4NzEgLTczLjQzMjM1LC0xNDcuNDA2MDIgQyAzMDMuODI3NzQsNzcuMDQ4NTE2IDI4Ny44NzU5Miw0Ni4xOTEwMjIgMjg2LjExNDUyLDQ2Ljc3ODE1MSBjIC0xLjM0OTIsMC40NDk3MzcgLTguOTI3OTUsMTQuODE5NTcgLTUzLjUxNDIxLDEwMS40NjY3NDkgLTE0LjIzMTYsMjcuNjU3MTQgLTM1LjkxOTgyLDY5LjUzNDY5IC00OC4xOTYwMyw5My4wNjEyMiBsIC0yMi4zMjAzOSw0Mi43NzU1MSBoIC0xMC43NjM1NSAtMTAuNzYzNTYgbCA0LjMyMTQ5LC05LjQ2OTM5IGMgNS4yMjg3OSwtMTEuNDU3NSAxMDMuMDMwMDksLTIwMS4yNTAwODQgMTI1LjE4Nzg2LC0yNDIuOTM4NzcxIDguNjg2MzMsLTE2LjM0Mjg1NyAxNi4xNTMzOCwtMjkuNzE0Mjg1MyAxNi41OTM0NSwtMjkuNzE0Mjg1MyAwLjQ0MDA4LDAgNi4zNTg0NCwxMC41NzkzNzAzIDEzLjE1MTkxLDIzLjUwOTcxMTMgMTguMjg1MzcsMzQuODAzNDA1IDE1LjU2NTE0LDMxLjM0NzQzMiAyNC42NzM4NSwzMS4zNDc0MzIgMTkuMzY5NzMsMCA1NC45MjE0Niw2LjQ5NzgyNyA3Ni4zNzQzMSwxMy45NTkwMTMgNTIuNzMwNDIsMTguMzM5MzU4IDEwMC4wNTg1Nyw1NC4wODczMiAxMjkuMzY4MDMsOTcuNzE0NDYgOS4xMDEsMTMuNTQ2ODQgMjQuOTMzODQsNDYuMjQyMDcgMzAuMDM2NSw2Mi4wMjYxNCA5LjAzNzYxLDI3Ljk1NjEyIDEzLjM3NTUsNTkuMTkwNzYgMTEuODcxMTMsODUuNDc2OTkgLTIuNzQxODUsNDcuOTA4OTUgLTE1LjUzOTksODcuNDM0MTMgLTQxLjkxNTg5LDEyOS40NTIwNSBsIC04Ljg3NTUxLDE0LjEzOTAyIDIuOTI0NTQsNS4zMTAwNCBjIDcuNjAyMzEsMTMuODAzNDMgNDMuNDYzMjIsODQuNTQwOTEgNDMuMDUzMzYsODQuOTI0OTMgLTAuOTM3MDQsMC44Nzc5NSAtNDEuNjgzMTIsMS41NTEzMiAtNjcuMDc2OTEsMS4xMDg1MSB6IG0gMTguMTIyNzMsLTEyNC44MDUwMyBjIDEzLjcxMjc1LC0yMi4wMDgxNiAyNS42NjEzNCwtNTMuMTk1NyAzMC45MjkwOSwtODAuNzI5NDEgMi41NTY4NiwtMTMuMzY0MzEgMi43NzE4NSwtMTcuNzU0ODYgMi4xNjgwMywtNDQuMjc3NDggLTAuNzQ3NDksLTMyLjgzMzk5IC0yLjUyODIyLC00NC4wNzc2OSAtMTAuNzk3OTksLTY4LjE3OTgxIEMgNTE0LjAyMDcyLDE1NS4yNzYxNyA0NDguNzA1MDQsOTcuOTc3NDg0IDM2OC4zMjY1Myw4MS43NDg5MSAzNTEuNTY5Miw3OC4zNjU1NzMgMzMwLjA0NjE1LDc1LjcyMjU1NyAzMjguODY1NTgsNzYuOTAzMTMxIGMgLTAuNTAzNTUsMC41MDM1NDUgNC4wNDg2NCwxMC44OTkxMTcgMTAuMTE1OTcsMjMuMTAxMjY5IDEwLjkzOTA5LDIxLjk5OTg1IDExLjA3NTQxLDIyLjE5Njk5IDE2LjI2OTg5LDIzLjUyNzggMjYuMzkyNzIsNi43NjE3MyA0My41MjE4NSwxMy4zNDU2MyA2MC40NjQ0NywyMy4yNDA2NiA2MC42NjMxNCwzNS40MjkxOCA5Ny40MDU3NywxMDMuNzA4ODUgOTEuNjI0MzgsMTcwLjI2NzY2IC0xLjM0ODg3LDE1LjUyODk4IC02LjIxNjY5LDQyLjUwMjU5IC03Ljg1MjczLDQzLjUxMzcyIC0wLjYxNzUxLDAuMzgxNjUgLTMuNjk1MzgsLTQuNDcyNjUgLTYuODM5NzEsLTEwLjc4NzMyIGwgLTUuNzE2OTUsLTExLjQ4MTIxIDEuMzAzMiwtMTEuNzU1MSBjIDIuNTcyNjcsLTIzLjIwNTcyIC0xLjk4MjQsLTU1LjgyNTg0IC0xMS4yMjMyMywtODAuMzcyNzkgLTE0LjA5NzA1LC0zNy40NDY4NyAtNDEuOTEwNSwtNjguMjk2ODYgLTc3LjIwODE3LC04NS42Mzc0MSAtMTIuODg2NzksLTYuMzMwODMgLTMyLjg2ODAzLC0xMy4yNzgyMSAtMzQuMjQwODYsLTExLjkwNTM3IC0xLjQ2Mzg3LDEuNDYzODUgMzUuMzM3OTcsNzQuNjQ1MzQgMTE2LjA3MjU1LDIzMC44MTM1MyAyNC45NzE5NCw0OC4zMDQyMiAyOS4yMzA0NSw1Ni4xNjMyNyAzMC40MzI3Niw1Ni4xNjMyNyAwLjIyMDE4LDAgMy4wNTU0LC00LjI2MTIzIDYuMzAwNDgsLTkuNDY5MzkgeiIKICAgICAgIGlkPSJwYXRoMSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3Ny41Mjk5MywxOTYuOTM5NzMpIiAvPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJkaXNwbGF5OmlubGluZTtmaWxsOiNmZmZmZmY7c3Ryb2tlLXdpZHRoOjEuMzA2MTIiCiAgICAgICBkPSJNIDIuMTA1MjkyMyw1NTAuNzY1OSBDIDIuMzg0MTE2Miw1NDkuOTQwNzMgMjQuMDY1MzA2LDUwNi42NTk0IDUwLjI4NTcxNCw0NTQuNTg1MTYgbCA0Ny42NzM0NywtOTQuNjgwNDQgMTIuMTQ0Mzc2LC0wLjAzNCAxMi4xNDQzNywtMC4wMzQgLTE3Ljg5NDUzLDM0LjkzODc4IGMgLTIyLjc3OTM3NCw0NC40NzYzNiAtNTguMzI1NDU3LDExMy4zOTg4NiAtNjQuMTAxMjczLDEyNC4yODk5MSAtMi44MTUyNSw1LjMwODUyIC0zLjk4NDAwOSw4LjgyNzE5IC0zLjE5NDMzNCw5LjYxNjg2IDEuNjczNDI0LDEuNjczNDMgMzMuMjcxODYzLDIuNzAyNjggNDAuNjUwMzc2LDEuMzI0MTEgNy4xOTI1NTMsLTEuMzQzODMgMi4zNzQ2MjYsNi45MTE0OSA0OS43MTg0MTEsLTg1LjE5MDUxIGwgMzcuMzA0MTMsLTcyLjU3MDk4IDkxLjY1NDYsLTAuMzM1MzUgOTEuNjU0NjEsLTAuMzM1MzQgNC41OTIyOCw5LjExOTA2IGMgMi41MjU3Niw1LjAxNTQ5IDQuNTkyMjksOS40Mjc2MiA0LjU5MjI5LDkuODA0NzQgMCwwLjM3NzExIC00MC41MDY1NywwLjY4NTY2IC05MC4wMTQ2LDAuNjg1NjYgSCAxNzcuMTk1MyBsIC0zNS45NTU3Miw3MC44NTcxNSBjIC00My41NzQzNjQsODUuODcxMDQgLTQ0LjE1MzA5NCw4Ni45NjgzNiAtNDYuMzA5ODE3LDg3LjgwNzE1IC0wLjk0NzgxMiwwLjM2ODYyIC0yMi4zMzUxMjUsMS4wNjM1MiAtNDcuNTI3MzYsMS41NDQyMyAtMzQuMjQ2MDQ3LDAuNjUzNDYgLTQ1LjY3NjE0MDksMC40OTU0MiAtNDUuMjk3MTEwNywtMC42MjYzIHoiCiAgICAgICBpZD0icGF0aDciCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzcuNTI5OTMsMTk2LjkzOTczKSIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZGlzcGxheTppbmxpbmU7ZmlsbDojZmZmZmZmO3N0cm9rZS13aWR0aDoxLjMwNjEyIgogICAgICAgZD0ibSA3MS45NDA3NDksMjc5Ljg5MjExIGMgMS4zMTg3NDQsLTkuMTc2ODYgNy4xMjI0ODYsLTM0Ljg0MzE4IDEwLjU2ODcwNywtNDYuNzM4NzQgMTYuMDkyMDU1LC01NS41NDYxNCA1Ny4xMjkwNjQsLTEwNy45NzQ5OSAxMDguODM3NDg0LC0xMzkuMDUwNzAyIDEzLjM0MTI3LC04LjAxNzgzNCAyMy45NzE1OSwtMTMuNzc2MTM3IDI1LjQzMTkzLC0xMy43NzYxMzcgMC45NDM2MywwIC05LjM1MjQxLDIwLjUxNTczOSAtMTIuNjA4MTYsMjUuMTIyODE5IC0xLjM4ODI4LDEuOTY0NSAtOS4yNjI3Nyw4LjU4Mjk1IC0xNy40OTg4NywxNC43MDc2OSAtMTcuODM0MDcsMTMuMjYyMjEgLTM4LjM1MjMyLDMzLjQyMzAzIC01MC41MTg5NCw0OS42Mzg4OCAtMTAuODE3MSwxNC40MTcxOCAtMjYuNzgxNTIsNDUuMjM3MDQgLTMyLjg4NjQ3LDYzLjQ4ODQ2IC0yLjQ5Njk5LDcuNDY1MDIgLTYuMjUyODA4LDIyLjA5NTIxIC04LjM0NjI2MiwzMi41MTE1NCBsIC0zLjgwNjI3OCwxOC45Mzg3NyAtOS45ODkzOTksMC4zODE5MSAtOS45ODkzOTksMC4zODE5MSB6IgogICAgICAgaWQ9InBhdGg5IgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc3LjUyOTkzLDE5Ni45Mzk3MykiIC8+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImRpc3BsYXk6aW5saW5lO2ZpbGw6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gMjkzLjI5NTA3LDU1NC4zNDg1OCBjIC0zNC4yMTg2NiwtMy44NjA2NiAtNzQuMDQxNzcsLTE3LjU4MjI2IC0xMDQuMzcwMDUsLTM1Ljk2MjEzIC0xNC4xNzI3OSwtOC41ODkxNSAtMzEuNTQ5MTEsLTIyLjQyODk3IC0zMS40NzU2NSwtMjUuMDY5NTkgMC4wMzM5LC0xLjIxODE1IDEuNjUwMjIsLTUuMjIzOCAzLjU5MTg0LC04LjkwMTQ1IGwgMy41MzAyMiwtNi42ODY2MyAxNi45Nzk1OSwxMi4yNjA3NSBjIDI3LjM5MTY0LDE5Ljc3OTE2IDU3LjQwODM5LDMzLjY1MjY4IDg4LjgxNjMzLDQxLjA1MDI2IDIxLjk2NDMzLDUuMTczMzEgNjguOTI4MSw1LjQ2MDU2IDkzLjU5ODc3LDAuNTcyNDkgMjAuNDk1NjIsLTQuMDYwODUgMjkuMTYxNTcsLTYuODUzODMgNTIuMzMxLC0xNi44NjU4OCBsIDQuODY4NTQsLTIuMTAzODIgMy45MzU1Myw2Ljg2MjM5IGMgMi4xNjQ1MywzLjc3NDMxIDMuOTQxMDMsNy41ODk2OCAzLjk0Nzc4LDguNDc4NjEgMC4wMTQxLDEuODYzMzMgLTE0LjE1NTczLDkuMjY0NDcgLTI2Ljk3NjE1LDE0LjA5MDA2IC0xMC42NjU3Miw0LjAxNDU3IC0yNi4yMzExOSw4LjA5NTQ3IC00MC4yNzY5LDEwLjU1OTY3IC0xMy4yNTQ0OSwyLjMyNTM5IC01NC4wNDA5NSwzLjM0NjY5IC02OC41MDA4NSwxLjcxNTI3IHoiCiAgICAgICBpZD0icGF0aDEwIgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc3LjUyOTkzLDE5Ni45Mzk3MykiIC8+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImRpc3BsYXk6aW5saW5lO2ZpbGw6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gMzA0LjMyNjUzLDQ5MS42MjY5MiBjIC0yNC4zNDkyOCwtMS44OTU4MyAtNTQuNTA3NjMsLTExLjU4Njc1IC03Ni4yNDMwNiwtMjQuNDk5NTMgLTkuODAzNTYsLTUuODI0MTkgLTI2LjIxMjExLC0xNy44Nzg3OSAtMzUuNDA3NzksLTI2LjAxMjQ2IGwgLTUuODU0OTIsLTUuMTc4NzUgMy4xNTg4NSwtNi43NDQyOCBjIDEuNzM3MzcsLTMuNzA5MzUgMy44NDY3MiwtNy4zMTUxNiA0LjY4NzQ1LC04LjAxMjkgMS4wNjUyMSwtMC44ODQwNSA0LjY1NDE2LDEuMzM5MTEgMTEuODM4OTMsNy4zMzM1OCAyMC45MTE2NSwxNy40NDcxOCA0MC4yNzQxOCwyOC41NTgyNiA2MS45MDIxNywzNS41MjIyMyAyMS40OTA1OCw2LjkxOTczIDI1LjIyNzg4LDcuNDY3MzggNTAuOTM4NzgsNy40NjQ0MSAyNi42NDc5OSwtMC4wMDMgMzMuNzA0MSwtMS4xMjg1MyA1Ny42NjM5NywtOS4xOTc0IDcuMjY1MDIsLTIuNDQ2NjIgMTMuNTcyODksLTQuMjE5MjkgMTQuMDE3NDgsLTMuOTM5MjcgMC40NDQ1OSwwLjI4MDAyIDIuNTcxNjEsMy44MDcyOSA0LjcyNjcxLDcuODM4MzcgNC41NzY0OSw4LjU2MDI0IDUuMDY1ODgsNy45MDEzNyAtMTAuMjM5NDUsMTMuNzg1MjEgLTI1LjQ2NTc0LDkuNzg5ODMgLTUzLjQ0MjY5LDEzLjgwMTEzIC04MS4xODkxMiwxMS42NDA3OSB6IgogICAgICAgaWQ9InBhdGgxMSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3Ny41Mjk5MywxOTYuOTM5NzMpIiAvPgogIDwvZz4KPC9zdmc+Cg==" alt="Logo" class="header-logo-img" draggable="false">
+                </span>
+                <span class="brand-copy">
+                    <span class="header-title">Asp0ka</span>
+                    <span class="header-subtitle">信息安全一班 · 班长竞选</span>
+                </span>
+            </a>
+        </div>
+
+        <nav class="header-nav" aria-label="主导航">
+            <div class="nav-selector"></div>
+            <a href="#home">首页</a>
+            <a href="#about">关于我</a>
+            <a href="#experience">军训经历</a>
+            <a href="#project">项目经历</a>
+            <a href="#skills">技术能力</a>
+            <a href="#contact">联系</a>
+        </nav>
+
+        <a class="header-github" href="https://github.com/Asp0ka" target="_blank" rel="noopener noreferrer">
+            <span>GitHub</span>
+            <span class="arrow">↗</span>
+        </a>
+    </header>
+    <main id="main-scroll">
+        <section id="home" class="page-section hero-section" data-page="01">
+            <div class="section-wrap hero-wrap">
+                <div class="hero-copy reveal">
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        信息安全一班 · 班长竞选
+                    </div>
+
+                    <h1>
+                        <span class="hero-line">你好, 我是</span>
+                        <span class="hero-name">Asp0ka<span class="hero-punctuation">.</span></span>
+                    </h1>
+
+                    <p class="hero-lead">
+                        军训期间担任临时负责人, 也一直在用计算机技术解决实际问题。
+                    </p>
+
+                    <p class="hero-desc">
+                        我希望把这份已经开始承担的责任继续做好。
+                        班长对我来说, 不是一个称号, 而是班级里有人需要沟通, 需要协调, 需要把事情落实时, 我愿意站出来。
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#about">
+                            认识我
+                            <span>→</span>
+                        </a>
+                        <a class="button button-secondary" href="#project">
+                            看看 SnapTap
+                            <span>↗</span>
+                        </a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <span>信安一班</span>
+                        <span>军训临时负责人</span>
+                        <span>技术实践</span>
+                    </div>
+                </div>
+
+                <div class="hero-stage reveal reveal-delay" data-parallax="0.8">
+                    <div class="hero-stage-card stage-card-back"></div>
+                    <div class="hero-stage-card stage-card-mid"></div>
+                    <div class="hero-stage-card stage-card-main">
+                        <div class="stage-topline">
+                            <span>班级</span>
+                            <span>01</span>
+                        </div>
+                        <div class="stage-title">信安一班</div>
+                        <div class="stage-rule"></div>
+                        <div class="stage-grid">
+                            <div>
+                                <span>身份</span>
+                                <strong>班长候选人</strong>
+                            </div>
+                            <div>
+                                <span>经历</span>
+                                <strong>军训临时负责人</strong>
+                                <strong>高中物理课代表</strong>
+                            </div>
+                            <div>
+                                <span>项目</span>
+                                <strong>SnapTap</strong>
+                            </div>
+                            <div>
+                                <span>态度</span>
+                                <strong>愿意做事, 认真做事</strong>
+                                <strong>积极帮助同学</strong>
+                            </div>
+                        </div>
+                        <div class="stage-footer">
+                            <span>从负责每一件小事开始。</span>
+                            <span class="stage-signal"></span>
+                        </div>
+                    </div>
+                    <div class="hero-stage-caption">把技术做出来, 也把班级事情做好。</div>
+                </div>
+            </div>
+
+            <a class="scroll-hint" href="#about" aria-label="向下浏览">
+                <span>向下</span>
+                <span class="scroll-line"></span>
+            </a>
+        </section>
+
+        <section id="about" class="page-section content-section section-tone-one">
+            <div class="section-wrap">
+                <div class="section-intro reveal">
+                    <span class="section-index">01</span>
+                    <div>
+                        <span class="section-kicker">关于我</span>
+                        <h2>不是简历,<br><em>是我能为班级做什么。</em></h2>
+                    </div>
+                </div>
+
+                <div class="about-layout">
+                    <article class="about-main-card glass-card tilt-card reveal" data-tilt="8">
+                        <div class="card-eyebrow">我的做事方式</div>
+                        <h3>先把事情看清楚, 再把事情做下去。</h3>
+                        <p>
+                            我比较习惯从实际问题出发。遇到一个问题, 先确认到底哪里出了问题,
+                            再去查资料, 验证想法, 最后把结果落到实际操作上。
+                        </p>
+                        <p>
+                            这种习惯也影响我处理班级事务的方式: 通知要准确, 安排要清楚,
+                            有事情就及时沟通, 需要跟进的事情就跟进到底。
+                        </p>
+                        <div class="about-keywords">
+                            <span>认真</span>
+                            <span>沟通</span>
+                            <span>执行</span>
+                            <span>复盘</span>
+                        </div>
+                    </article>
+
+                    <div class="about-side">
+                        <article class="mini-card glass-card tilt-card reveal" data-tilt="6">
+                            <span class="mini-number">A</span>
+                            <div>
+                                <h3>军训期间</h3>
+                                <p>已经实际承担过临时负责人的工作。</p>
+                            </div>
+                        </article>
+                        <article class="mini-card glass-card tilt-card reveal" data-tilt="6">
+                            <span class="mini-number">B</span>
+                            <div>
+                                <h3>遇到问题</h3>
+                                <p>愿意自己先想办法, 不把问题往后推。</p>
+                            </div>
+                        </article>
+                        <article class="mini-card glass-card tilt-card reveal" data-tilt="6">
+                            <span class="mini-number">C</span>
+                            <div>
+                                <h3>班级事务</h3>
+                                <p>愿意沟通, 愿意协调, 也愿意承担。</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="page-section content-section section-tone-two">
+            <div class="section-wrap">
+                <div class="section-intro reveal">
+                    <span class="section-index">02</span>
+                    <div>
+                        <span class="section-kicker">军训经历</span>
+                        <h2>为同学服务这件事,<br><em>我已经开始做了。</em></h2>
+                    </div>
+                </div>
+
+                <div class="experience-layout">
+                    <div class="experience-main glass-card tilt-card reveal" data-tilt="6">
+                        <div class="experience-number">01</div>
+                        <div class="experience-date">2026 · 军训期间</div>
+                        <h3>担任班级临时负责人</h3>
+                        <p>
+                            在军训期间承担临时负责人职责, 参与通知传达, 人员组织, 集合管理以及班级事务协调。
+                        </p>
+                        <p>
+                            这段经历让我更清楚班级事务真正需要什么: 信息传达不能断, 集合安排不能乱,
+                            同学有问题要有人回应, 老师和班级之间也需要有人把信息准确地接住再传下去。
+                        </p>
+                        <div class="experience-tags">
+                            <span>通知传达</span>
+                            <span>人员组织</span>
+                            <span>集合管理</span>
+                            <span>事务协调</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-stack">
+                        <article class="glass-card experience-side-card tilt-card reveal" data-tilt="6">
+                            <span>我学到的第一件事</span>
+                            <strong>响应要及时。</strong>
+                            <p>很多班级事务并不复杂, 关键是有人及时处理。</p>
+                        </article>
+                        <article class="glass-card experience-side-card tilt-card reveal" data-tilt="6">
+                            <span>我学到的第二件事</span>
+                            <strong>沟通要准确。</strong>
+                            <p>信息一旦出现偏差, 后面的执行就会越来越麻烦。</p>
+                        </article>
+                        <article class="glass-card experience-side-card tilt-card reveal" data-tilt="6">
+                            <span>我学到的第三件事</span>
+                            <strong>事情要落地。</strong>
+                            <p>说过和做过是两回事, 最终要看事情有没有真正完成。</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="project" class="page-section content-section section-tone-three project-section">
+            <div class="section-wrap">
+                <div class="section-intro reveal">
+                    <span class="section-index">03</span>
+                    <div>
+                        <span class="section-kicker">技术项目</span>
+                        <h2>我做过的项目里,<br><em>有一个叫 SnapTap。</em></h2>
+                    </div>
+                </div>
+
+                <a class="project-feature-card tilt-card reveal" href="#snaptap-detail" data-tilt="7" aria-label="查看 SnapTap 项目详细介绍">
+                    <div class="project-feature-grid"></div>
+                    <div class="project-feature-orbit orbit-one"></div>
+                    <div class="project-feature-orbit orbit-two"></div>
+                    <div class="project-feature-content">
+                        <div class="card-eyebrow">个人项目</div>
+                        <h3>SnapTap<span>.</span></h3>
+                        <p>
+                            通过Python与Windows api模拟键盘输入实现后覆盖。
+                            从输入行为, 程序逻辑到运行时问题, 我通过实际调试理解代码为什么这样工作。
+                        </p>
+                        <div class="project-link-row">
+                            <span>进入项目详细介绍</span>
+                            <span class="project-link-arrow">↗</span>
+                        </div>
+                    </div>
+                    <div class="project-feature-data">
+                        <div>
+                            <span>输入</span>
+                            <strong>键盘状态</strong>
+                        </div>
+                        <div>
+                            <span>环境</span>
+                            <strong>Windows</strong>
+                        </div>
+                        <div>
+                            <span>方法</span>
+                            <strong>调试与验证</strong>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="snaptap-detail" class="page-section content-section section-tone-four">
+            <div class="section-wrap">
+                <div class="section-intro reveal">
+                    <span class="section-index">04</span>
+                    <div>
+                        <span class="section-kicker">SnapTap 详细介绍</span>
+                        <h2>从现象到原因,<br><em>再到解决。</em></h2>
+                    </div>
+                </div>
+
+                <div class="project-detail-grid">
+                    <article class="project-detail-main glass-card tilt-card reveal" data-tilt="5">
+                        <div class="card-eyebrow">项目思路</div>
+                        <h3>不只是写代码, 更重要的是知道代码为什么这样运行。</h3>
+                        <p>
+                            SnapTap 是我进行计算机技术实践的一个项目, 通过Python与Windows api实现了后覆盖。
+                            在开发和调试过程中, 我会从实际表现出发, 观察输入状态, 梳理程序逻辑,
+                            再通过代码和运行结果逐步验证自己的判断。
+                        </p>
+                        <p>
+                            对我来说, 这个项目的价值不只是最终功能, 而是让我反复练习了一个完整过程:
+                            发现异常, 分析原因, 验证猜想, 修改实现, 再次测试。
+                        </p>
+
+                        <div class="project-code-panel">
+                            <div class="code-panel-top">
+                                <span>问题分析流程</span>
+                                <span>01 — 04</span>
+                            </div>
+                            <div class="code-line"><span>01</span><strong>观察</strong><em>先看输入行为和实际表现</em></div>
+                            <div class="code-line"><span>02</span><strong>定位</strong><em>缩小问题可能出现的范围</em></div>
+                            <div class="code-line"><span>03</span><strong>验证</strong><em>通过代码与调试验证判断</em></div>
+                            <div class="code-line"><span>04</span><strong>迭代</strong><em>修改后继续测试和优化</em></div>
+                        </div>
+                    </article>
+
+                    <aside class="project-detail-side">
+                        <div class="project-stack glass-card tilt-card reveal" data-tilt="5">
+                            <div class="card-eyebrow">涉及技术</div>
+                            <div class="stack-list">
+                                <span>C / C++ / Python</span>
+                                <span>WIndows api</span>
+                                <span>QT GUI</span>
+                                <span>Git</span>
+                                <span>调试</span>
+                                <span>输入处理</span>
+                            </div>
+                        </div>
+
+                        <a class="project-github glass-card tilt-card reveal" href="https://github.com/Asp0ka/SnapTap" target="_blank" rel="noopener noreferrer" data-tilt="5">
+                            <div>
+                                <div class="card-eyebrow">代码主页</div>
+                                <h3>GitHub / Asp0ka</h3>
+                                <p>查看更多公开项目和代码实践。</p>
+                            </div>
+                            <span>↗</span>
+                        </a>
+
+                        <a class="back-project glass-card tilt-card reveal" href="#project" data-tilt="4">
+                            <span>返回 SnapTap 项目页</span>
+                            <span>↑</span>
+                        </a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="page-section content-section section-tone-five">
+            <div class="section-wrap">
+                <div class="section-intro reveal">
+                    <span class="section-index">05</span>
+                    <div>
+                        <span class="section-kicker">技术能力</span>
+                        <h2>技术能力不是炫技,<br><em>是解决问题的工具。</em></h2>
+                    </div>
+                </div>
+
+                <div class="skills-bento">
+                    <article class="skill-large skill-card tilt-card reveal" data-tilt="6">
+                        <span class="skill-index">01</span>
+                        <div>
+                            <span class="skill-kicker">程序设计</span>
+                            <h3>Python / Java / C / C++ / JS</h3>
+                            <p>
+                                能够进行脚本编写, 程序开发和实际项目调试。
+                                更注重把语言用于解决实际问题, 而不是只停留在语法层面。
+                            </p>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Python</span>
+                            <span>Java</span>
+                            <span>C / C++</span>
+                            <span>JS</span>
+                        </div>
+                    </article>
+
+                    <article class="skill-card skill-card  tilt-card reveal" data-tilt="6">
+                        <span class="skill-index">02</span>
+                        <div>
+                            <span class="skill-kicker">系统环境</span>
+                            <h3>Windows / Linux / WSL / Docker</h3>
+                            <p>能够搭建和使用多种开发环境, 处理程序运行和环境配置问题。</p>
+                        </div>
+                        <div class="skill-tags">
+                            <span>Linux</span>
+                            <span>WSL</span>
+                            <span>Docker</span>
+                        </div>
+                    </article>
+
+                    <article class="skill-card skill-card-accent tilt-card reveal" data-tilt="6">
+                        <span class="skill-index">03</span>
+                        <div>
+                            <span class="skill-kicker">信息安全</span>
+                            <h3>分析 / 调试 / 逆向方向</h3>
+                            <p>对网络安全, 软件分析和逆向方向保持长期兴趣, 注重理解系统行为和运行逻辑。</p>
+                        </div>
+                        <div class="skill-tags">
+                            <span>安全</span>
+                            <span>调试</span>
+                            <span>逆向</span>
+                        </div>
+                    </article>
+
+                    <article class="skill-large skill-card tilt-card reveal" data-tilt="6">
+                        <span class="skill-index">04</span>
+                        <div>
+                            <span class="skill-kicker">人工智能</span>
+                            <h3>本地大模型 / AI Agent / 自动化</h3>
+                            <p>
+                                持续研究本地大模型和 AI Agent 工具链, 搭建本地运行环境,
+                                尝试让人工智能参与开发, 学习和日常工作流程。
+                            </p>
+                        </div>
+                        <div class="skill-tags">
+                            <span>LLM</span>
+                            <span>AI Agent</span>
+                            <span>自动化</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section content-section contact-section section-tone-six">
+            <div class="section-wrap">
+                <div class="contact-header reveal">
+                    <span class="section-index">06</span>
+                    <div>
+                        <span class="section-kicker">联系</span>
+                        <h2>有事情,<br><em>直接找我。</em></h2>
+                    </div>
+                    <p>
+                        无论是班级事务, 学习交流, 计算机技术还是项目问题,
+                        可以直接联系我。
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card tilt-card reveal copy-card" data-copy="Asp0karn@Gmail.com" data-tilt="5">
+                        <span class="contact-type">邮箱</span>
+                        <strong>Asp0karn@Gmail.com</strong>
+                        <span class="contact-arrow">复制</span>
+                    </div>
+
+                    <div class="contact-card tilt-card reveal copy-card" data-copy="186******63" data-tilt="5">
+                        <span class="contact-type">电话</span>
+                        <strong>186******63</strong>
+                        <span class="contact-arrow">复制</span>
+                    </div>
+
+                    <a class="contact-card tilt-card reveal" href="https://qm.qq.com/q/oIkPsM33Gw" target="_blank" rel="noopener noreferrer" data-tilt="5">
+                        <span class="contact-type">QQ</span>
+                        <strong>22876400</strong>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+
+                    <div class="contact-card tilt-card reveal copy-card" data-copy="Asp0karn" data-tilt="5">
+                        <span class="contact-type">微信</span>
+                        <strong>Asp0karn</strong>
+                        <span class="contact-arrow">复制</span>
+                    </div>
+
+                    <a class="contact-card contact-card-github  tilt-card reveal" href="https://github.com/Asp0ka" target="_blank" rel="noopener noreferrer" data-tilt="5">
+                        <span class="contact-type">GitHub</span>
+                        <strong>github.com/Asp0ka</strong>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+                </div>
+
+                <div class="contact-bottom reveal">
+                    <div class="contact-quote">愿意做事, 认真做事。</div>
+                    <div class="contact-signature">
+                        <span>Asp0ka</span>
+                        <span>信息安全一班</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite">
+        已复制
+    </div>
+
+    <div id="cursor-dot"></div>
+    <script>
+        function t(t,e,i){return Math.max(t,Math.min(e,i))}var e=class{isRunning=!1;value=0;from=0;to=0;currentTime=0;lerp;duration;easing;onUpdate;advance(e){if(!this.isRunning)return;let i=!1;if(this.duration&&this.easing){this.currentTime+=e;const s=t(0,this.currentTime/this.duration,1);i=s>=1;const o=i?1:this.easing(s);this.value=this.from+(this.to-this.from)*o}else this.lerp?(this.value=function(t,e,i,s){return function(t,e,i){return(1-i)*t+i*e}(t,e,1-Math.exp(-i*s))}(this.value,this.to,60*this.lerp,e),Math.round(this.value)===this.to&&(this.value=this.to,i=!0)):(this.value=this.to,i=!0);i&&this.stop(),this.onUpdate?.(this.value,i)}stop(){this.isRunning=!1}fromTo(t,e,{lerp:i,duration:s,easing:o,onStart:n,onUpdate:r}){this.from=this.value=t,this.to=e,this.lerp=i,this.duration=s,this.easing=o,this.currentTime=0,this.isRunning=!0,n?.(),this.onUpdate=r}};var i=class{constructor(t,e,{autoResize:i=!0,debounce:s=250}={}){this.wrapper=t,this.content=e,i&&(this.debouncedResize=function(t,e){let i;return function(...s){let o=this;clearTimeout(i),i=setTimeout((()=>{i=void 0,t.apply(o,s)}),e)}}(this.resize,s),this.wrapper instanceof Window?window.addEventListener("resize",this.debouncedResize,!1):(this.wrapperResizeObserver=new ResizeObserver(this.debouncedResize),this.wrapperResizeObserver.observe(this.wrapper)),this.contentResizeObserver=new ResizeObserver(this.debouncedResize),this.contentResizeObserver.observe(this.content)),this.resize()}width=0;height=0;scrollHeight=0;scrollWidth=0;debouncedResize;wrapperResizeObserver;contentResizeObserver;destroy(){this.wrapperResizeObserver?.disconnect(),this.contentResizeObserver?.disconnect(),this.wrapper===window&&this.debouncedResize&&window.removeEventListener("resize",this.debouncedResize,!1)}resize=()=>{this.onWrapperResize(),this.onContentResize()};onWrapperResize=()=>{this.wrapper instanceof Window?(this.width=window.innerWidth,this.height=window.innerHeight):(this.width=this.wrapper.clientWidth,this.height=this.wrapper.clientHeight)};onContentResize=()=>{this.wrapper instanceof Window?(this.scrollHeight=this.content.scrollHeight,this.scrollWidth=this.content.scrollWidth):(this.scrollHeight=this.wrapper.scrollHeight,this.scrollWidth=this.wrapper.scrollWidth)};get limit(){return{x:this.scrollWidth-this.width,y:this.scrollHeight-this.height}}},s=class{events={};emit(t,...e){let i=this.events[t]||[];for(let t=0,s=i.length;t<s;t++)i[t]?.(...e)}on(t,e){return this.events[t]?.push(e)||(this.events[t]=[e]),()=>{this.events[t]=this.events[t]?.filter((t=>e!==t))}}off(t,e){this.events[t]=this.events[t]?.filter((t=>e!==t))}destroy(){this.events={}}},o=100/6,n={passive:!1},r=class{constructor(t,e={wheelMultiplier:1,touchMultiplier:1}){this.element=t,this.options=e,window.addEventListener("resize",this.onWindowResize,!1),this.onWindowResize(),this.element.addEventListener("wheel",this.onWheel,n),this.element.addEventListener("touchstart",this.onTouchStart,n),this.element.addEventListener("touchmove",this.onTouchMove,n),this.element.addEventListener("touchend",this.onTouchEnd,n)}touchStart={x:0,y:0};lastDelta={x:0,y:0};window={width:0,height:0};emitter=new s;on(t,e){return this.emitter.on(t,e)}destroy(){this.emitter.destroy(),window.removeEventListener("resize",this.onWindowResize,!1),this.element.removeEventListener("wheel",this.onWheel,n),this.element.removeEventListener("touchstart",this.onTouchStart,n),this.element.removeEventListener("touchmove",this.onTouchMove,n),this.element.removeEventListener("touchend",this.onTouchEnd,n)}onTouchStart=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:0,y:0},this.emitter.emit("scroll",{deltaX:0,deltaY:0,event:t})};onTouchMove=t=>{const{clientX:e,clientY:i}=t.targetTouches?t.targetTouches[0]:t,s=-(e-this.touchStart.x)*this.options.touchMultiplier,o=-(i-this.touchStart.y)*this.options.touchMultiplier;this.touchStart.x=e,this.touchStart.y=i,this.lastDelta={x:s,y:o},this.emitter.emit("scroll",{deltaX:s,deltaY:o,event:t})};onTouchEnd=t=>{this.emitter.emit("scroll",{deltaX:this.lastDelta.x,deltaY:this.lastDelta.y,event:t})};onWheel=t=>{let{deltaX:e,deltaY:i,deltaMode:s}=t;e*=1===s?o:2===s?this.window.width:1,i*=1===s?o:2===s?this.window.height:1,e*=this.options.wheelMultiplier,i*=this.options.wheelMultiplier,this.emitter.emit("scroll",{deltaX:e,deltaY:i,event:t})};onWindowResize=()=>{this.window={width:window.innerWidth,height:window.innerHeight}}},l=t=>Math.min(1,1.001-Math.pow(2,-10*t)),Lenis=class{_isScrolling=!1;_isStopped=!1;_isLocked=!1;_preventNextNativeScrollEvent=!1;_resetVelocityTimeout=null;__rafID=null;isTouching;time=0;userData={};lastVelocity=0;velocity=0;direction=0;options;targetScroll;animatedScroll;animate=new e;emitter=new s;dimensions;virtualScroll;constructor({wrapper:t=window,content:e=document.documentElement,eventsTarget:s=t,smoothWheel:o=!0,syncTouch:n=!1,syncTouchLerp:h=.075,touchInertiaExponent:a=1.7,duration:c,easing:p,lerp:d=.1,infinite:u=!1,orientation:m="vertical",gestureOrientation:v=("horizontal"===m?"both":"vertical"),touchMultiplier:w=1,wheelMultiplier:g=1,autoResize:S=!0,prevent:f,virtualScroll:y,overscroll:E=!0,autoRaf:T=!1,anchors:z=!1,autoToggle:b=!1,allowNestedScroll:_=!1,__experimental__naiveDimensions:L=!1}={}){window.lenisVersion="1.3.16",t&&t!==document.documentElement||(t=window),"number"==typeof c&&"function"!=typeof p?p=l:"function"==typeof p&&"number"!=typeof c&&(c=1),this.options={wrapper:t,content:e,eventsTarget:s,smoothWheel:o,syncTouch:n,syncTouchLerp:h,touchInertiaExponent:a,duration:c,easing:p,lerp:d,infinite:u,gestureOrientation:v,orientation:m,touchMultiplier:w,wheelMultiplier:g,autoResize:S,prevent:f,virtualScroll:y,overscroll:E,autoRaf:T,anchors:z,autoToggle:b,allowNestedScroll:_,__experimental__naiveDimensions:L},this.dimensions=new i(t,e,{autoResize:S}),this.updateClassName(),this.targetScroll=this.animatedScroll=this.actualScroll,this.options.wrapper.addEventListener("scroll",this.onNativeScroll,!1),this.options.wrapper.addEventListener("scrollend",this.onScrollEnd,{capture:!0}),this.options.anchors&&this.options.wrapper===window&&this.options.wrapper.addEventListener("click",this.onClick,!1),this.options.wrapper.addEventListener("pointerdown",this.onPointerDown,!1),this.virtualScroll=new r(s,{touchMultiplier:w,wheelMultiplier:g}),this.virtualScroll.on("scroll",this.onVirtualScroll),this.options.autoToggle&&(this.checkOverflow(),this.rootElement.addEventListener("transitionend",this.onTransitionEnd,{passive:!0})),this.options.autoRaf&&(this.__rafID=requestAnimationFrame(this.raf))}destroy(){this.emitter.destroy(),this.options.wrapper.removeEventListener("scroll",this.onNativeScroll,!1),this.options.wrapper.removeEventListener("scrollend",this.onScrollEnd,{capture:!0}),this.options.wrapper.removeEventListener("pointerdown",this.onPointerDown,!1),this.options.anchors&&this.options.wrapper===window&&this.options.wrapper.removeEventListener("click",this.onClick,!1),this.virtualScroll.destroy(),this.dimensions.destroy(),this.cleanUpClassName(),this.__rafID&&cancelAnimationFrame(this.__rafID)}on(t,e){return this.emitter.on(t,e)}off(t,e){return this.emitter.off(t,e)}onScrollEnd=t=>{t instanceof CustomEvent||"smooth"!==this.isScrolling&&!1!==this.isScrolling||t.stopPropagation()};dispatchScrollendEvent=()=>{this.options.wrapper.dispatchEvent(new CustomEvent("scrollend",{bubbles:this.options.wrapper===window,detail:{lenisScrollEnd:!0}}))};get overflow(){const t=this.isHorizontal?"overflow-x":"overflow-y";return getComputedStyle(this.rootElement)[t]}checkOverflow(){["hidden","clip"].includes(this.overflow)?this.internalStop():this.internalStart()}onTransitionEnd=t=>{t.propertyName.includes("overflow")&&this.checkOverflow()};setScroll(t){this.isHorizontal?this.options.wrapper.scrollTo({left:t,behavior:"instant"}):this.options.wrapper.scrollTo({top:t,behavior:"instant"})}onClick=t=>{const e=t.composedPath().find((t=>t instanceof HTMLAnchorElement&&t.getAttribute("href")?.includes("#")));if(e){const t=e.getAttribute("href");if(t){const e="object"==typeof this.options.anchors&&this.options.anchors?this.options.anchors:void 0,i=`#${t.split("#")[1]}`;this.scrollTo(i,e)}}};onPointerDown=t=>{1===t.button&&this.reset()};onVirtualScroll=t=>{if("function"==typeof this.options.virtualScroll&&!1===this.options.virtualScroll(t))return;const{deltaX:e,deltaY:i,event:s}=t;if(this.emitter.emit("virtual-scroll",{deltaX:e,deltaY:i,event:s}),s.ctrlKey)return;if(s.lenisStopPropagation)return;const o=s.type.includes("touch"),n=s.type.includes("wheel");this.isTouching="touchstart"===s.type||"touchmove"===s.type;const r=0===e&&0===i;if(this.options.syncTouch&&o&&"touchstart"===s.type&&r&&!this.isStopped&&!this.isLocked)return void this.reset();const l="vertical"===this.options.gestureOrientation&&0===i||"horizontal"===this.options.gestureOrientation&&0===e;if(r||l)return;let h=s.composedPath();h=h.slice(0,h.indexOf(this.rootElement));const a=this.options.prevent;if(h.find((t=>t instanceof HTMLElement&&("function"==typeof a&&a?.(t)||t.hasAttribute?.("data-lenis-prevent")||o&&t.hasAttribute?.("data-lenis-prevent-touch")||n&&t.hasAttribute?.("data-lenis-prevent-wheel")||this.options.allowNestedScroll&&this.checkNestedScroll(t,{deltaX:e,deltaY:i})))))return;if(this.isStopped||this.isLocked)return void(s.cancelable&&s.preventDefault());if(!(this.options.syncTouch&&o||this.options.smoothWheel&&n))return this.isScrolling="native",this.animate.stop(),void(s.lenisStopPropagation=!0);let c=i;"both"===this.options.gestureOrientation?c=Math.abs(i)>Math.abs(e)?i:e:"horizontal"===this.options.gestureOrientation&&(c=e),(!this.options.overscroll||this.options.infinite||this.options.wrapper!==window&&this.limit>0&&(this.animatedScroll>0&&this.animatedScroll<this.limit||0===this.animatedScroll&&i>0||this.animatedScroll===this.limit&&i<0))&&(s.lenisStopPropagation=!0),s.cancelable&&s.preventDefault();const p=o&&this.options.syncTouch,d=o&&"touchend"===s.type;d&&(c=Math.sign(this.velocity)*Math.pow(Math.abs(this.velocity),this.options.touchInertiaExponent)),this.scrollTo(this.targetScroll+c,{programmatic:!1,...p?{lerp:d?this.options.syncTouchLerp:1}:{lerp:this.options.lerp,duration:this.options.duration,easing:this.options.easing}})};resize(){this.dimensions.resize(),this.animatedScroll=this.targetScroll=this.actualScroll,this.emit()}emit(){this.emitter.emit("scroll",this)}onNativeScroll=()=>{if(null!==this._resetVelocityTimeout&&(clearTimeout(this._resetVelocityTimeout),this._resetVelocityTimeout=null),this._preventNextNativeScrollEvent)this._preventNextNativeScrollEvent=!1;else if(!1===this.isScrolling||"native"===this.isScrolling){const t=this.animatedScroll;this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity,this.velocity=this.animatedScroll-t,this.direction=Math.sign(this.animatedScroll-t),this.isStopped||(this.isScrolling="native"),this.emit(),0!==this.velocity&&(this._resetVelocityTimeout=setTimeout((()=>{this.lastVelocity=this.velocity,this.velocity=0,this.isScrolling=!1,this.emit()}),400))}};reset(){this.isLocked=!1,this.isScrolling=!1,this.animatedScroll=this.targetScroll=this.actualScroll,this.lastVelocity=this.velocity=0,this.animate.stop()}start(){this.isStopped&&(this.options.autoToggle?this.rootElement.style.removeProperty("overflow"):this.internalStart())}internalStart(){this.isStopped&&(this.reset(),this.isStopped=!1,this.emit())}stop(){this.isStopped||(this.options.autoToggle?this.rootElement.style.setProperty("overflow","clip"):this.internalStop())}internalStop(){this.isStopped||(this.reset(),this.isStopped=!0,this.emit())}raf=t=>{const e=t-(this.time||t);this.time=t,this.animate.advance(.001*e),this.options.autoRaf&&(this.__rafID=requestAnimationFrame(this.raf))};scrollTo(e,{offset:i=0,immediate:s=!1,lock:o=!1,duration:n=this.options.duration,easing:r=this.options.easing,lerp:h=this.options.lerp,onStart:a,onComplete:c,force:p=!1,programmatic:d=!0,userData:u}={}){if(!this.isStopped&&!this.isLocked||p){if("string"==typeof e&&["top","left","start","#"].includes(e))e=0;else if("string"==typeof e&&["bottom","right","end"].includes(e))e=this.limit;else{let t;if("string"==typeof e?(t=document.querySelector(e),t||("#top"===e?e=0:console.warn("Lenis: Target not found",e))):e instanceof HTMLElement&&e?.nodeType&&(t=e),t){if(this.options.wrapper!==window){const t=this.rootElement.getBoundingClientRect();i-=this.isHorizontal?t.left:t.top}const s=t.getBoundingClientRect();e=(this.isHorizontal?s.left:s.top)+this.animatedScroll}}if("number"==typeof e){if(e+=i,e=Math.round(e),this.options.infinite){if(d){this.targetScroll=this.animatedScroll=this.scroll;const t=e-this.animatedScroll;t>this.limit/2?e-=this.limit:t<-this.limit/2&&(e+=this.limit)}}else e=t(0,e,this.limit);if(e===this.targetScroll)return a?.(this),void c?.(this);if(this.userData=u??{},s)return this.animatedScroll=this.targetScroll=e,this.setScroll(this.scroll),this.reset(),this.preventNextNativeScrollEvent(),this.emit(),c?.(this),this.userData={},void requestAnimationFrame((()=>{this.dispatchScrollendEvent()}));d||(this.targetScroll=e),"number"==typeof n&&"function"!=typeof r?r=l:"function"==typeof r&&"number"!=typeof n&&(n=1),this.animate.fromTo(this.animatedScroll,e,{duration:n,easing:r,lerp:h,onStart:()=>{o&&(this.isLocked=!0),this.isScrolling="smooth",a?.(this)},onUpdate:(t,e)=>{this.isScrolling="smooth",this.lastVelocity=this.velocity,this.velocity=t-this.animatedScroll,this.direction=Math.sign(this.velocity),this.animatedScroll=t,this.setScroll(this.scroll),d&&(this.targetScroll=t),e||this.emit(),e&&(this.reset(),this.emit(),c?.(this),this.userData={},requestAnimationFrame((()=>{this.dispatchScrollendEvent()})),this.preventNextNativeScrollEvent())}})}}}preventNextNativeScrollEvent(){this._preventNextNativeScrollEvent=!0,requestAnimationFrame((()=>{this._preventNextNativeScrollEvent=!1}))}checkNestedScroll(t,{deltaX:e,deltaY:i}){const s=Date.now(),o=t._lenis??={};let n,r,l,h,a,c,p,d;const u=this.options.gestureOrientation;if(s-(o.time??0)>2e3){o.time=Date.now();const e=window.getComputedStyle(t);o.computedStyle=e;const i=e.overflowX,s=e.overflowY;if(n=["auto","overlay","scroll"].includes(i),r=["auto","overlay","scroll"].includes(s),o.hasOverflowX=n,o.hasOverflowY=r,!n&&!r)return!1;if("vertical"===u&&!r)return!1;if("horizontal"===u&&!n)return!1;a=t.scrollWidth,c=t.scrollHeight,p=t.clientWidth,d=t.clientHeight,l=a>p,h=c>d,o.isScrollableX=l,o.isScrollableY=h,o.scrollWidth=a,o.scrollHeight=c,o.clientWidth=p,o.clientHeight=d}else l=o.isScrollableX,h=o.isScrollableY,n=o.hasOverflowX,r=o.hasOverflowY,a=o.scrollWidth,c=o.scrollHeight,p=o.clientWidth,d=o.clientHeight;if(!n&&!r||!l&&!h)return!1;if(!("vertical"!==u||r&&h))return!1;if(!("horizontal"!==u||n&&l))return!1;let m,v,w,g,S,f;if("horizontal"===u)m="x";else if("vertical"===u)m="y";else{0!==e&&n&&l&&(m="x"),0!==i&&r&&h&&(m="y")}if(!m)return!1;if("x"===m)v=t.scrollLeft,w=a-p,g=e,S=n,f=l;else{if("y"!==m)return!1;v=t.scrollTop,w=c-d,g=i,S=r,f=h}return(g>0?v<w:v>0)&&S&&f}get rootElement(){return this.options.wrapper===window?document.documentElement:this.options.wrapper}get limit(){return this.options.__experimental__naiveDimensions?this.isHorizontal?this.rootElement.scrollWidth-this.rootElement.clientWidth:this.rootElement.scrollHeight-this.rootElement.clientHeight:this.dimensions.limit[this.isHorizontal?"x":"y"]}get isHorizontal(){return"horizontal"===this.options.orientation}get actualScroll(){const t=this.options.wrapper;return this.isHorizontal?t.scrollX??t.scrollLeft:t.scrollY??t.scrollTop}get scroll(){return this.options.infinite?(t=this.animatedScroll,e=this.limit,(t%e+e)%e):this.animatedScroll;var t,e}get progress(){return 0===this.limit?1:this.scroll/this.limit}get isScrolling(){return this._isScrolling}set isScrolling(t){this._isScrolling!==t&&(this._isScrolling=t,this.updateClassName())}get isStopped(){return this._isStopped}set isStopped(t){this._isStopped!==t&&(this._isStopped=t,this.updateClassName())}get isLocked(){return this._isLocked}set isLocked(t){this._isLocked!==t&&(this._isLocked=t,this.updateClassName())}get isSmooth(){return"smooth"===this.isScrolling}get className(){let t="lenis";return this.options.autoToggle&&(t+=" lenis-autoToggle"),this.isStopped&&(t+=" lenis-stopped"),this.isLocked&&(t+=" lenis-locked"),this.isScrolling&&(t+=" lenis-scrolling"),"smooth"===this.isScrolling&&(t+=" lenis-smooth"),t}updateClassName(){this.cleanUpClassName(),this.rootElement.className=`${this.rootElement.className} ${this.className}`.trim()}cleanUpClassName(){this.rootElement.className=this.rootElement.className.replace(/lenis(-\w+)?/g,"").trim()}};globalThis.Lenis=Lenis,globalThis.Lenis.prototype=Lenis.prototype;//# sourceMappingURL=lenis.min.js.map
+    </script>
+    <script>
+        const DEBUG = false
+
+// ==================== 全局可调参数 ====================
+
+// 圆点视觉大小
+const fixedVisualSize = 8; // 固定视觉大小（单位：像素）
+
+// 圆点运动参数
+const friction = 0.16; // 摩擦力，影响速度变化
+const catchSpeed = 0.29; // 捕捉速度，影响圆点追随鼠标的速度
+const minSpeedToCatch = 0.8; // 最小速度阈值，低于此速度时使用线性插值
+const windowEdge = 3; // 窗口边缘距离，圆点移出窗口多少像素后隐藏
+
+// Favicon 路径
+const activeFavicon = "data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjU3My4xMjIwNyIKICAgaGVpZ2h0PSI1NTYuMzQ4NTciCiAgIHZlcnNpb249IjEuMSIKICAgY2xpcC1ydWxlPSJldmVub2RkIgogICBpZD0ic3ZnMSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibGlnaHQtaWNvbi5zdmciCiAgIGlua3NjYXBlOnZlcnNpb249IjEuNC4yIChmNDMyN2Y0LCAyMDI1LTA1LTEzKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMSIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iMC43NjU2MjUiCiAgICAgaW5rc2NhcGU6Y3g9IjIzNS43NTUxIgogICAgIGlua3NjYXBlOmN5PSIzMzUuMDIwNDEiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxNjgwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9Ijk3OSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iLTgiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0iZzEiPgogICAgPHNvZGlwb2RpOmd1aWRlCiAgICAgICBwb3NpdGlvbj0iLTE3Ny41Mjk5MywxMTU2LjkzOTciCiAgICAgICBvcmllbnRhdGlvbj0iMCw5NjAiCiAgICAgICBpZD0iZ3VpZGU2IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICAgIDxzb2RpcG9kaTpndWlkZQogICAgICAgcG9zaXRpb249Ijc4Mi40NzAwNywxMTU2LjkzOTciCiAgICAgICBvcmllbnRhdGlvbj0iOTYwLDAiCiAgICAgICBpZD0iZ3VpZGU3IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICAgIDxzb2RpcG9kaTpndWlkZQogICAgICAgcG9zaXRpb249Ijc4Mi40NzAwNywxOTYuOTM5NzMiCiAgICAgICBvcmllbnRhdGlvbj0iMCwtOTYwIgogICAgICAgaWQ9Imd1aWRlOCIKICAgICAgIGlua3NjYXBlOmxvY2tlZD0iZmFsc2UiIC8+CiAgICA8c29kaXBvZGk6Z3VpZGUKICAgICAgIHBvc2l0aW9uPSItMTc3LjUyOTkzLDE5Ni45Mzk3MyIKICAgICAgIG9yaWVudGF0aW9uPSItOTYwLDAiCiAgICAgICBpZD0iZ3VpZGU5IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTc3LjUyOTkzLC0xOTYuOTM5NzMpIj4KICAgIDx0aXRsZQogICAgICAgaWQ9InRpdGxlMSI+TGF5ZXIgMTwvdGl0bGU+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gMjkwLjc3NzY3LDQ4OC41MjcxNiBjIC0zMS41OTI5MiwtNS45MTA2NyAtNzAuOTcwNjUsLTI1LjMzMzY3IC05NC43MTIxNSwtNDYuNzE2NjEgbCAtNy42ODk1OSwtNi45MjU2OCAyLjgxODE3LC01LjUyNDA3IGMgMS41NSwtMy4wMzgyMyAzLjM3MywtNS41MjQwNyA0LjA1MTExLC01LjUyNDA3IDAuNjc4MTIsMCAxMC4zNDk1NCw2LjE1NjcgMjEuNDkyMDYsMTMuNjgxNTQgMjMuNTMwMDksMTUuODkwNTIgMzIuODIxMTksMjAuNzk0OTggNTEuNjcwODksMjcuMjc1MzQgMTcuMTIwMjYsNS44ODU3OSAyNS43NjEwNSw3LjEyNTQyIDQ5LjYzMjY2LDcuMTIwNDYgMjMuMTQ3NjYsLTAuMDA1IDMyLjE5ODc0LC0xLjE3MDA1IDU0Ljc0NjA4LC03LjA0ODA0IDEzLjkxMDM5LC0zLjYyNjM3IDE3Ljc1NjI0LC00LjIxOTk4IDE4LjY2MDA1LC0yLjg4MDE4IDMuMTY4OTEsNC42OTc2IDUuMDgxOTEsOS4yODUwOSA0LjUwMjAzLDEwLjc5NjIgLTEuMzE0NiwzLjQyNTgyIC0zNS4yOTkwOCwxNC4xOTYwNyAtNDkuMTczNDcsMTUuNTgzOSAtMTguMjc2MjcsMS44MjgxNCAtNDYuNjUxMzYsMS45MDk4MyAtNTUuOTk3ODQsMC4xNjEyMSB6IgogICAgICAgaWQ9InBhdGgxIgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc3LjUyOTkzLDE5Ni45Mzk3MykiIC8+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImZpbGw6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Ik0gMjg1LjY3NjE2LDU1MS44Mzg5NSBDIDI0NS40NTgwOSw1NDYuMTU4NTEgMTkxLjQ3MTM4LDUyMi40NTE5IDE2NS44MTY1OCw0OTkuMjA2MjggbCAtNi40Njk2NCwtNS44NjIwOSAxLjk1OTE4LC01LjU5NzExIGMgMS4wNzc1NSwtMy4wNzg0MSAyLjU5NDI5LC01LjgwMjc1IDMuMzcwNTMsLTYuMDU0MSAwLjc3NjI0LC0wLjI1MTM1IDYuMDQ1NjgsMi41NjgzMiAxMS43MDk4Nyw2LjI2NTk0IDQ4LjQ1NDMzLDMxLjYzMTMzIDc5LjIyODIyLDQzLjcwMzM1IDExOS42MjEwOCw0Ni45MjUwOSAzNi40NTE2MiwyLjkwNzM4IDY5Ljg4MjAyLC0wLjk0Mjk5IDEwMS43MDY2OSwtMTEuNzE0MTUgMTAuNDE2MzIsLTMuNTI1NDQgMTkuOTMwNTIsLTYuNzk0OTUgMjEuMTQyNjcsLTcuMjY1NTcgMS42NTQ1NywtMC42NDIzOSAyLjg3MjQsMC40NTQ3MSA0Ljg4NTk2LDQuNDAxNjEgMS40NzUxMywyLjg5MTUgMi4zODM0OSw2LjAyNTk3IDIuMDE4NTYsNi45NjU0OCAtMi40Mjg4LDYuMjUyOTYgLTQ0LjIzNjI3LDIxLjQ1MzkyIC02NS4yNzE2OCwyMy43MzI0IC0xMi42OTExOSwxLjM3NDY3IC02Ni43MjMzNiwxLjk3Nzg1IC03NC44MTM2NCwwLjgzNTE3IHoiCiAgICAgICBpZD0icGF0aDIiCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzcuNTI5OTMsMTk2LjkzOTczKSIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjMwNjEyIgogICAgICAgZD0ibSA0NzMuNjY5MDcsNTQ2Ljk1NjA4IGMgLTAuNjY5MjksLTEuMjY2NjYgLTcuMjI3NCwtMTQuMDU4MTIgLTE0LjU3MzYsLTI4LjQyNTQ3IC0xNi4xNTE3NiwtMzEuNTg4ODIgLTMzLjE4MzYyLC02NC42MTA1NCAtNDIuNDQxMTMsLTgyLjI4NTcxIC0zLjc2MjUxLC03LjE4MzY4IC0xNC4wNDgyNSwtMjcuMTY3MzUgLTIyLjg1NzIxLC00NC40MDgxNyAtOC44MDg5NiwtMTcuMjQwODEgLTE5LjA5MTI4LC0zNy4yMjQ0OSAtMjIuODQ5NTgsLTQ0LjQwODE2IC0zLjc1ODMxLC03LjE4MzY3IC0xMS44NDA2OSwtMjIuNzU5MTggLTE3Ljk2MDg1LC0zNC42MTIyNCAtMTIuNTM0MjYsLTI0LjI3NTQgLTI1LjExMzA4LC00OC41OTQzOSAtNDAuNTM0OTEsLTc4LjM2NzM1IC0xMi40MzE2OSwtMjQuMDAwMjkgLTI0LjMyNzQzLC00NS45NTYzNSAtMjUuNjgyNDQsLTQ3LjQwMjI5IC0wLjUzMzQzLC0wLjU2OTIyIC0xLjU2NDg3LC0wLjI3NTM1IC0yLjI5MjA5LDAuNjUzMDYgQyAyNzkuMDE1MzksMTk0LjY3MjU0IDIyNCwzMDQuNzYwNDUgMjI0LDMwOC43MTcwNiBjIDAsMC42NjQxNSAwLjkyOTcsMS41NjQzIDIuMDY2MDEsMi4wMDAzNCAxLjEzNjMsMC40MzYwNSAyMS42OTkyNywwLjc5MjggNDUuNjk1NDgsMC43OTI4IGggNDMuNjI5NDggbCA0LjAyMjY5LDcuOTY4OTEgYyAyLjIxMjQ4LDQuMzgyOSAzLjgzNzI3LDguMTM5MzYgMy42MTA2NCw4LjM0NzcgLTEuMjE2NTUsMS4xMTgzOCAtNDguMzQxMjYsMi4wMTk1MiAtMTQ0LjQxMjA2LDIuNzYxNTMgbCAtMTA3LjQyODU2NywwLjgyOTczIHYgLTguNjQ3ODEgLTguNjQ3ODEgbCA2LjIwNDA4MiwtMC4xNjY2OSBjIDMuNDEyMjQ1LC0wLjA5MTcgNy40MjUxMDUsLTAuMzAwNDUgOC45MTc0NjYsLTAuNDYzOTIgMS40OTIzNjMsLTAuMTYzNDcgMjQuNzA4Njg5LC0wLjY5NjM1IDUxLjU5MTgzOSwtMS4xODQxNiA1My42Mzg4NCwtMC45NzMzMiA1OC45MTk2LC0xLjM2MDQ3IDYxLjczMjc1LC00LjUyNTc4IDEuMDUwNTYsLTEuMTgyMDkgNS4yNjY4MywtOC4zMjA2OCA5LjM2OTQ3LC0xNS44NjM1MyA0LjEwMjY0LC03LjU0Mjg2IDkuMDcyNTMsLTE2LjY1MzA2IDExLjA0NDIsLTIwLjI0NDkgMS45NzE2NywtMy41OTE4NCA5LjAzOTE2LC0xNy4xMTAyIDE1LjcwNTU0LC0zMC4wNDA4MiA2LjY2NjM4LC0xMi45MzA2MSAxMy43MzkyNSwtMjYuNDQ4OTggMTUuNzE3NTEsLTMwLjA0MDgxIDEuOTc4MjQsLTMuNTkxODQgNi45NDc4LC0xMi45OTU5MiAxMS4wNDM0NSwtMjAuODk3OTYgMTUuMTk4MjgsLTI5LjMyMzE3IDIzLjI3OTA3LC00My42NjEyNiAyNC4yNjM5NCwtNDMuMDUyNTggMS43NDY4OCwxLjA3OTY0IDIyLjMyMzc1LDQwLjA3MjM4IDYxLjMxNzQ4LDExNi4xOTU0MyA3LjM1OTYyLDE0LjM2NzM1IDE4LjgxMjQ1LDM2LjcwMjA1IDI1LjQ1MDc0LDQ5LjYzMjY2IDYuNjM4MjksMTIuOTMwNjEgMTkuNTczNzMsMzguMjA0MDggMjguNzQ1NDMsNTYuMTYzMjYgOS4xNzE3LDE3Ljk1OTE5IDIwLjkzMjQzLDQwLjg4MTY0IDI2LjEzNDk2LDUwLjkzODc4IDUuMjAyNTIsMTAuMDU3MTQgMTUuMjAzOCwyOS40NTMwNiAyMi4yMjUwNiw0My4xMDIwNCAyMy44MDgxNCw0Ni4yODE5IDMyLjExOTE2LDYxLjM4MDUyIDM1LjQzMDM2LDY0LjM2NjM1IDMuMTcxNTEsMi44NTk4OSA0LjE1NzM3LDIuOTcyNzYgMjQuNzM1MDYsMi44MzIwMyAyNC4wNjM1NywtMC4xNjQ1NyAyMy40NTUzMiwwLjE0NjA0IDE5LjM3ODg3LC05Ljg5NjAyIEMgNTI4LjAwNDczLDUxNS41ODc5MyA0NjkuMDUzNiwzOTcuNjcxNTUgNDQ5Ljk1ODQ3LDM2MC40ODk4IDQ0My42ODY3MywzNDguMjc3NTUgNDMwLjE3NDYzLDMyMS44Mjg1NyA0MTkuOTMxNTksMzAxLjcxNDI5IDQwOS42ODg1NCwyODEuNiAzOTcuMzQwNywyNTcuNTAyMDQgMzkyLjQ5MTkxLDI0OC4xNjMyNyAzODcuNjQzMTMsMjM4LjgyNDQ5IDM3Ni4xNzc0NiwyMTYuNDg5OCAzNjcuMDEyNjYsMTk4LjUzMDYxIDMzNi42OTY4MywxMzkuMTI0MjYgMzAwLjQ4ODYzLDY5LjM0MDA4NCAyOTEuODA4NTYsNTMuNTg5NDgyIGMgLTEuOTY3NzksLTMuNTcwNjgzIC00LjE2OTksLTYuNjg5NTIxIC00Ljg5MzYsLTYuOTMwNzUgQyAyODQuODM3MzQsNDUuOTY2MTkgMjc1Ljc3Mjc1LDYyLjI1MzY4IDI0MS42NDU1MywxMjggYyAtNS41OTMzLDEwLjc3NTUxIC0xMy41Mjk2MSwyNi4wNTcxNCAtMTcuNjM2MjYsMzMuOTU5MTggLTQuMTA2NjQsNy45MDIwNCAtMTQuMzk1MzEsMjcuODg1NzIgLTIyLjg2MzcsNDQuNDA4MTcgLTguNDY4NCwxNi41MjI0NSAtMTUuODE2ODYsMzAuNjI4NTcgLTE2LjMyOTkzLDMxLjM0Njk0IC0wLjUxMzA3LDAuNzE4MzYgLTYuMTQzOTQsMTEuNTAxNzggLTEyLjUxMzA2LDIzLjk2MzE0IGwgLTExLjU4MDIxLDIyLjY1NzAyIC03LjIxODMzLC0wLjczMjQgYyAtMy45NzAwOCwtMC40MDI4MiAtNy42NTkxNCwtMC43NTM1OCAtOC4xOTc5MiwtMC43Nzk0NyAtMC41Mzg3NywtMC4wMjU5IC0wLjk3OTU5LC0wLjY3NjAzIC0wLjk3OTU5LC0xLjQ0NDc4IDAsLTIuMDUzNjkgMzYuNjcxNDQsLTc1LjA0MTY3IDczLjEyNDM4LC0xNDUuNTQxMDcgNS41NzE2NSwtMTAuNzc1NTEgMTUuMjc5NDYsLTI5LjU4MzY3IDIxLjU3Mjg5LC00MS43OTU5MTQgNi4yOTM0NCwtMTIuMjEyMjQ1IDEzLjYzNDUxLC0yNi4zMTgzNjcgMTYuMzEzNTEsLTMxLjM0NjkzOCAyLjY3OSwtNS4wMjg1NzIgNy45NTYsLTE1LjAyMDQwOSAxMS43MjY2NiwtMjIuMjA0MDgyIDEyLjExMTQ2LC0yMy4wNzQxOTEgMTcuNDQ0ODcsLTMyLjAwMDAwMDEgMTkuMTIwODMsLTMyLjAwMDAwMDEgMi4xMzI4NCwwIDUuNDcxMTQsNC43ODIwMzExIDEyLjMwOTI3LDE3LjYzMjY1MzEgMy4wNTgwNyw1Ljc0NjkzOSA2LjUyNDIyLDExLjkxODM2NyA3LjcwMjU1LDEzLjcxNDI4NiAxLjE3ODM0LDEuNzk1OTE4IDIuOTgyMjcsNC45MzIxNCA0LjAwODc4LDYuOTY5MzgzIDMuNTc2NzgsNy4wOTg2NiA3LjA1NDY0LDkuNjU4NDgyIDE0LjQ5MDkxLDEwLjY2NTc3OCAzLjg4MjMzLDAuNTI1ODkxIDcuOTQwNDIsMS4xMDcwOTEgOS4wMTc5OCwxLjI5MTU1NiAxLjA3NzU1LDAuMTg0NDY0IDUuNDg1NzEsMC43NDUyMjcgOS43OTU5MSwxLjI0NjE0IDQ5LjkxMjIzLDUuODAwNTggOTQuMTM2NTIsMjMuNzc3MDg5IDEzMy4yMjQ0OSw1NC4xNTM3NDggMjAuMjM5LDE1LjcyODQ1IDQ0LjY2MzQ2LDQyLjkxNDk0IDU3LjAyMTEyLDYzLjQ2OTMxIDEzLjY4MTM4LDIyLjc1NjEyIDI3LjYxNDY5LDU3LjY3OTM5IDMyLjA0NzgxLDgwLjMyNjUzIDUuNzA5NDIsMjkuMTY3MjYgNS4zNzAyMiw3MC4xODAxMyAtMC44MjU4NCw5OS44NTExOCAtNS4zMjk0NSwyNS41MjExNSAtMTkuNjg3NTEsNjAuMDEyMTQgLTM3LjIwMDE2LDg5LjM2MjM4IGwgLTcuMjk5NzUsMTIuMjMzOTcgMjAuODIyNjYsNDEuOTcwMTEgYyAxMS40NTI0OCwyMy4wODM1NiAyMS4wMDYxNyw0My4xNDU2MyAyMS4yMzA0Niw0NC41ODIzNiAwLjQwMDA5LDIuNTYyOTcgLTAuNDIyNzQsMi42MTg3NCAtNDMuNjE4NjIsMi45NTYwOSAtNDAuOTI4NDcsMC4zMTk2NCAtNDQuMTEyMDYsMC4xODE3OCAtNDUuMjQzMywtMS45NTkxOSB6IE0gNTI2LjE5ODgsNDE0LjA4ODExIGMgMTAuNTAxMTQsLTIxLjAyOTU2IDE4LjExOTA0LC00Mi4yNzk4NiAyMi44MzE0MiwtNjMuNjg4NTUgNC4yODIxMywtMTkuNDU0MTUgMy4yMjY5NCwtNzYuNTQ4MDMgLTEuODI5MTUsLTk4Ljk3MDk5IC0yLjU5NDY4LC0xMS41MDY5NiAtMTAuMjgwNjMsLTMxLjk3Njc2IC0xNy42NjQ0LC00Ny4wNDUxNCBDIDUwOC4wMjM2OSwxNjAuNDgxMDIgNDY0Ljk3MjkzLDExOC40MjcxMSA0MjAuNTI1NTQsOTcuODk2NDc4IDQxMC4yMDI0OSw5My4xMjgxNjggMzg2LjkwMjE4LDg1LjA1NDM0IDM3Ny4xMzM4Miw4Mi44NjA3NDEgYyAtMjMuNDE0NTgsLTUuMjU4MDE5IC00My41OTI3OCwtNy41NDU0NTEgLTQ3LjA3NTExLC01LjMzNjUxIC0yLjExODY5LDEuMzQzOTM4IDAuNzE5MTMsOC45NzMzNDIgOS41OTk3OCwyNS44MDg4NTkgMTAuMjc3MzgsMTkuNDgzMzggOS43NTA0MSwxOS4wNDAwNSAzMC45NDAyOSwyNi4wMjk4OSAyOS4xMTYxMSw5LjYwNDQzIDQyLjU1ODI0LDE2LjQyNjE2IDYxLjcyNzc1LDMxLjMyNjE3IDM1LjY1OTYxLDI3LjcxNzM3IDU4LjUwNTgsNjEuOTE3NTIgNjkuMjY4MTQsMTAzLjY5MjY2IDMuMTU3NzYsMTIuMjU3MTUgMy41MDQxNCwxNS44ODM0IDMuNDkzMzIsMzYuNTcxNDIgLTAuMDExOCwyMi41NjI5NCAtMS40NTg5MywzOS41OTgxMSAtNC4yNDE2Niw0OS45MzI0IC0xLjY3NDc2LDYuMjE5NiAtMy4wNzUwNyw1LjU2NjM5IC04LjA2MjcyLC0zLjc2MTA3IC0zLjE2NjY2LC01LjkyMiAtMy4zNzAyNCwtNy41Njg0MSAtNC4xNjE1MiwtMzMuNjU1MTcgLTAuNDU3NiwtMTUuMDg1NzIgLTEuMDgxNTQsLTI4Ljg5Nzk2IC0xLjM4NjU1LC0zMC42OTM4OCAtMy42NzE1NiwtMjEuNjE4MTQgLTUuMTA3NDUsLTI2Ljc0MzMgLTEyLjAyMiwtNDIuOTEwNDggLTEwLjg3MzE4LC0yNS40MjMgLTI4LjY1NzUsLTQ3Ljk4OTM5IC01MS4zNDk2OCwtNjUuMTU3MiAtMTguNDc5NDYsLTEzLjk4MDcgLTUzLjc0ODAxLC0yOS40Mjc3NiAtNTcuODQxOTIsLTI1LjMzMzg1IC0xLjc5NTQxLDEuNzk1NCA1Mi43MTM5MiwxMTEuNTY0MjIgMTEzLjU5MjYsMjI4Ljc0ODQ3IDIyLjg3MTk5LDQ0LjAyNTg3IDI2LjgxNjI3LDUxLjIyNTM0IDMwLjI5NzA2LDU1LjMwMDgxIDEuOTU5NTIsMi4yOTQzMiAyLjI0MDYsMi4xNzg0NiA2LjIyMjk2LC0yLjU2NDk1IDIuMjkzODksLTIuNzMyMyA2LjgyMjgsLTEwLjI3ODg5IDEwLjA2NDI0LC0xNi43NzAyIHoiCiAgICAgICBpZD0icGF0aDMiCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzcuNTI5OTMsMTk2LjkzOTczKSIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjMwNjEyIgogICAgICAgZD0ibSA0LjU3MTQyODYsNTUwLjA0OTU0IGMgMCwtMC4zODMzMSAyMS4xNTI5MDY0LC00My4wNDQxMSA0Ny4wMDY0NTg0LC05NC44MDE4IGwgNDcuMDA2NDU5LC05NC4xMDQ4OCBoIDEwLjU1MzgxNCAxMC41NTM4MiBMIDk0LjUyMDU0Niw0MTAuNDQ4OTggQyAzOC42MjIwNTksNTE5Ljk0MzY0IDM1LjI0OTU0OCw1MjYuODczODEgMzcuMDA2NDYxLDUyOC42MzQ0NSBjIDEuMTU3MDQzLDEuMTU5NTEgOC4wMDgwMTksMS43NzQxNyAyMy4wMDQ3NzIsMi4wNjM5NyBsIDIxLjM1NzAxNiwwLjQxMjcxIDMuMTk5NjM2LC00LjMzMTA3IGMgNC4xNTI2NjcsLTUuNjIxMTIgMTMuNzEwNjU3LC0yMi44MDc5NyAyNi43NDE4MDUsLTQ4LjA4NjE4IDU0LjQxNjk5LC0xMDUuNTU5NzggNTMuODYxNjksLTEwNC41NjU0MSA1OC4yOTk2NywtMTA0LjM5NyAyLjI1NzcyLDAuMDg1NyA0My4xOTA2NCwtMC4yODIxMiA5MC45NjIwNywtMC44MTczNCBsIDg2Ljg1NzE0LC0wLjk3MzEyIDIuOTM4NzgsNi4xMDgyNiBjIDEuNjE2MzIsMy4zNTk1NCAyLjkzODc3LDYuOTA2NjYgMi45Mzg3Nyw3Ljg4MjQ4IDAsMS44Njc2OCAtNS40NzQzLDIuMDU1MTkgLTEyOC40MDYzNyw0LjM5ODI4IGwgLTQ5LjM4NTk3LDAuOTQxMjkgLTE4LjkzNjg1LDM3LjIyNDQ5IGMgLTU1LjY0OTksMTA5LjM5MTk4IC01OS42OTUxODgsMTE2Ljc5OTggLTY0LjgyNzcxNiwxMTguNzEzOTggLTMuMjI5MjYxLDEuMjA0MzcgLTg3LjE3Nzc4NTQsMy4zOTQ0NiAtODcuMTc3Nzg1NCwyLjI3NDM0IHoiCiAgICAgICBpZD0icGF0aDQiCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzcuNTI5OTMsMTk2LjkzOTczKSIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjMwNjEyIgogICAgICAgZD0ibSA3NC4xNTU3NzksMjc3LjIyNDQ5IGMgMC45NDE2NDUsLTguOTAyMjYgNy44NzkyNTQsLTM3LjA3NDk0IDEyLjgyNzExOSwtNTIuMDg5MTggMTYuNDAxODUyLC00OS43NzEyOCA1My40MDk4ODIsLTk1LjczOTE0IDEwMy4wNTc5MjIsLTEyOC4wMDg3NzggMTQuNTgyNjcsLTkuNDc4MjY5IDIxLjk5Mjg4LC0xMy41MjgyMDggMjIuOTY4MTcsLTEyLjU1MjkxIDAuNDM2MzQsMC40MzYzMjcgLTEuMTA4MDIsNC4zNjA2MTEgLTMuNDMxODksOC43MjA2MyAtNC4xOTc2OCw3Ljg3NTY2OCAtMTAuNDI2MjQsMTQuMzU5OTI4IC0zMC4wODI2NSwzMS4zMTc2MjggLTIzLjI4NDM1LDIwLjA4NzU1IC00NC45MzY5Niw0NC4zNjY0NiAtNTQuMjc0NDEsNjAuODU3NTEgLTE2LjY5OTU3LDI5LjQ5MzQyIC0yNC4wOTc0OSw0OC43NTQyMiAtMzEuODU2MTMyLDgyLjkzODc3IC0xLjU0ODkxLDYuODI0NDkgLTMuMDQwMzc1LDEzLjE0Mjg2IC0zLjMxNDM2NywxNC4wNDA4MiAtMC4zMjgyOTksMS4wNzU5MyAtMy4yNDY2OTgsMS42MzI2NSAtOC41NTg2MjYsMS42MzI2NSBoIC04LjA2MDQ1NyB6IgogICAgICAgaWQ9InBhdGg1IgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc3LjUyOTkzLDE5Ni45Mzk3MykiIC8+CiAgPC9nPgo8L3N2Zz4K"; // 非深色模式或标签页未选中时的图标
+const inactiveFavicon = "data:image/svg+xml;charset=utf-8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjU3My4xMjIwNyIKICAgaGVpZ2h0PSI1NTYuMzQ4NTciCiAgIHZlcnNpb249IjEuMSIKICAgY2xpcC1ydWxlPSJldmVub2RkIgogICBpZD0ic3ZnMSIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibmlnaHQtaWNvbi5zdmciCiAgIGlua3NjYXBlOnZlcnNpb249IjEuNC4yIChmNDMyN2Y0LCAyMDI1LTA1LTEzKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcwogICAgIGlkPSJkZWZzMSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZmZmZmZmIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMSIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgaW5rc2NhcGU6em9vbT0iMC43NjU2MjUiCiAgICAgaW5rc2NhcGU6Y3g9IjI1NS4zNDY5NCIKICAgICBpbmtzY2FwZTpjeT0iNDA2Ljg1NzE0IgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTY4MCIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSI5NzkiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy15PSItOCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzEiPgogICAgPHNvZGlwb2RpOmd1aWRlCiAgICAgICBwb3NpdGlvbj0iLTE3Ny41Mjk5MywxMTU2LjkzOTciCiAgICAgICBvcmllbnRhdGlvbj0iMCw5NjAiCiAgICAgICBpZD0iZ3VpZGU2IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICAgIDxzb2RpcG9kaTpndWlkZQogICAgICAgcG9zaXRpb249Ijc4Mi40NzAwNywxMTU2LjkzOTciCiAgICAgICBvcmllbnRhdGlvbj0iOTYwLDAiCiAgICAgICBpZD0iZ3VpZGU3IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICAgIDxzb2RpcG9kaTpndWlkZQogICAgICAgcG9zaXRpb249Ijc4Mi40NzAwNywxOTYuOTM5NzMiCiAgICAgICBvcmllbnRhdGlvbj0iMCwtOTYwIgogICAgICAgaWQ9Imd1aWRlOCIKICAgICAgIGlua3NjYXBlOmxvY2tlZD0iZmFsc2UiIC8+CiAgICA8c29kaXBvZGk6Z3VpZGUKICAgICAgIHBvc2l0aW9uPSItMTc3LjUyOTkzLDE5Ni45Mzk3MyIKICAgICAgIG9yaWVudGF0aW9uPSItOTYwLDAiCiAgICAgICBpZD0iZ3VpZGU5IgogICAgICAgaW5rc2NhcGU6bG9ja2VkPSJmYWxzZSIgLz4KICA8L3NvZGlwb2RpOm5hbWVkdmlldz4KICA8ZwogICAgIGlkPSJnMSIKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTc3LjUyOTkzLC0xOTYuOTM5NzMpIj4KICAgIDx0aXRsZQogICAgICAgaWQ9InRpdGxlMSI+TGF5ZXIgMTwvdGl0bGU+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImRpc3BsYXk6aW5saW5lO2ZpbGw6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gNTAwLjI0NDksNTUwLjkyNzQ4IC0yNi4xMjI0NSwtMC40NTU1MyAtMTkuNzU2NjQsLTM4LjE3NDc0IEMgNDQzLjQ5OTY2LDQ5MS4zMDEwOSA0MDMuMzI0MjgsNDEzLjI4OTggMzY1LjA4NzE5LDMzOC45Mzg3OCAzMjYuODUwMSwyNjQuNTg3NzYgMjkzLjQ5MTE2LDE5OS45OTM1OSAyOTAuOTU2MjEsMTk1LjM5NjE5IGwgLTQuNjA5LC04LjM1ODkxIC0yLjM4NjM5LDMuMTM0NDIgYyAtMS4zMTI1MSwxLjcyMzkzIC0xNS42MzczNywyOS4zNjcxNiAtMzEuODMzLDYxLjQyOTQxIC0yOC4wMDQxNiw1NS40MzkzNyAtMjkuMzAyMzUsNTguMzMzNjUgLTI2LjUwMTUsNTkuMDg0MiAxLjYxOTgxLDAuNDM0MDggMjIuNzc0NDUsMC43OTcyNiA0Ny4wMTAzMiwwLjgwNzA3IGwgNDQuMDY1MjIsMC4wMTc4IDQuNjcxNjcsOS4yNzY3MSBjIDIuNTY5NDMsNS4xMDIyIDQuNDg3MDIsOS40Mjk0IDQuMjYxMzIsOS42MTU5OSAtMC4yMjU3LDAuMTg2NTkgLTU3LjU0NzAxLDAuNjkyMjggLTEyNy4zODA2OSwxLjEyMzc1IEwgNzEuMjgzODM4LDMzMi4zMTExMyA3MC40MzM3LDMyNy43Nzk1IGMgLTAuNDY3NTc3LC0yLjQ5MjM5IC0wLjQ2ODE3MiwtNy4wNzg3NyAtMC4wMDEzLC0xMC4xOTE5MiBsIDAuODQ4ODE0LC01LjY2MDMgNjIuMjIxNDI2LC0wLjc5NDEzIDYyLjIyMTQzLC0wLjc5NDEyIDIuOTQ4NzIsLTMuMDA2MjUgYyAzLjQ3NzQsLTMuNTQ1MjYgMTYuNDk3MzcsLTI3Ljg4MDg4IDU3LjMyNzIxLC0xMDcuMTUwMzcgMTYuNTIyNDUsLTMyLjA3NzY2IDMwLjQ0OTY2LC01Ny45MTQ4NSAzMC45NDkzNCwtNTcuNDE1OTggMS4xNDQ3LDEuMTQyODIgMjEuNjk5NSw0MS4wNDgxNSA5Ny42ODI0MSwxODkuNjQxNzMgODMuNzM5NzUsMTYzLjc2MzAxIDk5LjIxNTQxLDE5My42NzIwNiAxMDEuMzQ3OTgsMTk1Ljg3MDIzIDEuNDc5MzQsMS41MjQ4NCA2LjMxODUxLDEuOTIwNzcgMjMuOTQ2MDgsMS45NTkxOCAxMi4xNTA2NSwwLjAyNjUgMjIuNDcxNjcsLTAuMzI5MzUgMjIuOTM1NjIsLTAuNzkwNzMgMS4wMTA1MiwtMS4wMDQ5NCAtOS4yNzg0NCwtMjEuNjU4NzEgLTczLjQzMjM1LC0xNDcuNDA2MDIgQyAzMDMuODI3NzQsNzcuMDQ4NTE2IDI4Ny44NzU5Miw0Ni4xOTEwMjIgMjg2LjExNDUyLDQ2Ljc3ODE1MSBjIC0xLjM0OTIsMC40NDk3MzcgLTguOTI3OTUsMTQuODE5NTcgLTUzLjUxNDIxLDEwMS40NjY3NDkgLTE0LjIzMTYsMjcuNjU3MTQgLTM1LjkxOTgyLDY5LjUzNDY5IC00OC4xOTYwMyw5My4wNjEyMiBsIC0yMi4zMjAzOSw0Mi43NzU1MSBoIC0xMC43NjM1NSAtMTAuNzYzNTYgbCA0LjMyMTQ5LC05LjQ2OTM5IGMgNS4yMjg3OSwtMTEuNDU3NSAxMDMuMDMwMDksLTIwMS4yNTAwODQgMTI1LjE4Nzg2LC0yNDIuOTM4NzcxIDguNjg2MzMsLTE2LjM0Mjg1NyAxNi4xNTMzOCwtMjkuNzE0Mjg1MyAxNi41OTM0NSwtMjkuNzE0Mjg1MyAwLjQ0MDA4LDAgNi4zNTg0NCwxMC41NzkzNzAzIDEzLjE1MTkxLDIzLjUwOTcxMTMgMTguMjg1MzcsMzQuODAzNDA1IDE1LjU2NTE0LDMxLjM0NzQzMiAyNC42NzM4NSwzMS4zNDc0MzIgMTkuMzY5NzMsMCA1NC45MjE0Niw2LjQ5NzgyNyA3Ni4zNzQzMSwxMy45NTkwMTMgNTIuNzMwNDIsMTguMzM5MzU4IDEwMC4wNTg1Nyw1NC4wODczMiAxMjkuMzY4MDMsOTcuNzE0NDYgOS4xMDEsMTMuNTQ2ODQgMjQuOTMzODQsNDYuMjQyMDcgMzAuMDM2NSw2Mi4wMjYxNCA5LjAzNzYxLDI3Ljk1NjEyIDEzLjM3NTUsNTkuMTkwNzYgMTEuODcxMTMsODUuNDc2OTkgLTIuNzQxODUsNDcuOTA4OTUgLTE1LjUzOTksODcuNDM0MTMgLTQxLjkxNTg5LDEyOS40NTIwNSBsIC04Ljg3NTUxLDE0LjEzOTAyIDIuOTI0NTQsNS4zMTAwNCBjIDcuNjAyMzEsMTMuODAzNDMgNDMuNDYzMjIsODQuNTQwOTEgNDMuMDUzMzYsODQuOTI0OTMgLTAuOTM3MDQsMC44Nzc5NSAtNDEuNjgzMTIsMS41NTEzMiAtNjcuMDc2OTEsMS4xMDg1MSB6IG0gMTguMTIyNzMsLTEyNC44MDUwMyBjIDEzLjcxMjc1LC0yMi4wMDgxNiAyNS42NjEzNCwtNTMuMTk1NyAzMC45MjkwOSwtODAuNzI5NDEgMi41NTY4NiwtMTMuMzY0MzEgMi43NzE4NSwtMTcuNzU0ODYgMi4xNjgwMywtNDQuMjc3NDggLTAuNzQ3NDksLTMyLjgzMzk5IC0yLjUyODIyLC00NC4wNzc2OSAtMTAuNzk3OTksLTY4LjE3OTgxIEMgNTE0LjAyMDcyLDE1NS4yNzYxNyA0NDguNzA1MDQsOTcuOTc3NDg0IDM2OC4zMjY1Myw4MS43NDg5MSAzNTEuNTY5Miw3OC4zNjU1NzMgMzMwLjA0NjE1LDc1LjcyMjU1NyAzMjguODY1NTgsNzYuOTAzMTMxIGMgLTAuNTAzNTUsMC41MDM1NDUgNC4wNDg2NCwxMC44OTkxMTcgMTAuMTE1OTcsMjMuMTAxMjY5IDEwLjkzOTA5LDIxLjk5OTg1IDExLjA3NTQxLDIyLjE5Njk5IDE2LjI2OTg5LDIzLjUyNzggMjYuMzkyNzIsNi43NjE3MyA0My41MjE4NSwxMy4zNDU2MyA2MC40NjQ0NywyMy4yNDA2NiA2MC42NjMxNCwzNS40MjkxOCA5Ny40MDU3NywxMDMuNzA4ODUgOTEuNjI0MzgsMTcwLjI2NzY2IC0xLjM0ODg3LDE1LjUyODk4IC02LjIxNjY5LDQyLjUwMjU5IC03Ljg1MjczLDQzLjUxMzcyIC0wLjYxNzUxLDAuMzgxNjUgLTMuNjk1MzgsLTQuNDcyNjUgLTYuODM5NzEsLTEwLjc4NzMyIGwgLTUuNzE2OTUsLTExLjQ4MTIxIDEuMzAzMiwtMTEuNzU1MSBjIDIuNTcyNjcsLTIzLjIwNTcyIC0xLjk4MjQsLTU1LjgyNTg0IC0xMS4yMjMyMywtODAuMzcyNzkgLTE0LjA5NzA1LC0zNy40NDY4NyAtNDEuOTEwNSwtNjguMjk2ODYgLTc3LjIwODE3LC04NS42Mzc0MSAtMTIuODg2NzksLTYuMzMwODMgLTMyLjg2ODAzLC0xMy4yNzgyMSAtMzQuMjQwODYsLTExLjkwNTM3IC0xLjQ2Mzg3LDEuNDYzODUgMzUuMzM3OTcsNzQuNjQ1MzQgMTE2LjA3MjU1LDIzMC44MTM1MyAyNC45NzE5NCw0OC4zMDQyMiAyOS4yMzA0NSw1Ni4xNjMyNyAzMC40MzI3Niw1Ni4xNjMyNyAwLjIyMDE4LDAgMy4wNTU0LC00LjI2MTIzIDYuMzAwNDgsLTkuNDY5MzkgeiIKICAgICAgIGlkPSJwYXRoMSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3Ny41Mjk5MywxOTYuOTM5NzMpIiAvPgogICAgPHBhdGgKICAgICAgIHN0eWxlPSJkaXNwbGF5OmlubGluZTtmaWxsOiNmZmZmZmY7c3Ryb2tlLXdpZHRoOjEuMzA2MTIiCiAgICAgICBkPSJNIDIuMTA1MjkyMyw1NTAuNzY1OSBDIDIuMzg0MTE2Miw1NDkuOTQwNzMgMjQuMDY1MzA2LDUwNi42NTk0IDUwLjI4NTcxNCw0NTQuNTg1MTYgbCA0Ny42NzM0NywtOTQuNjgwNDQgMTIuMTQ0Mzc2LC0wLjAzNCAxMi4xNDQzNywtMC4wMzQgLTE3Ljg5NDUzLDM0LjkzODc4IGMgLTIyLjc3OTM3NCw0NC40NzYzNiAtNTguMzI1NDU3LDExMy4zOTg4NiAtNjQuMTAxMjczLDEyNC4yODk5MSAtMi44MTUyNSw1LjMwODUyIC0zLjk4NDAwOSw4LjgyNzE5IC0zLjE5NDMzNCw5LjYxNjg2IDEuNjczNDI0LDEuNjczNDMgMzMuMjcxODYzLDIuNzAyNjggNDAuNjUwMzc2LDEuMzI0MTEgNy4xOTI1NTMsLTEuMzQzODMgMi4zNzQ2MjYsNi45MTE0OSA0OS43MTg0MTEsLTg1LjE5MDUxIGwgMzcuMzA0MTMsLTcyLjU3MDk4IDkxLjY1NDYsLTAuMzM1MzUgOTEuNjU0NjEsLTAuMzM1MzQgNC41OTIyOCw5LjExOTA2IGMgMi41MjU3Niw1LjAxNTQ5IDQuNTkyMjksOS40Mjc2MiA0LjU5MjI5LDkuODA0NzQgMCwwLjM3NzExIC00MC41MDY1NywwLjY4NTY2IC05MC4wMTQ2LDAuNjg1NjYgSCAxNzcuMTk1MyBsIC0zNS45NTU3Miw3MC44NTcxNSBjIC00My41NzQzNjQsODUuODcxMDQgLTQ0LjE1MzA5NCw4Ni45NjgzNiAtNDYuMzA5ODE3LDg3LjgwNzE1IC0wLjk0NzgxMiwwLjM2ODYyIC0yMi4zMzUxMjUsMS4wNjM1MiAtNDcuNTI3MzYsMS41NDQyMyAtMzQuMjQ2MDQ3LDAuNjUzNDYgLTQ1LjY3NjE0MDksMC40OTU0MiAtNDUuMjk3MTEwNywtMC42MjYzIHoiCiAgICAgICBpZD0icGF0aDciCiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzcuNTI5OTMsMTk2LjkzOTczKSIgLz4KICAgIDxwYXRoCiAgICAgICBzdHlsZT0iZGlzcGxheTppbmxpbmU7ZmlsbDojZmZmZmZmO3N0cm9rZS13aWR0aDoxLjMwNjEyIgogICAgICAgZD0ibSA3MS45NDA3NDksMjc5Ljg5MjExIGMgMS4zMTg3NDQsLTkuMTc2ODYgNy4xMjI0ODYsLTM0Ljg0MzE4IDEwLjU2ODcwNywtNDYuNzM4NzQgMTYuMDkyMDU1LC01NS41NDYxNCA1Ny4xMjkwNjQsLTEwNy45NzQ5OSAxMDguODM3NDg0LC0xMzkuMDUwNzAyIDEzLjM0MTI3LC04LjAxNzgzNCAyMy45NzE1OSwtMTMuNzc2MTM3IDI1LjQzMTkzLC0xMy43NzYxMzcgMC45NDM2MywwIC05LjM1MjQxLDIwLjUxNTczOSAtMTIuNjA4MTYsMjUuMTIyODE5IC0xLjM4ODI4LDEuOTY0NSAtOS4yNjI3Nyw4LjU4Mjk1IC0xNy40OTg4NywxNC43MDc2OSAtMTcuODM0MDcsMTMuMjYyMjEgLTM4LjM1MjMyLDMzLjQyMzAzIC01MC41MTg5NCw0OS42Mzg4OCAtMTAuODE3MSwxNC40MTcxOCAtMjYuNzgxNTIsNDUuMjM3MDQgLTMyLjg4NjQ3LDYzLjQ4ODQ2IC0yLjQ5Njk5LDcuNDY1MDIgLTYuMjUyODA4LDIyLjA5NTIxIC04LjM0NjI2MiwzMi41MTE1NCBsIC0zLjgwNjI3OCwxOC45Mzg3NyAtOS45ODkzOTksMC4zODE5MSAtOS45ODkzOTksMC4zODE5MSB6IgogICAgICAgaWQ9InBhdGg5IgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc3LjUyOTkzLDE5Ni45Mzk3MykiIC8+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImRpc3BsYXk6aW5saW5lO2ZpbGw6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gMjkzLjI5NTA3LDU1NC4zNDg1OCBjIC0zNC4yMTg2NiwtMy44NjA2NiAtNzQuMDQxNzcsLTE3LjU4MjI2IC0xMDQuMzcwMDUsLTM1Ljk2MjEzIC0xNC4xNzI3OSwtOC41ODkxNSAtMzEuNTQ5MTEsLTIyLjQyODk3IC0zMS40NzU2NSwtMjUuMDY5NTkgMC4wMzM5LC0xLjIxODE1IDEuNjUwMjIsLTUuMjIzOCAzLjU5MTg0LC04LjkwMTQ1IGwgMy41MzAyMiwtNi42ODY2MyAxNi45Nzk1OSwxMi4yNjA3NSBjIDI3LjM5MTY0LDE5Ljc3OTE2IDU3LjQwODM5LDMzLjY1MjY4IDg4LjgxNjMzLDQxLjA1MDI2IDIxLjk2NDMzLDUuMTczMzEgNjguOTI4MSw1LjQ2MDU2IDkzLjU5ODc3LDAuNTcyNDkgMjAuNDk1NjIsLTQuMDYwODUgMjkuMTYxNTcsLTYuODUzODMgNTIuMzMxLC0xNi44NjU4OCBsIDQuODY4NTQsLTIuMTAzODIgMy45MzU1Myw2Ljg2MjM5IGMgMi4xNjQ1MywzLjc3NDMxIDMuOTQxMDMsNy41ODk2OCAzLjk0Nzc4LDguNDc4NjEgMC4wMTQxLDEuODYzMzMgLTE0LjE1NTczLDkuMjY0NDcgLTI2Ljk3NjE1LDE0LjA5MDA2IC0xMC42NjU3Miw0LjAxNDU3IC0yNi4yMzExOSw4LjA5NTQ3IC00MC4yNzY5LDEwLjU1OTY3IC0xMy4yNTQ0OSwyLjMyNTM5IC01NC4wNDA5NSwzLjM0NjY5IC02OC41MDA4NSwxLjcxNTI3IHoiCiAgICAgICBpZD0icGF0aDEwIgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTc3LjUyOTkzLDE5Ni45Mzk3MykiIC8+CiAgICA8cGF0aAogICAgICAgc3R5bGU9ImRpc3BsYXk6aW5saW5lO2ZpbGw6I2ZmZmZmZjtzdHJva2Utd2lkdGg6MS4zMDYxMiIKICAgICAgIGQ9Im0gMzA0LjMyNjUzLDQ5MS42MjY5MiBjIC0yNC4zNDkyOCwtMS44OTU4MyAtNTQuNTA3NjMsLTExLjU4Njc1IC03Ni4yNDMwNiwtMjQuNDk5NTMgLTkuODAzNTYsLTUuODI0MTkgLTI2LjIxMjExLC0xNy44Nzg3OSAtMzUuNDA3NzksLTI2LjAxMjQ2IGwgLTUuODU0OTIsLTUuMTc4NzUgMy4xNTg4NSwtNi43NDQyOCBjIDEuNzM3MzcsLTMuNzA5MzUgMy44NDY3MiwtNy4zMTUxNiA0LjY4NzQ1LC04LjAxMjkgMS4wNjUyMSwtMC44ODQwNSA0LjY1NDE2LDEuMzM5MTEgMTEuODM4OTMsNy4zMzM1OCAyMC45MTE2NSwxNy40NDcxOCA0MC4yNzQxOCwyOC41NTgyNiA2MS45MDIxNywzNS41MjIyMyAyMS40OTA1OCw2LjkxOTczIDI1LjIyNzg4LDcuNDY3MzggNTAuOTM4NzgsNy40NjQ0MSAyNi42NDc5OSwtMC4wMDMgMzMuNzA0MSwtMS4xMjg1MyA1Ny42NjM5NywtOS4xOTc0IDcuMjY1MDIsLTIuNDQ2NjIgMTMuNTcyODksLTQuMjE5MjkgMTQuMDE3NDgsLTMuOTM5MjcgMC40NDQ1OSwwLjI4MDAyIDIuNTcxNjEsMy44MDcyOSA0LjcyNjcxLDcuODM4MzcgNC41NzY0OSw4LjU2MDI0IDUuMDY1ODgsNy45MDEzNyAtMTAuMjM5NDUsMTMuNzg1MjEgLTI1LjQ2NTc0LDkuNzg5ODMgLTUzLjQ0MjY5LDEzLjgwMTEzIC04MS4xODkxMiwxMS42NDA3OSB6IgogICAgICAgaWQ9InBhdGgxMSIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3Ny41Mjk5MywxOTYuOTM5NzMpIiAvPgogIDwvZz4KPC9zdmc+Cg=="; // 深色模式且标签页被选中时的图标
+
+// Header 物理悬浮效果参数
+const headerFriction = 0.14; // 统一惯性摩擦系数，控制平滑度与回归速度
+const mouseMaxOffset = 5; // 鼠标跟随最大偏移量（像素）
+const scrollSensitivity = 0.8; // 滚动速度对 Y 轴漂移的敏感度
+const scrollMaxOffset = 18; // 滚动漂移最大偏移量（像素）
+
+// 页面滚动吸附参数
+const SNAP_SPEED_LIMIT = 800; // 滚动速度超过此值时不触发吸附，单位为 px/s
+const SNAP_DISTANCE_LIMIT = 200; // 吸附检测最大距离，单位为 px
+const SNAP_DISTANCE_THRESHOLD = 30; // 距离目标小于此值时不触发吸附，单位为 px
+const SNAP_COOLDOWN = 600; // 两次吸附之间的最小间隔，单位为 ms
+const SNAP_DURATION = 0.5; // 吸附动画持续时间，单位为秒
+
+// 吸附临时监听参数
+const LISTENER_LIFETIME = 1500; // 临时监听最长生命周期，单位为 ms
+
+// 全站锚点平滑滚动参数
+const ANCHOR_SCROLL_DURATION = 1.1; // 锚点滚动持续时间，单位为秒
+
+// Header 初始状态参数
+const HEADER_TOP_THRESHOLD = 28; // 滚动距离小于此值时恢复 normal 状态，单位为 px
+
+// Header 鼠标跟随参数
+const HEADER_MOUSE_DIVISOR_X = 2; // 鼠标 X 方向归一化范围
+const HEADER_MOUSE_DIVISOR_Y = 2; // 鼠标 Y 方向归一化范围
+
+// Tilt 卡片参数
+const TILT_DEFAULT_DEG = 6; // 未设置 data-tilt 时的默认最大倾斜角度
+const TILT_SMOOTHING = 0.06; // Tilt 平滑插值系数
+const TILT_STOP_THRESHOLD = 0.01; // Tilt 动画停止判断阈值
+const TILT_MOUSE_SCALE = 0.55; // 鼠标位置对最大倾斜角度的影响比例
+const TILT_PERSPECTIVE = 1000; // 3D 透视距离，单位为 px
+const TILT_TRANSITION_DURATION = '0.3s'; // 卡片边框、背景、阴影过渡时间
+const TILT_TRANSITION_TIMING = 'ease'; // 卡片过渡时间函数
+const ENABLE_TOUCH_TILT = false;
+
+// Header 物理悬浮 CSS 参数
+const HEADER_TRANSFORM_TEMPLATE = 'translate({x}px, {y}px)'; // Header 位移 CSS 模板
+
+// 自定义滚动条参数
+const SCROLLBAR_ACTIVE_BACKGROUND = 'linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(156, 240, 208, 0.92))'; // 拖动时滚动条颜色
+const SCROLLBAR_DEFAULT_BACKGROUND = 'linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(156, 240, 208, 0.72))'; // 默认滚动条颜色
+
+// 背景视差
+const SCENE_PARALLAX_X = 12;
+const SCENE_PARALLAX_Y = 10;
+
+const SCENE_ROTATION_X = 2.5;
+const SCENE_ROTATION_Y = 3;
+
+const SCENE_SMOOTHING = 0.08;
+const SCENE_SCROLL_RANGE = 140;
+
+// 陀螺仪
+const GYRO_PARALLAX_X = 18;
+const GYRO_PARALLAX_Y = 14;
+const GYRO_HEADER_X = 5;
+const GYRO_HEADER_Y = 4;
+const GYRO_SMOOTHING = 0.25;
+const GYRO_DEAD_ZONE = 0.08;
+const SHAKE_HEADER_X = 8;
+const SHAKE_HEADER_Y = 6;
+const SHAKE_SMOOTHING = 0.16;
+
+// ==================== DOM ====================
+const copyToast = document.getElementById('copy-toast');
+const sections = [...document.querySelectorAll('.page-section')];
+
+// ==================== 状态变量 ====================
+
+let adsorption = false;
+let dotInWindow = false; // 圆点是否在窗口内
+let hoveredElement = null; // 当前黑点“悬停”的元素
+
+// ==================== 陀螺仪状态 ====================
+
+let gyroTargetX = 0;
+let gyroTargetY = 0;
+let gyroCurrentX = 0;
+let gyroCurrentY = 0;
+
+let shakeTargetX = 0;
+let shakeTargetY = 0;
+
+let shakeCurrentX = 0;
+let shakeCurrentY = 0;
+
+let lastAccelerationX = 0;
+let lastAccelerationY = 0;
+let lastAccelerationZ = 0;
+let accelerometerStatus = 'waiting';
+
+if ('Accelerometer' in window) {
+    try {
+        const accelerometer = new Accelerometer({
+            frequency: 60
+        });
+
+        accelerometer.addEventListener('reading', () => {
+            const x = accelerometer.x || 0;
+            const y = accelerometer.y || 0;
+            const z = accelerometer.z || 0;
+
+            const deltaX = x - lastAccelerationX;
+            const deltaY = y - lastAccelerationY;
+            const deltaZ = z - lastAccelerationZ;
+
+            lastAccelerationX = x;
+            lastAccelerationY = y;
+            lastAccelerationZ = z;
+
+            shakeTargetX = Math.max(
+                -1,
+                Math.min(
+                    1,
+                    deltaX / 3
+                )
+            );
+
+            shakeTargetY = Math.max(
+                -1,
+                Math.min(
+                    1,
+                    deltaY / 3
+                )
+            );
+
+            const magnitude = Math.sqrt(
+                x * x +
+                y * y +
+                z * z
+            );
+
+            if (magnitude === 0) return;
+
+            let normalizedX = x / magnitude;
+            let normalizedY = y / magnitude;
+
+            if (Math.abs(normalizedX) < GYRO_DEAD_ZONE) {
+                normalizedX = 0;
+            }
+
+            if (Math.abs(normalizedY) < GYRO_DEAD_ZONE) {
+                normalizedY = 0;
+            }
+
+            gyroTargetX = Math.max(
+                -1,
+                Math.min(
+                    1,
+                    normalizedX
+                )
+            );
+
+            gyroTargetY = Math.max(
+                -1,
+                Math.min(
+                    1,
+                    normalizedY
+                )
+            );
+
+            accelerometerStatus =
+                `X:${x.toFixed(2)} ` +
+                `Y:${y.toFixed(2)} ` +
+                `Z:${z.toFixed(2)}`;
+
+            if (DEBUG) {
+                updateViewportInfo();
+            }
+        });
+
+        accelerometer.addEventListener('error', event => {
+            accelerometerStatus =
+                `ERROR: ${event.error?.name || 'unknown'}`;
+
+            if (DEBUG) {
+                updateViewportInfo();
+            }
+        });
+
+        accelerometer.start();
+        accelerometerStatus = 'started';
+    } catch (error) {
+        accelerometerStatus =
+            `ERROR: ${error.name}: ${error.message}`;
+    }
+} else {
+    accelerometerStatus = 'unsupported';
+}
+
+document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+
+const preventWheel = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+};
+
+
+window.addEventListener('deviceorientation', (event) => {
+    const gamma = event.gamma || 0;
+    const beta = event.beta || 0;
+
+    gyroTargetX = Math.max(-1, Math.min(1, gamma / 30));
+    gyroTargetY = Math.max(-1, Math.min(1, (beta - 45) / 30));
+});
+
+
+// ==================== Favicon ====================
+
+// 更新 favicon 的通用函数
+function setFavicon(href) {
+    const existingLinks = document.querySelectorAll("link[rel~='icon']");
+    existingLinks.forEach(link => link.remove());
+
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/svg+xml';
+    link.href = href;
+    document.head.appendChild(link);
+}
+
+// 检测用户的深色模式偏好
+function isDarkMode() {
+    if (window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    return false;
+}
+
+// 判断是否为手机端（移动设备）
+function isMobileDevice() {
+    // 首选：User-Agent Client Hints（现代浏览器支持，直接提供mobile属性）
+    if (navigator.userAgentData) {
+        return navigator.userAgentData.mobile;
+    }
+
+    // 降级：结合触屏支持（maxTouchPoints > 0 表示支持多点触控，通常为移动设备）
+    // 和触屏事件检测（ontouchstart in window）
+    return ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+}
+
+//切换 icon 逻辑
+function switchICON() {
+    if (!isDarkMode()) {
+        setFavicon(activeFavicon);
+    } else {
+        setFavicon(inactiveFavicon);
+    }
+}
+
+// 使用 visibilitychange 事件（最准确，能处理最小化、切换标签等场景）
+document.addEventListener('visibilitychange', function () {
+    switchICON();
+});
+
+// 使用 focus 和 blur 事件（作为补充，处理某些浏览器的特殊情况）
+window.addEventListener('focus', switchICON);
+window.addEventListener('blur', switchICON);
+
+// 页面加载完成后立即应用当前状态（防止初始状态错误）
+if (document.hidden) {
+    switchICON();
+} else {
+    switchICON();
+}
+
+// ==================== 自定义鼠标圆点 ====================
+
+const dot = document.getElementById('cursor-dot');
+
+let currentX = window.innerWidth / 2;
+let currentY = window.innerHeight / 2;
+let targetX = currentX;
+let targetY = currentY;
+
+let vx = 0;
+let vy = 0;
+
+// 获取当前视觉视口缩放比例
+function getScale() {
+    return window.visualViewport ? window.visualViewport.scale : 1;
+}
+
+// 获取相对于视觉视口的鼠标坐标（保持原有缩放补偿逻辑）
+function getVisualMousePos(e) {
+    const scale = getScale();
+
+    if (window.visualViewport) {
+        return {
+            x: e.clientX * scale + window.visualViewport.offsetLeft * scale,
+            y: e.clientY * scale + window.visualViewport.offsetTop * scale
+        };
+    }
+
+    return {
+        x: e.clientX,
+        y: e.clientY
+    };
+}
+
+document.addEventListener('mousemove', (e) => {
+    const pos = getVisualMousePos(e);
+    targetX = pos.x;
+    targetY = pos.y;
+});
+
+document.addEventListener('mouseleave', (e) => {
+    const pos = getVisualMousePos(e);
+    targetX = pos.x;
+    targetY = pos.y;
+});
+
+function toggleDotShow(show) {
+    if (show) {
+        if (dot.style.display === 'block' || isDragging) return;
+
+        // 先瞬间传送圆点到当前鼠标目标位置
+        currentX = targetX;
+        currentY = targetY;
+
+        // 更新 DOM 位置（确保视觉上立即处于正确位置）
+        dot.style.left = `${currentX}px`;
+        dot.style.top = `${currentY}px`;
+
+        // 然后显示圆点
+        dot.style.display = 'block';
+    } else {
+        dot.style.display = 'none';
+    }
+}
+
+function update() {
+    const dx = targetX - currentX;
+    const dy = targetY - currentY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < 1 || (Math.abs(vx) < minSpeedToCatch && Math.abs(vy) < minSpeedToCatch)) {
+        currentX += dx * catchSpeed;
+        currentY += dy * catchSpeed;
+    } else {
+        vx += dx * friction;
+        vy += dy * friction;
+
+        vx *= 0.89;
+        vy *= 0.89;
+
+        currentX += vx;
+        currentY += vy;
+    }
+
+    dot.style.left = `${currentX}px`;
+    dot.style.top = `${currentY}px`;
+
+    // 手动处理 hover 效果
+    const elementUnderDot = document.elementFromPoint(currentX, currentY);
+
+    if (elementUnderDot !== hoveredElement) {
+        // 离开旧元素
+        if (hoveredElement) {
+            const mouseoutEvent = new MouseEvent('mouseout', {
+                bubbles: true,
+                cancelable: true,
+                clientX: currentX,
+                clientY: currentY
+            });
+
+            hoveredElement.dispatchEvent(mouseoutEvent);
+        }
+
+        // 进入新元素
+        if (elementUnderDot) {
+            const mouseoverEvent = new MouseEvent('mouseover', {
+                bubbles: true,
+                cancelable: true,
+                clientX: currentX,
+                clientY: currentY
+            });
+
+            elementUnderDot.dispatchEvent(mouseoverEvent);
+        }
+
+        hoveredElement = elementUnderDot;
+    }
+
+    // 圆点移出窗口外时隐藏
+    if (
+        currentX <= windowEdge ||
+        currentY <= windowEdge ||
+        currentX >= window.innerWidth - windowEdge ||
+        currentY >= window.innerHeight - windowEdge
+    ) {
+        // 圆点在窗口外
+        if (dotInWindow) {
+            dotInWindow = false;
+            toggleDotShow(false);
+        }
+    } else {
+        // 圆点在窗口内
+        if (!dotInWindow) {
+            dotInWindow = true;
+            toggleDotShow(true);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+document.addEventListener('click', (e) => {
+    if (isMobileDevice()) return;
+
+    // 忽略脚本模拟产生的点击
+    if (e.__simulatedClick) return;
+
+    // 阻止默认点击
+    e.preventDefault();
+    e.stopPropagation();
+
+    const elementUnderDot = document.elementFromPoint(currentX, currentY);
+    if (!elementUnderDot) return;
+
+    // 模拟点击
+    const clickEvent = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        clientX: currentX,
+        clientY: currentY,
+        button: e.button
+    });
+
+    clickEvent.__simulatedClick = true;
+
+    elementUnderDot.dispatchEvent(clickEvent);
+});
+
+document.addEventListener('contextmenu', (e) => {
+    if (isMobileDevice()) return;
+    if (e.__simulatedContextMenu) return;
+
+    const elementUnderDot = document.elementFromPoint(currentX, currentY);
+
+    if (elementUnderDot) {
+        e.preventDefault();
+
+        const contextEvent = new MouseEvent('contextmenu', {
+            bubbles: true,
+            cancelable: true,
+            clientX: currentX,
+            clientY: currentY
+        });
+
+        contextEvent.__simulatedContextMenu = true;
+
+        elementUnderDot.dispatchEvent(contextEvent);
+    }
+});
+
+// ==================== Lenis ====================
+
+const lenis = new Lenis({
+    wrapper: document.querySelector('main'),
+    content: document.querySelector('main'),
+    eventsTarget: document,
+    smoothWheel: true,
+    smoothTouch: true,
+    syncTouch: true,
+    normalizeWheel: true
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+lenis.on('scroll', ({ direction }) => {
+    currentScrollDirection = direction;
+});
+
+// ==================== Header 滚动吸附 ====================
+
+function headerScrollHandler() {
+    const header = document.getElementById('site-header');
+
+    // 初始添加 normal 类
+    header.classList.add('normal');
+
+    // 使用 Lenis 的 scroll 事件代替 window.scroll
+    lenis.on('scroll', ({ scroll, direction }) => {
+        currentScrollDirection = direction;
+
+        // 缓存的 section 顶部坐标
+        let sectionTops = [];
+
+        function refreshTops() {
+            const cur = lenis.scroll;
+
+            sectionTops = Array.from(
+                document.querySelectorAll('.page-section')
+            ).map(s =>
+                s.getBoundingClientRect().top + cur
+            );
+        }
+
+        // =====================================================
+        // load 临时监听
+        // =====================================================
+
+        let loadTimer = null;
+
+        function onLoad() {
+            refreshTops();
+            window.removeEventListener('load', onLoad);
+
+            if (loadTimer) {
+                clearTimeout(loadTimer);
+                loadTimer = null;
+            }
+        }
+
+        window.addEventListener('load', onLoad);
+
+        loadTimer = setTimeout(() => {
+            window.removeEventListener('load', onLoad);
+            loadTimer = null;
+        }, LISTENER_LIFETIME);
+
+        // =====================================================
+        // resize 临时监听
+        // =====================================================
+
+        let resizeTimer = null;
+
+        function onResize() {
+            refreshTops();
+            window.removeEventListener('resize', onResize);
+
+            if (resizeTimer) {
+                clearTimeout(resizeTimer);
+                resizeTimer = null;
+            }
+        }
+
+        window.addEventListener('resize', onResize);
+
+        resizeTimer = setTimeout(() => {
+            window.removeEventListener('resize', onResize);
+            resizeTimer = null;
+        }, LISTENER_LIFETIME);
+
+        refreshTops();
+
+        // =====================================================
+        // 你的原始状态 —— 不动
+        // =====================================================
+
+        let snapLock = false;
+        let lastSnapTime = 0;
+        let lastScrollPosition = scroll;
+        let lastScrollTime = performance.now();
+
+        if (scroll > 0 && snapLock == false) {
+            header.classList.remove('normal');
+            header.classList.add('scrolled');
+        }
+
+        if (scroll < HEADER_TOP_THRESHOLD) {
+            header.classList.remove('scrolled');
+            header.classList.add('normal');
+        }
+
+        // =====================================================
+        // 你的嵌套监听 —— 保留
+        // =====================================================
+
+        let removeSnapListener = null;
+
+        const cleanup = () => {
+            // 取消 Lenis 内层监听
+            if (removeSnapListener) {
+                removeSnapListener();
+                removeSnapListener = null;
+            }
+
+            // 取消 window 临时监听
+            window.removeEventListener('load', onLoad);
+            window.removeEventListener('resize', onResize);
+
+            if (loadTimer) {
+                clearTimeout(loadTimer);
+                loadTimer = null;
+            }
+
+            if (resizeTimer) {
+                clearTimeout(resizeTimer);
+                resizeTimer = null;
+            }
+        };
+
+        removeSnapListener = lenis.on(
+            'scroll',
+            ({ scroll, direction }) => {
+                const now = performance.now();
+
+                const deltaTime = now - lastScrollTime;
+                const deltaScroll = Math.abs(
+                    scroll - lastScrollPosition
+                );
+
+                const scrollSpeed =
+                    deltaTime > 0
+                        ? deltaScroll / deltaTime * 1000
+                        : 0;
+
+                lastScrollPosition = scroll;
+                lastScrollTime = now;
+
+                if (snapLock) return;
+                if (direction === 0) return;
+
+                // 滚动速度过快时跳过本次吸附判断
+                if (scrollSpeed > SNAP_SPEED_LIMIT) return;
+
+                if (now - lastSnapTime < SNAP_COOLDOWN) return;
+
+                for (let i = 0; i < sectionTops.length; i++) {
+                    const top = sectionTops[i];
+                    const dist = scroll - top;
+
+                    if (Math.abs(dist) > SNAP_DISTANCE_LIMIT) continue;
+                    if (Math.abs(dist) < SNAP_DISTANCE_THRESHOLD) return;
+
+                    // ==========================================
+                    // 原来的向下吸附
+                    // ==========================================
+
+                    if (direction === 1 && dist < 0) {
+                        snapLock = true;
+                        lastSnapTime = now;
+
+                        // 吸附开始 → 立即取消当前临时监听
+                        cleanup();
+
+                        lenis.scrollTo(top, {
+                            duration: SNAP_DURATION,
+                            easing: (t) =>
+                                1 - Math.pow(1 - t, 3),
+                            onComplete: () => {
+                                snapLock = false;
+                            }
+                        });
+
+                        return;
+                    }
+
+                    // ==========================================
+                    // 原来的向上吸附
+                    // ==========================================
+
+                    if (direction === -1 && dist > 0) {
+                        snapLock = true;
+                        lastSnapTime = now;
+
+                        // 吸附开始 → 立即取消当前临时监听
+                        cleanup();
+
+                        lenis.scrollTo(top, {
+                            duration: SNAP_DURATION,
+                            easing: (t) =>
+                                1 - Math.pow(1 - t, 3),
+                            onComplete: () => {
+                                snapLock = false;
+                            }
+                        });
+
+                        // 回到第一页顶部
+                        if (Math.abs(top) < 1) {
+                            header.classList.remove('scrolled');
+                            header.classList.add('normal');
+                            header.style.transform =
+                                'translate(0px, 0px)';
+                            headerCurrentX = 0;
+                            headerCurrentY = 0;
+                        }
+
+                        return;
+                    }
+                }
+            }
+        );
+
+        setTimeout(() => {
+            cleanup();
+        }, LISTENER_LIFETIME);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    headerScrollHandler();
+});
+
+requestAnimationFrame(raf);
+
+// ==================== 自定义鼠标初始化 ====================
+
+if (isMobileDevice()) {
+    dot.style.display = 'none';
+} else {
+    // 非移动设备：等待首次鼠标移动或进入窗口，获取真实鼠标位置后显示并开始动画
+    dot.style.display = 'none';
+
+    let hasInitialized = false;
+
+    const initializeDot = (e) => {
+        if (hasInitialized) return;
+
+        const pos = getVisualMousePos(e);
+
+        currentX = pos.x;
+        currentY = pos.y;
+        targetX = pos.x;
+        targetY = pos.y;
+
+        dot.style.left = `${currentX}px`;
+        dot.style.top = `${currentY}px`;
+        dot.style.display = 'block';
+
+        dotInWindow = true;
+        hasInitialized = true;
+
+        // 移除事件监听，避免重复执行
+        document.removeEventListener('mousemove', initializeDot);
+        document.removeEventListener('mouseenter', initializeDot);
+
+        // 启动动画循环（若尚未启动）
+        if (!window.animationStarted) {
+            update();
+            window.animationStarted = true;
+        }
+    };
+
+    // 监听首次鼠标移动或进入窗口
+    document.addEventListener('mousemove', initializeDot, { once: true });
+    document.addEventListener('mouseenter', initializeDot, { once: true });
+}
+
+// ==================== 左侧自定义滚动条逻辑 ====================
+
+const contentWrapper = document.querySelector('main');
+const scrollbarThumb = document.getElementById('scrollbar-thumb');
+const scrollbarTrack = document.getElementById('custom-scrollbar');
+
+function updateThumb() {
+    const scrollHeight =
+        contentWrapper.scrollHeight - contentWrapper.clientHeight;
+
+    if (scrollHeight <= 0) {
+        scrollbarThumb.style.height = '0px';
+        return;
+    }
+
+    const thumbHeight =
+        (contentWrapper.clientHeight / contentWrapper.scrollHeight) *
+        scrollbarTrack.clientHeight;
+
+    scrollbarThumb.style.height = `${thumbHeight}px`;
+
+    // 使用 Lenis 当前滚动值计算滑块位置
+    const scrollRatio = lenis.scroll / scrollHeight;
+    const maxThumbTop =
+        scrollbarTrack.clientHeight - thumbHeight;
+
+    scrollbarThumb.style.top =
+        `${scrollRatio * maxThumbTop}px`;
+}
+
+// 使用 Lenis 的 scroll 事件同步更新滑块位置（视觉指示）
+lenis.on('scroll', updateThumb);
+
+// 拖动逻辑
+function clamp(e) {
+    isDragging = true;
+
+    document.addEventListener(
+        'wheel',
+        preventWheel,
+        {
+            passive: false,
+            capture: true
+        }
+    );
+
+    const isTouch =
+        e.type === 'touchstart';
+
+    const startY = isTouch
+        ? e.touches[0].clientY
+        : e.clientY;
+
+    const startTop = scrollbarThumb.offsetTop;
+
+    scrollbarThumb.style.background =
+        SCROLLBAR_ACTIVE_BACKGROUND;
+
+    dot.style.display = 'none';
+
+    const onMouseMove = (e) => {
+        if (!isDragging) return;
+
+        const deltaY = e.clientY - startY;
+        const newTop = startTop + deltaY;
+
+        const maxTop =
+            scrollbarTrack.clientHeight -
+            scrollbarThumb.clientHeight;
+
+        const clampedTop =
+            Math.max(
+                0,
+                Math.min(
+                    newTop,
+                    maxTop
+                )
+            );
+
+        const ratio =
+            maxTop > 0
+                ? clampedTop / maxTop
+                : 0;
+
+        const targetScroll =
+            ratio *
+            (
+                contentWrapper.scrollHeight -
+                contentWrapper.clientHeight
+            );
+
+        lenis.scrollTo(targetScroll);
+    };
+
+    const onTouchMove = (e) => {
+        if (!isDragging) return;
+
+        e.preventDefault();
+
+        const deltaY =
+            e.touches[0].clientY - startY;
+
+        const newTop =
+            startTop + deltaY;
+
+        const maxTop =
+            scrollbarTrack.clientHeight -
+            scrollbarThumb.clientHeight;
+
+        const clampedTop =
+            Math.max(
+                0,
+                Math.min(
+                    newTop,
+                    maxTop
+                )
+            );
+
+        const ratio =
+            maxTop > 0
+                ? clampedTop / maxTop
+                : 0;
+
+        const targetScroll =
+            ratio *
+            (
+                contentWrapper.scrollHeight -
+                contentWrapper.clientHeight
+            );
+
+        lenis.scrollTo(targetScroll);
+    };
+
+    const onMouseUp = () => {
+        isDragging = false;
+
+        document.removeEventListener(
+            'wheel',
+            preventWheel,
+            {
+                capture: true
+            }
+        );
+
+        document.removeEventListener(
+            'mousemove',
+            onMouseMove
+        );
+
+        document.removeEventListener(
+            'mouseup',
+            onMouseUp
+        );
+
+        document.removeEventListener(
+            'touchmove',
+            onTouchMove
+        );
+
+        document.removeEventListener(
+            'touchend',
+            onMouseUp
+        );
+
+        scrollbarThumb.style.background =
+            SCROLLBAR_DEFAULT_BACKGROUND;
+
+        dot.style.display = 'block';
+    };
+
+    document.addEventListener(
+        'mousemove',
+        onMouseMove
+    );
+
+    document.addEventListener(
+        'mouseup',
+        onMouseUp
+    );
+
+    document.addEventListener(
+        'touchmove',
+        onTouchMove,
+        {
+            passive: false
+        }
+    );
+
+    document.addEventListener(
+        'touchend',
+        onMouseUp
+    );
+}
+
+// 按下后将滑块移动到鼠标
+scrollbarTrack.addEventListener('mousedown', (e) => {
+    if (e.target === scrollbarThumb) return;
+
+    const rect = scrollbarTrack.getBoundingClientRect();
+    const offsetY = e.clientY - rect.top;
+    const ratio = offsetY / rect.height;
+
+    const targetScroll =
+        ratio *
+        (contentWrapper.scrollHeight -
+            contentWrapper.clientHeight);
+
+    lenis.scrollTo(targetScroll);
+
+    // 监听当滑动到鼠标位置，接入拖动逻辑
+    const onScroll = () => {
+        const thumbRect =
+            scrollbarThumb.getBoundingClientRect();
+
+        if (
+            e.clientY >= thumbRect.top &&
+            e.clientY <= thumbRect.bottom
+        ) {
+            clamp(e);
+            lenis.off('scroll', onScroll);
+        }
+    };
+
+    const onMouseUp = () => {
+        cleanup();
+    };
+
+    const cleanup = () => {
+        lenis.off('scroll', onScroll);
+        document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    lenis.on('scroll', onScroll);
+    document.addEventListener('mouseup', onMouseUp);
+});
+
+// 拖动滑块（使用 Lenis 平滑滚动）e
+let isDragging = false;
+
+scrollbarThumb.addEventListener('mousedown', (e) => {
+    clamp(e);
+});
+
+scrollbarThumb.addEventListener(
+    'touchstart',
+    clamp,
+    {
+        passive: false
+    }
+);
+
+// 初始更新与窗口变化
+window.addEventListener('load', updateThumb);
+window.addEventListener('resize', updateThumb);
+
+// ==================== Header 锚点点击 ====================
+
+// 拦截 header 中的锚点链接点击，使用 Lenis 平滑滚动跳转
+document.querySelectorAll('#site-header a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            lenis.scrollTo(targetElement);
+        }
+    });
+});
+
+// ==================== Header 物理悬浮效果 ====================
+
+// Header 物理悬浮效果（滚动漂移 + 鼠标跟随，最大鼠标偏移 5px）
+
+let headerTargetX = 0;
+let headerTargetY = 0;
+let headerCurrentX = 0;
+let headerCurrentY = 0;
+
+let sceneCurrentX = 0;
+let sceneCurrentY = 0;
+let sceneCurrentRotX = 0;
+let sceneCurrentRotY = 0;
+let sceneCurrentScroll = 0;
+
+function updateHeaderPhysics() {
+    const header = document.getElementById('site-header');
+
+    let finalTargetX = 0;
+    let finalTargetY = 0;
+
+    gyroCurrentX +=
+        (gyroTargetX - gyroCurrentX) *
+        GYRO_SMOOTHING;
+
+    gyroCurrentY +=
+        (gyroTargetY - gyroCurrentY) *
+        GYRO_SMOOTHING;
+
+    shakeCurrentX +=
+        (shakeTargetX - shakeCurrentX) *
+        SHAKE_SMOOTHING;
+
+    shakeCurrentY +=
+        (shakeTargetY - shakeCurrentY) *
+        SHAKE_SMOOTHING;
+
+    if (header.classList.contains('scrolled')) {
+        // 1. 鼠标跟随部分（X/Y 轴，最大 5px）
+        const mouseX =
+            (targetX - window.innerWidth / 2) /
+            (window.innerWidth / HEADER_MOUSE_DIVISOR_X);
+
+        const mouseY =
+            (targetY - window.innerHeight / 2) /
+            (window.innerHeight / HEADER_MOUSE_DIVISOR_Y);
+
+        const mouseOffsetX =
+            mouseX * mouseMaxOffset;
+
+        const mouseOffsetY =
+            mouseY * mouseMaxOffset;
+
+        // 2. 滚动漂移部分（仅 Y 轴）
+        const velocity = lenis.velocity || 0;
+
+        const scrollOffsetY =
+            -velocity * scrollSensitivity;
+
+        const clampedScrollOffsetY =
+            Math.max(
+                -scrollMaxOffset,
+                Math.min(
+                    scrollMaxOffset,
+                    scrollOffsetY
+                )
+            );
+
+        // 3. 叠加两个效果
+        finalTargetX =
+            mouseOffsetX +
+            gyroCurrentX * GYRO_HEADER_X +
+            shakeCurrentX * SHAKE_HEADER_X;
+
+        finalTargetY =
+            mouseOffsetY +
+            clampedScrollOffsetY +
+            gyroCurrentY * GYRO_HEADER_Y +
+            shakeCurrentY * SHAKE_HEADER_Y;
+    } else {
+        // 非 scrolled 状态时，强制目标为 0（与类切换时重置保持一致）
+        finalTargetX = 0;
+        finalTargetY = 0;
+
+        // 可选但推荐：直接跳到 0 而非缓慢回归（与上方重置同步）
+        headerCurrentX = 0;
+        headerCurrentY = 0;
+    }
+
+    // 更新目标值
+    headerTargetX = finalTargetX;
+    headerTargetY = finalTargetY;
+
+    // 惯性平滑插值
+    headerCurrentX +=
+        (headerTargetX - headerCurrentX) *
+        headerFriction;
+
+    headerCurrentY +=
+        (headerTargetY - headerCurrentY) *
+        headerFriction;
+
+    // 应用变换
+    header.style.transform =
+        `translate(${headerCurrentX}px, ${headerCurrentY}px)`;
+
+        // ==================== Scene 视差 ====================
+
+    const scene = document.getElementById('scene');
+
+    if (scene) {
+        const sceneScroll =
+            Math.min(
+                lenis.scroll * 0.08,
+                80
+            );
+
+        scene.style.setProperty(
+            '--scene-scroll',
+            `${sceneScroll}px`
+        );
+
+        const normalizedMouseX =
+            (targetX - window.innerWidth / 2) /
+            (window.innerWidth / 2);
+
+        const normalizedMouseY =
+            (targetY - window.innerHeight / 2) /
+            (window.innerHeight / 2);
+
+        const sceneTargetX =
+            normalizedMouseX * SCENE_PARALLAX_X +
+            gyroCurrentX * GYRO_PARALLAX_X;
+
+        const sceneTargetY =
+            normalizedMouseY * SCENE_PARALLAX_Y +
+            gyroCurrentY * GYRO_PARALLAX_Y;
+
+        const sceneTargetRotX =
+            -normalizedMouseY * SCENE_ROTATION_X;
+
+        const sceneTargetRotY =
+            normalizedMouseX * SCENE_ROTATION_Y;
+
+        sceneCurrentX +=
+            (sceneTargetX - sceneCurrentX) *
+            SCENE_SMOOTHING;
+
+        sceneCurrentY +=
+            (sceneTargetY - sceneCurrentY) *
+            SCENE_SMOOTHING;
+
+        sceneCurrentRotX +=
+            (sceneTargetRotX - sceneCurrentRotX) *
+            SCENE_SMOOTHING;
+
+        sceneCurrentRotY +=
+            (sceneTargetRotY - sceneCurrentRotY) *
+            SCENE_SMOOTHING;
+
+        scene.style.setProperty(
+            '--scene-x',
+            `${sceneCurrentX}px`
+        );
+
+        scene.style.setProperty(
+            '--scene-y',
+            `${sceneCurrentY}px`
+        );
+
+        scene.style.setProperty(
+            '--scene-rot-x',
+            `${sceneCurrentRotX}deg`
+        );
+
+        scene.style.setProperty(
+            '--scene-rot-y',
+            `${sceneCurrentRotY}deg`
+        );
+
+        const sceneScrollTarget =
+            Math.min(
+                lenis.scroll * 0.000015 * document.documentElement.scrollHeight,
+                document.documentElement.scrollHeight
+            );
+
+        sceneCurrentScroll +=
+            (sceneScrollTarget - sceneCurrentScroll) *
+            SCENE_SMOOTHING;
+
+        scene.style.setProperty(
+            '--scene-scroll',
+            `${sceneCurrentScroll}px`
+        );
+    }
+    const sceneScrollTarget =
+        Math.min(
+            lenis.scroll * 0.000015 * document.documentElement.scrollHeight,
+            document.documentElement.scrollHeight
+        );
+
+    sceneCurrentScroll +=
+        (sceneScrollTarget - sceneCurrentScroll) *
+        SCENE_SMOOTHING;
+
+    scene.style.setProperty(
+        '--scene-scroll',
+        `${sceneCurrentScroll}px`
+    );
+    requestAnimationFrame(updateHeaderPhysics);
+}
+
+// 启动物理效果循环
+requestAnimationFrame(updateHeaderPhysics);
+
+// ==================== Tilt 卡片 3D 倾斜 ====================
+
+let tiltMouseX = 0;
+let tiltMouseY = 0;
+
+function updateTiltCards() {
+    document.querySelectorAll('.tilt-card').forEach(card => {
+        if (!ENABLE_TOUCH_TILT && 'ontouchstart' in window) {
+            return;
+        }
+        card._tiltUpdate?.();
+    });
+}
+
+document.querySelectorAll('.tilt-card').forEach(card => {
+    if (card.dataset.tiltBound) return;
+
+    card.dataset.tiltBound = '1';
+
+    const maxDeg =
+        parseFloat(card.dataset.tilt) ||
+        TILT_DEFAULT_DEG;
+
+    let raf = null;
+    let active = false;
+    let tRX = 0;
+    let tRY = 0;
+    let cRX = 0;
+    let cRY = 0;
+    let rect = null;
+
+    function animate() {
+        cRX += (tRX - cRX) * TILT_SMOOTHING;
+        cRY += (tRY - cRY) * TILT_SMOOTHING;
+
+        if (
+            Math.abs(tRX - cRX) <
+                TILT_STOP_THRESHOLD &&
+            Math.abs(tRY - cRY) <
+                TILT_STOP_THRESHOLD
+        ) {
+            cRX = tRX;
+            cRY = tRY;
+
+            card.style.transform =
+                `perspective(${TILT_PERSPECTIVE}px) rotateX(${cRX}deg) rotateY(${cRY}deg)`;
+
+            raf = null;
+            return;
+        }
+
+        card.style.transform =
+            `perspective(${TILT_PERSPECTIVE}px) rotateX(${cRX}deg) rotateY(${cRY}deg)`;
+
+        raf = requestAnimationFrame(animate);
+    }
+
+    function reset() {
+        if (!active) return;
+
+        active = false;
+        tRX = 0;
+        tRY = 0;
+
+        card.classList.remove('tilt-active');
+
+        card.style.transitionProperty =
+            '';
+
+        card.style.transitionDuration =
+            '';
+
+        card.style.transitionTimingFunction =
+            '';
+
+        if (!raf) {
+            raf = requestAnimationFrame(animate);
+        }
+    }
+
+    function enter() {
+        if (active) return;
+
+        active = true;
+        rect = card.getBoundingClientRect();
+
+        card.classList.add('tilt-active');
+
+        // 进入时踢掉 transform 过渡，避免和 tilt 打架
+        card.style.transitionProperty =
+            'border-color, background, box-shadow';
+
+        card.style.transitionDuration =
+            TILT_TRANSITION_DURATION;
+
+        card.style.transitionTimingFunction =
+            TILT_TRANSITION_TIMING;
+    }
+
+    function update() {
+        rect = card.getBoundingClientRect();
+
+        const inside =
+            tiltMouseX >= rect.left &&
+            tiltMouseX <= rect.right &&
+            tiltMouseY >= rect.top &&
+            tiltMouseY <= rect.bottom;
+
+        if (inside) {
+            if (!active) {
+                enter();
+            }
+
+            const px =
+                (tiltMouseX - rect.left) /
+                rect.width;
+
+            const py =
+                (tiltMouseY - rect.top) /
+                rect.height;
+
+            card.style.setProperty(
+                '--tilt-x',
+                `${px * 100}%`
+            );
+
+            card.style.setProperty(
+                '--tilt-y',
+                `${py * 100}%`
+            );
+
+            tRY =
+                (px - 0.5) *
+                2 *
+                maxDeg *
+                TILT_MOUSE_SCALE;
+
+            tRX =
+                -(py - 0.5) *
+                2 *
+                maxDeg *
+                TILT_MOUSE_SCALE;
+
+            if (!raf) {
+                raf = requestAnimationFrame(animate);
+            }
+        } else {
+            reset();
+        }
+    }
+
+    card._tiltUpdate = update;
+
+    document.addEventListener('mousemove', (e) => {
+        tiltMouseX = e.clientX;
+        tiltMouseY = e.clientY;
+
+        updateTiltCards();
+    }, {
+        passive: true
+    });
+
+    window.addEventListener(
+        'scroll',
+        updateTiltCards,
+        {
+            passive: true
+        }
+    );
+
+    window.addEventListener(
+        'resize',
+        updateTiltCards
+    );
+
+    if (typeof lenis !== 'undefined') {
+        lenis.on('scroll', updateTiltCards);
+    }
+});
+
+// ==================== 禁用拖动 ====================
+
+/* 禁用所有拖动 */
+document.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+}, false);
+
+/* 禁用图片的拖拽（兜底，某些浏览器 dragstart 拦不住） */
+document.querySelectorAll('img, a').forEach(el => {
+    el.setAttribute('draggable', 'false');
+
+    el.addEventListener('dragstart', e => {
+        e.preventDefault();
+    });
+});
+
+// ==================== 禁用文本选择 ====================
+
+/* ===== 彻底禁用文本选择 / 拖拽选择 / 双击选词 / 全选 ===== */
+
+// 1. 禁止 selectstart（绝大多数选择行为的入口）
+document.addEventListener(
+    'selectstart',
+    e => e.preventDefault(),
+    true
+);
+
+// 2. 禁止 mousedown 的默认行为（阻止拖选、双击选词）
+document.addEventListener(
+    'mousedown',
+    e => {
+        // 允许右键菜单，否则右键失效
+        if (e.button === 2) return;
+
+        e.preventDefault();
+    },
+    true
+);
+
+// 3. 阻止 Ctrl+A / Cmd+A 全选
+document.addEventListener('keydown', e => {
+    const k = e.key.toLowerCase();
+
+    if ((e.ctrlKey || e.metaKey) && k === 'a') {
+        e.preventDefault();
+    }
+});
+
+// 4. 阻止拖拽选中（针对文本节点）
+document.addEventListener(
+    'dragstart',
+    e => e.preventDefault(),
+    true
+);
+
+// 5. 阻止在文本框外做任何选择（防止边框外拖选）
+document.addEventListener('selectionchange', () => {
+    const sel = document.getSelection();
+
+    if (
+        sel &&
+        sel.rangeCount &&
+        !sel.isCollapsed
+    ) {
+        const el = sel.anchorNode;
+
+        // 如果选中处不在 input/textarea 里，就清空
+        if (
+            !el ||
+            !el.parentElement?.closest(
+                'input, textarea, [contenteditable]'
+            )
+        ) {
+            sel.removeAllRanges();
+        }
+    }
+});
+
+// ==================== 全站锚点平滑跳转 ====================
+
+(function () {
+    function scrollToTarget(target) {
+        if (
+            typeof lenis !== 'undefined' &&
+            lenis &&
+            typeof lenis.scrollTo === 'function'
+        ) {
+            lenis.scrollTo(target, {
+                duration: ANCHOR_SCROLL_DURATION,
+                easing: (t) =>
+                    1 - Math.pow(1 - t, 3)
+            });
+        } else {
+            // 兜底：Lenis 没加载成功就用原生平滑滚动
+            const top =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                80;
+
+            window.scrollTo({
+                top,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(a => {
+            if (a.dataset.anchorBound) return;
+
+            a.dataset.anchorBound = '1';
+
+            a.addEventListener(
+                'click',
+                function (e) {
+                    const id =
+                        this.getAttribute('href');
+
+                    if (!id || id === '#') return;
+
+                    const target =
+                        document.querySelector(id);
+
+                    if (!target) return;
+
+                    e.preventDefault();
+
+                    scrollToTarget(target);
+
+                    // 更新地址栏 hash，但不触发原生跳转
+                    if (history.pushState) {
+                        history.pushState(
+                            null,
+                            '',
+                            id
+                        );
+                    } else {
+                        location.hash = id;
+                    }
+                }
+            );
+        });
+})();
+
+// ==================== 页面向下提示 ====================
+
+/* ============================================================
+   给每个 page-section 自动加"向下"提示（除最后一页）
+   ============================================================ */
+
+(function () {
+    const sections =
+        Array.from(
+            document.querySelectorAll('.page-section')
+        );
+
+    sections.forEach((section, i) => {
+        const next = sections[i + 1];
+
+        if (!next) return;
+        if (section.querySelector('.scroll-hint')) return;
+
+        // 创建结构，复用已有的 .scroll-hint / .scroll-line 样式
+        const hint = document.createElement('a');
+
+        hint.className = 'scroll-hint';
+        hint.href = '#' + next.id;
+        hint.setAttribute(
+            'aria-label',
+            '向下浏览'
+        );
+
+        hint.innerHTML =
+            '<span>向下</span><span class="scroll-line"></span>';
+
+        // 点击用 Lenis 平滑跳转（复用你已有的逻辑）
+        hint.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const currentScroll =
+                (typeof lenis !== 'undefined' && lenis)
+                    ? lenis.scroll
+                    : 0;
+
+            const top =
+                next.getBoundingClientRect().top +
+                currentScroll;
+
+            if (
+                typeof lenis !== 'undefined' &&
+                lenis &&
+                lenis.scrollTo
+            ) {
+                lenis.scrollTo(top, {
+                    duration: ANCHOR_SCROLL_DURATION,
+                    easing: (t) =>
+                        1 - Math.pow(1 - t, 3)
+                });
+            } else {
+                window.scrollTo({
+                    top,
+                    behavior: 'smooth'
+                });
+            }
+
+            if (history.pushState) {
+                history.pushState(
+                    null,
+                    '',
+                    '#' + next.id
+                );
+            }
+        });
+
+        section.appendChild(hint);
+    });
+})();
+
+// ==================== 最后一页返回顶部 ====================
+
+/* ============================================================
+   最后一页加"返回顶部"
+   ============================================================ */
+
+(function () {
+    const sections =
+        Array.from(
+            document.querySelectorAll('.page-section')
+        );
+
+    const last =
+        sections[sections.length - 1];
+
+    if (!last) return;
+    if (last.querySelector('.scroll-top')) return;
+
+    const btn = document.createElement('a');
+
+    btn.className =
+        'scroll-hint scroll-top';
+
+    btn.href = '#home';
+
+    btn.setAttribute(
+        'aria-label',
+        '返回顶部'
+    );
+
+    btn.innerHTML =
+        '<span>回到顶部</span><span class="scroll-line"></span>';
+
+    // 箭头方向反转：让线条动效朝反方向
+    btn.style.flexDirection =
+        'row-reverse';
+
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (
+            typeof lenis !== 'undefined' &&
+            lenis &&
+            lenis.scrollTo
+        ) {
+            lenis.scrollTo(0, {
+                duration: ANCHOR_SCROLL_DURATION,
+                easing: (t) =>
+                    1 - Math.pow(1 - t, 3)
+            });
+        } else {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        if (history.pushState) {
+            history.pushState(
+                null,
+                '',
+                '#home'
+            );
+        }
+    });
+
+    last.appendChild(btn);
+})();
+
+
+/* ============================================================
+   Copy
+   ============================================================ */
+let copyToastTimer = null;
+function showCopyToast() {
+    clearTimeout(copyToastTimer);
+    copyToast.classList.add('show');
+    copyToastTimer = window.setTimeout(() => copyToast.classList.remove('show'), 1400);
+}
+
+document.querySelectorAll('.copy-card').forEach((card) => {
+    card.addEventListener('click', async () => {
+        const value = card.dataset.copy;
+        if (!value) return;
+        try {
+            await navigator.clipboard.writeText(value);
+            showCopyToast();
+        } catch {
+            const input = document.createElement('input');
+            input.value = value;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            input.remove();
+            showCopyToast();
+        }
+    });
+});
+
+/* ============================================================
+   顶部导航栏状态
+   ============================================================ */
+const navLinks = document.querySelectorAll('.header-nav a[href^="#"]');
+const navSelector = document.querySelector('.nav-selector');
+
+function updatePageIndicator(scroll) {
+    const scrollTop = lenis.scroll;
+    const viewportCenter = scrollTop + contentWrapper.clientHeight * 0.48;
+    let activeIndex = 0;
+    const sectionTops = Array.from(
+        document.querySelectorAll('.page-section')
+    ).map(s =>
+        s.getBoundingClientRect().top + lenis.scroll
+    );
+
+    for (let i = 0; i < sectionTops.length - 1; i++) {
+        const currentTop = sectionTops[i];
+        const nextTop = sectionTops[i + 1];
+        const switchPoint = currentTop + (nextTop - currentTop) / 2;
+
+        if (scroll >= switchPoint) {
+            if (i >= 4) {
+                activeIndex = i;
+            } else {
+                activeIndex = i + 1;
+            }
+            
+        }
+    }
+    const activeLink = navLinks[activeIndex];
+
+    if (activeLink && navSelector) {
+        const scale = Math.max(
+            Math.min(window.innerWidth / 2040, 1),
+            0.6
+        );
+
+        const sidePadding = 10 * scale;
+        const heightPercent = 50 * scale;
+        const topPercent = 50;
+
+        navSelector.style.width = `${activeLink.offsetWidth + sidePadding * 2}px`;
+        navSelector.style.top = `${topPercent}%`;
+        navSelector.style.height = `${heightPercent}%`;
+        navSelector.style.transform = `translate(${activeLink.offsetLeft - sidePadding}px, -50%)`;
+    }
+}
+
+
+updatePageIndicator(0);
+
+lenis.on('scroll', ({scroll}) => {
+    updatePageIndicator(scroll);
+});
+
+let resizeTimer;
+
+window.addEventListener('resize', () => {
+    navSelector.style.transition = 'none';
+
+    updatePageIndicator(lenis.scroll);
+
+    clearTimeout(resizeTimer);
+
+    resizeTimer = setTimeout(() => {
+        navSelector.style.transition = '';
+        updatePageIndicator(lenis.scroll);
+    }, 20);
+});
+
+const header = document.getElementById('site-header');
+
+const headerResizeObserver = new ResizeObserver(() => {
+    updatePageIndicator(lenis.scroll);
+});
+
+const headerMutationObserver = new MutationObserver(() => {
+    updatePageIndicator(lenis.scroll);
+});
+
+headerResizeObserver.observe(header);
+
+headerMutationObserver.observe(header, {
+    attributes: true,
+    attributeFilter: ['class', 'style']
+});
+
+if (DEBUG) {
+    const viewportInfo = document.createElement('div');
+
+    viewportInfo.style.position = 'fixed';
+    viewportInfo.style.top = '10px';
+    viewportInfo.style.right = '10px';
+    viewportInfo.style.zIndex = '99999';
+    viewportInfo.style.padding = '8px 10px';
+    viewportInfo.style.background = 'rgba(0, 0, 0, 0.8)';
+    viewportInfo.style.color = '#fff';
+    viewportInfo.style.font = '12px/1.6 monospace';
+    viewportInfo.style.pointerEvents = 'none';
+    viewportInfo.style.borderRadius = '6px';
+    viewportInfo.style.whiteSpace = 'pre';
+
+    function getBrowser() {
+        const ua = navigator.userAgent;
+
+        if (ua.includes('Edg/')) return 'Edge';
+        if (ua.includes('OPR/') || ua.includes('Opera')) return 'Opera';
+        if (ua.includes('Chrome/')) return 'Chrome';
+        if (ua.includes('Firefox/')) return 'Firefox';
+        if (ua.includes('Safari/') && !ua.includes('Chrome/')) return 'Safari';
+
+        return 'Unknown';
+    }
+
+    function getDevice() {
+        const ua = navigator.userAgent;
+
+        if (/Android/i.test(ua)) return 'Android';
+        if (/iPhone|iPad|iPod/i.test(ua)) return 'iOS';
+        if (/Windows/i.test(ua)) return 'Windows';
+        if (/Macintosh/i.test(ua)) return 'macOS';
+        if (/Linux/i.test(ua)) return 'Linux';
+
+        return 'Unknown';
+    }
+
+    function getDeviceType() {
+        const ua = navigator.userAgent;
+
+        if (/iPad|Tablet|Android(?!.*Mobile)/i.test(ua)) {
+            return 'Tablet';
+        }
+
+        if (/Mobile|iPhone|iPod|Android/i.test(ua)) {
+            return 'Mobile';
+        }
+
+        return 'Desktop';
+    }
+
+    function updateViewportInfo() {
+        viewportInfo.textContent =
+            `Viewport : ${window.innerWidth}px × ${window.innerHeight}px\n` +
+            `Screen   : ${screen.width}px × ${screen.height}px\n` +
+            `Browser  : ${getBrowser()}\n` +
+            `Device   : ${getDeviceType()}\n` +
+            `System   : ${getDevice()}\n` +
+            `Target X : ${gyroTargetX.toFixed(3)}\n` +
+            `Target Y : ${gyroTargetY.toFixed(3)}\n` +
+            `Current X: ${gyroCurrentX.toFixed(3)}\n` +
+            `Current Y: ${gyroCurrentY.toFixed(3)}\n` +
+            `Accelerometer: ${accelerometerStatus}\n`
+    }
+
+    document.body.appendChild(viewportInfo);
+
+    updateViewportInfo();
+
+    window.addEventListener('resize', updateViewportInfo);
+}
+
+    </script>
+</body>
+</html>
